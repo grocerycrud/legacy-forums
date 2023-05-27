@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ForumModel;
 use App\Models\TopicModel;
 
 class Website extends BaseController
@@ -13,8 +14,6 @@ class Website extends BaseController
 
     public function topic($slug)
     {
-        // the $slug should be in the format of "topic-id-title" with starting of numbers and only english characters lower case and dashes
-
         if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug)) {
             // throw Codeigniter 404 error
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -27,6 +26,25 @@ class Website extends BaseController
 
         return view('topic', [
             'topic' => $topic
+        ]);
+    }
+
+    public function forum($slug) {
+
+        if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug)) {
+            // throw Codeigniter 404 error
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $forumId = explode('-', $slug)[0];
+
+        $forumModel = new ForumModel();
+        $forum = $forumModel->getForumById($forumId);
+        $topics = $forumModel->getTopics($forumId);
+
+        return view('forum', [
+            'forum' => $forum,
+            'topics' => $topics
         ]);
     }
 }

@@ -46,8 +46,8 @@ class TopicModel extends Model
         'topic_answered_pid'
     ];
 
-    public function getTopicByTid($tid)
+    public function getTopicByTid($id)
     {
-        return $this->where('tid', $tid)->first();
+        return $this->where('tid', $id)->first();
     }
 }
