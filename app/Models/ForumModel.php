@@ -38,6 +38,7 @@ class ForumModel extends Model
             ->where('forum_id', $forumId)
             ->orderBy('pinned', 'DESC')
             ->orderBy('last_post', 'DESC')
+            ->join('fm_profile_portal', 'fm_profile_portal.pp_member_id = fm_topics.starter_id')
             ->limit($perPage, $offset)
             ->get()
             ->getResult();

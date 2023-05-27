@@ -1129,15 +1129,31 @@
                                     <li class='views desc'><?php echo number_format($topic->views); ?> views</li>
                                 </ul>
                             </td>
-                            <td class='col_f_post'>
-                                <span class='left'>
-                                    <img
-                                        src='https://secure.gravatar.com/avatar/f9d5f7a0d4f28160857b04ea4340a56a?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png'
-                                        alt='Newbie question about installing Grocery CRUD for CodeIgniter 4 - last post by daveoreardon'
-                                        class='ipsUserPhoto ipsUserPhoto_mini'
-                                        onerror='this.onerror=null;this.src="http://www.grocerycrud.com/forums/public/style_images/master/profile/default_large.png";'/>
+                            <td class="col_f_post">
 
-                                </span>
+                                <a href="https://forums.grocerycrud.com/user/3247-larasmith/" class="ipsUserPhotoLink left">
+                                    <?php if ($topic->pp_thumb_photo) {
+                                        if (strstr($topic->pp_thumb_photo, 'http')) { ?>
+                                            <img src="<?php echo $topic->pp_thumb_photo; ?>" alt="profile picture" class="ipsUserPhoto ipsUserPhoto_mini">
+                                        <?php
+                                        } else { ?>
+                                            <img src="/uploads/<?php echo $topic->pp_thumb_photo; ?>" alt="profile picture" class="ipsUserPhoto ipsUserPhoto_mini">
+                                    <?php
+                                        }
+                                    } else { ?>
+                                        <img src="/public/style_images/master/profile/default_large.png" alt="profile picture" class="ipsUserPhoto ipsUserPhoto_mini">
+                                    <?php } ?>
+
+                                </a>
+
+                                <ul class="last_post ipsType_small">
+                                    <li><a hovercard-ref="member" hovercard-id="3247" class="url fn name  ___hover___member _hoversetup" href="https://forums.grocerycrud.com/user/3247-larasmith/" title="" id="anonymous_element_6"><span itemprop="name"><?php echo $topic->starter_name; ?></span></a></li>
+                                    <li>
+                                        <a href="https://forums.grocerycrud.com/topic/139614-delete-the-physical-uploaded-file-when-it-is-deleted-using-the-delete-button-in-file-upload/?view=getlastpost" title="Go to last post: Delete the physical uploaded file when it is Deleted using the Delete Button in File Upload">
+                                            30 Jul 2021
+                                        </a>
+                                    </li>
+                                </ul>
                             </td>
                         </tr>
                         <?php } ?>
