@@ -54,11 +54,6 @@
     <div class='main_width'>
 
     </div>
-    <script type='text/javascript'>
-        if ($('primary_nav')) {
-            ipb.global.activateMainMenu();
-        }
-    </script>
 </div>
 
 <!-- ::: MAIN CONTENT AREA ::: -->

@@ -117,6 +117,12 @@ a {
 a:hover {
     color: #328586;
 }
+.gc_top_info {
+    background: #d8dde8;
+    padding: 20px 10px;
+    font-size: 16px;
+    text-align: center;
+}
 .ipsList_inline > li {
     display: inline-block;
     margin: 0 3px;

@@ -6,18 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <link rel="shortcut icon" href="/assets/themes/default/images/favicon.png"/>
     <link rel="image_src" href='https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png'/>
-    <script type='text/javascript'>
-        //<![CDATA[
-        jsDebug = 0; /* Must come before JS includes */
-        USE_RTE = 1;
-        DISABLE_AJAX = parseInt(0); /* Disables ajax requests where text is sent to the DB; helpful for charset issues */
-        inACP = false;
-        var isRTL = false;
-        var rtlIe = '';
-        var rtlFull = '';
-        var IPS_extra_plugins = [];
-        //]]>
-    </script>
+
 
 
     <style title="Main" media="screen,print">
@@ -76,187 +65,6 @@
         }
     </style>
 
-
-    <style title="Main" media="screen">
-        /* Inline CSS */
-
-        /* CSS: calendar_select*/
-        .calendar_date_select {
-            color: white;
-            border: #777 1px solid;
-            display: block;
-            width: 195px;
-            z-index: 1000
-        }
-
-        iframe.ie6_blocker {
-            position: absolute;
-            z-index: 999
-        }
-
-        .calendar_date_select thead
-        th {
-            font-weight: bold;
-            background-color: #aaa;
-            border-top: 1px solid #777;
-            border-bottom: 1px solid #777;
-            color: white !important
-        }
-
-        .calendar_date_select
-        .cds_buttons {
-            text-align: center;
-            padding: 5px 0px;
-            background-color: #555
-        }
-
-        .calendar_date_select
-        .cds_footer {
-            background-color: black;
-            padding: 3px;
-            font-size: 12px;
-            text-align: center
-        }
-
-        .calendar_date_select
-        table {
-            margin: 0px;
-            padding: 0px
-        }
-
-        .calendar_date_select
-        .cds_header {
-            background-color: #ccc;
-            border-bottom: 2px solid #aaa;
-            text-align: center
-        }
-
-        .calendar_date_select .cds_header
-        span {
-            font-size: 15px;
-            color: black;
-            font-weight: bold
-        }
-
-        .calendar_date_select
-        select {
-            font-size: 11px
-        }
-
-        .calendar_date_select .cds_header a:hover {
-            color: white
-        }
-
-        .calendar_date_select .cds_header
-        a {
-            width: 22px;
-            height: 20px;
-            text-decoration: none;
-            font-size: 14px;
-            color: black !important
-        }
-
-        .calendar_date_select .cds_header
-        a.prev {
-            float: left
-        }
-
-        .calendar_date_select .cds_header
-        a.next {
-            float: right
-        }
-
-        .calendar_date_select .cds_header
-        a.close {
-            float: right;
-            display: none
-        }
-
-        .calendar_date_select .cds_header
-        select.month {
-            width: 90px
-        }
-
-        .calendar_date_select .cds_header
-        select.year {
-            width: 61px
-        }
-
-        .calendar_date_select .cds_buttons
-        a {
-            color: white;
-            font-size: 9px
-        }
-
-        .calendar_date_select
-        td {
-            font-size: 12px;
-            width: 24px;
-            height: 21px;
-            text-align: center;
-            vertical-align: middle;
-            background-color: #fff
-        }
-
-        .calendar_date_select
-        td.weekend {
-            background-color: #eee;
-            border-left: 1px solid #ddd;
-            border-right: 1px solid #ddd
-        }
-
-        .calendar_date_select td
-        div {
-            color: #000
-        }
-
-        .calendar_date_select td
-        div.other {
-            color: #ccc
-        }
-
-        .calendar_date_select td.selected
-        div {
-            color: white
-        }
-
-        .calendar_date_select tbody
-        td {
-            border-bottom: 1px solid #ddd
-        }
-
-        .calendar_date_select
-        td.selected {
-            background-color: #777
-        }
-
-        .calendar_date_select td:hover {
-            background-color: #ccc
-        }
-
-        .calendar_date_select
-        td.today {
-            border: 1px dashed #999
-        }
-
-        .calendar_date_select td.disabled
-        div {
-            color: #e6e6e6
-        }
-
-        .fieldWithErrors
-        .calendar_date_select {
-            border: 2px solid red
-        }
-    </style>
-
-
-    <style type="text/css">
-        /* Inline CSS */
-
-        /* CSS: ipb_ckeditor*/
-
-    </style>
 
 
     <style type="text/css" title="Main" media="screen,print">
@@ -657,85 +465,9 @@
     <meta property="og:url" content="Array"/>
 
 
-    <script type='text/javascript' src='/public/js/3rd_party/prototype.js'></script>
-
-    <script type='text/javascript'
-            src='/public/js/ipb.js?ipbv=863bb407e1bf463ff5f60a6c1d241122&amp;load=quickpm,hovercard,board'></script>
-
-    <script type='text/javascript' src='/public/js/3rd_party/scriptaculous/scriptaculous-cache.js'></script>
-
-    <script type="text/javascript" src='/cache/lang_cache/1/ipb.lang.js' charset='UTF-8'></script>
+    <link id="ipsCanonical" rel="canonical" href="https://forums.grocerycrud.com"/>
 
 
-    <link id="ipsCanonical" rel="canonical" href="/"/>
-
-
-    <script type='text/javascript'>
-        //<![CDATA[
-        /* ---- URLs ---- */
-        ipb.vars['base_url'] = '/index.php?s=2d2847a742791636bfd18daabda08492&';
-        ipb.vars['board_url'] = 'https://forums.grocerycrud.com';
-        ipb.vars['img_url'] = "/public/style_images/master";
-        ipb.vars['loading_img'] = '/public/style_images/master/loading.gif';
-        ipb.vars['active_app'] = 'forums';
-        ipb.vars['upload_url'] = '/uploads';
-        /* ---- Member ---- */
-        ipb.vars['member_id'] = parseInt(0);
-        ipb.vars['is_supmod'] = parseInt(0);
-        ipb.vars['is_admin'] = parseInt(0);
-        ipb.vars['secure_hash'] = '880ea6a14ea49e853634fbdc5015a024';
-        ipb.vars['session_id'] = '2d2847a742791636bfd18daabda08492';
-        ipb.vars['twitter_id'] = 0;
-        ipb.vars['fb_uid'] = 0;
-        ipb.vars['auto_dst'] = parseInt(0);
-        ipb.vars['dst_in_use'] = parseInt();
-        ipb.vars['is_touch'] = false;
-        ipb.vars['member_group'] = {"g_mem_info": "1"}
-        /* ---- cookies ----- */
-        ipb.vars['cookie_id'] = '';
-        ipb.vars['cookie_domain'] = '';
-        ipb.vars['cookie_path'] = '/';
-        /* ---- Rate imgs ---- */
-        ipb.vars['rate_img_on'] = '/public/style_images/master/star.png';
-        ipb.vars['rate_img_off'] = '/public/style_images/master/star_off.png';
-        ipb.vars['rate_img_rated'] = '/public/style_images/master/star_rated.png';
-        /* ---- Uploads ---- */
-        ipb.vars['swfupload_swf'] = '/public/js/3rd_party/swfupload/swfupload.swf';
-        ipb.vars['swfupload_enabled'] = false;
-        ipb.vars['use_swf_upload'] = ('' == 'flash') ? true : false;
-        ipb.vars['swfupload_debug'] = false;
-        /* ---- other ---- */
-        ipb.vars['highlight_color'] = "#ade57a";
-        ipb.vars['charset'] = "UTF-8";
-        ipb.vars['seo_enabled'] = 1;
-
-        ipb.vars['seo_params'] = {
-            "start": "-",
-            "end": "\/",
-            "varBlock": "?",
-            "varPage": "page-",
-            "varSep": "&",
-            "varJoin": "="
-        };
-
-        /* Templates/Language */
-        ipb.templates['inlineMsg'] = "";
-        ipb.templates['ajax_loading'] = "<div id='ajax_loading'><img src='/public/style_images/master/ajax_loading.gif' alt='" + ipb.lang['loading'] + "' /></div>";
-        ipb.templates['close_popup'] = "<img src='/public/style_images/master/close_popup.png' alt='x' />";
-        ipb.templates['rss_shell'] = new Template("<ul id='rss_menu' class='ipbmenu_content'>#{items}</ul>");
-        ipb.templates['rss_item'] = new Template("<li><a href='#{url}' title='#{title}'>#{title}</a></li>");
-
-        ipb.templates['autocomplete_wrap'] = new Template("<ul id='#{id}' class='ipb_autocomplete' style='width: 250px;'></ul>");
-        ipb.templates['autocomplete_item'] = new Template("<li id='#{id}' data-url='#{url}'><img src='#{img}' alt='' class='ipsUserPhoto ipsUserPhoto_mini' />&nbsp;&nbsp;#{itemvalue}</li>");
-        ipb.templates['page_jump'] = new Template("<div id='#{id}_wrap' class='ipbmenu_content'><h3 class='bar'>Jump to page</h3><p class='ipsPad'><input type='text' class='input_text' id='#{id}_input' size='8' /> <input type='submit' value='Go' class='input_submit add_folder' id='#{id}_submit' /></p></div>");
-        ipb.templates['global_notify'] = new Template("<div class='popupWrapper'><div class='popupInner'><div class='ipsPad'>#{message} #{close}</div></div></div>");
-
-
-        ipb.templates['header_menu'] = new Template("<div id='#{id}' class='ipsHeaderMenu boxShadow'></div>");
-
-        Loader.boot();
-        //]]>
-    </script>
     <style type="text/css">
         .one .bsa_it_ad, .carbon-wrap {
             padding: 5px !important;
@@ -836,15 +568,8 @@
     </script>
 </head>
 <body id='ipboard_body'>
-<p id='content_jump' style="background: #d8dde8; padding: 20px 10px;font-size: 16px;text-align:center"> &#9888; In case
-    you've missed it, we have migrated to our <a href="https://www.grocerycrud.com/" title="new website"
-                                                style="text-decoration: underline">new website</a>, with a brand <a
-        href="https://discuss.grocerycrud.com/" title="new forum" style="text-decoration: underline">new forum</a>. For
-    more details about the migration you can read our blog post for <a
-        href="https://www.grocerycrud.com/blog/new-website-migration" title="website migration"
-        style="text-decoration: underline">website migration</a>. This is an archived forum.
-    &#9888; </p>
 
+    <?php include_once("sections/top-info.php"); ?>
     <!-- ::: TOP BAR: Sign in / register or user drop down and notification alerts ::: -->
     <div id='header_bar' class='clearfix'>
         <div class='main_width'>
@@ -1247,14 +972,6 @@
 
                 </div>
             </div>
-            <script type='text/javascript'>
-                //<![CDATA[
-                var markerURL = ipb.vars['base_url'] + "app=forums&module=ajax&section=markasread&i=1"; // Ajax URL so don't use &amp;
-                var unreadIcon = "<img src='/public/style_images/master/f_icon_read.png' />";
-
-
-                //]]>
-            </script>
 
             <div id='board_stats'>
                 <ul class='ipsType_small ipsList_inline'>
@@ -1272,99 +989,11 @@
         </div>
         <!-- ::: FOOTER (Change skin, language, mark as read, etc) ::: -->
         <div id='footer_utilities' class='main_width clearfix clear'>
-            <a rel="nofollow" href='#top' id='backtotop' title='Go to top'><img
-                    src='/public/style_images/master/top.png' alt=''/></a>
+
         </div>
 
-        <div><img src='/index.php?app=core&amp;module=task' alt='' style='border: 0px;height:1px;width:1px;'/></div>
-
-        <script type="text/javascript">
-            ipb.global.lightBoxIsOff();
-        </script>
-
-        <div id='inline_login_form' style='display: none'>
-            <form action="/index.php?app=core&amp;module=global&amp;section=login&amp;do=process" method="post"
-                  id='login'>
-                <input type='hidden' name='auth_key' value='880ea6a14ea49e853634fbdc5015a024'/>
-                <input type="hidden" name="referer" value="/"/>
-                <h3>Sign In</h3>
-
-                <br/>
-                <div class='ipsForm ipsForm_horizontal'>
-                    <fieldset>
-                        <ul>
-                            <li class='ipsField'>
-                                <div class='ipsField_content'>
-                                    Need an account? <a
-                                        href="/index.php?app=core&amp;module=global&amp;section=register"
-                                        title='Register now!'>Register now!</a>
-                                </div>
-                            </li>
-                            <li class='ipsField ipsField_primary'>
-                                <label for='ips_username' class='ipsField_title'>Username</label>
-                                <div class='ipsField_content'>
-                                    <input id='ips_username' type='text' class='input_text' name='ips_username'
-                                           size='30'/>
-                                </div>
-                            </li>
-                            <li class='ipsField ipsField_primary'>
-                                <label for='ips_password' class='ipsField_title'>Password</label>
-                                <div class='ipsField_content'>
-                                    <input id='ips_password' type='password' class='input_text' name='ips_password'
-                                           size='30'/><br/>
-                                    <a href='/index.php?app=core&amp;module=global&amp;section=lostpass'
-                                       title='Retrieve password'>I've forgotten my password</a>
-                                </div>
-                            </li>
-                            <li class='ipsField ipsField_checkbox'>
-                                <input type='checkbox' id='inline_remember' checked='checked' name='rememberMe'
-                                       value='1' class='input_check'/>
-                                <div class='ipsField_content'>
-                                    <label for='inline_remember'>
-                                        <strong>Remember me</strong><br/>
-                                        <span class='desc lighter'>This is not recommended for shared computers</span>
-                                    </label>
-                                </div>
-                            </li>
-
-                            <li class='ipsField ipsField_checkbox'>
-                                <input type='checkbox' id='inline_invisible' name='anonymous' value='1'
-                                       class='input_check'/>
-                                <div class='ipsField_content'>
-                                    <label for='inline_invisible'>
-                                        <strong>Sign in anonymously</strong><br/>
-                                        <span class='desc lighter'>Don't add me to the active users list</span>
-                                    </label>
-                                </div>
-                            </li>
 
 
-                            <li class='ipsPad_top ipsForm_center desc ipsType_smaller'>
-                                <a rel="nofollow" href='/privacypolicy/'>Privacy Policy</a>
-                            </li>
-
-                        </ul>
-                    </fieldset>
-
-                    <div class='ipsForm_submit ipsForm_center'>
-                        <input type='submit' class='ipsButton' value='Sign In'/>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23493740-5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-23493740-5');
-    </script>
+        <?php include('sections/google-analytics.php'); ?>
 </body>
 </html>

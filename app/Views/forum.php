@@ -8,18 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <link rel="shortcut icon" href="/assets/themes/default/images/favicon.png"/>
     <link rel="image_src" href='https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png'/>
-    <script type='text/javascript'>
-        //<![CDATA[
-        jsDebug = 0; /* Must come before JS includes */
-        USE_RTE = 1;
-        DISABLE_AJAX = parseInt(0); /* Disables ajax requests where text is sent to the DB; helpful for charset issues */
-        inACP = false;
-        var isRTL = false;
-        var rtlIe = '';
-        var rtlFull = '';
-        var IPS_extra_plugins = [];
-        //]]>
-    </script>
+
 
 
     <style type="text/css">
@@ -640,29 +629,6 @@
 
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
 
-    <style type="text/css">
-        /* Inline CSS */
-
-        /* CSS: ipb_search*/
-
-    </style>
-
-
-    <!--[if lte IE 7]>
-    <link rel="stylesheet" type="text/css" title='Main' media="screen" href="/public/style_css/css_18/ipb_ie.css"/>
-    <![endif]-->
-    <!--[if lte IE 8]>
-    <style type='text/css'>
-        .ipb_table {
-            table-layout: fixed;
-        }
-
-        .ipsLayout_content {
-            width: 99.5%;
-        }
-    </style>
-    <![endif]-->
-
     <style type='text/css'>
         img.bbc_img {
             max-width: 100% !important;
@@ -687,15 +653,6 @@
     <meta property="og:url" content="Array"/>
 
 
-    <script type='text/javascript' src='/public/js/3rd_party/prototype.js'></script>
-
-    <script type='text/javascript'
-            src='/public/js/ipb.js?ipbv=863bb407e1bf463ff5f60a6c1d241122&amp;load=quickpm,hovercard,forums,like'></script>
-
-    <script type='text/javascript' src='/public/js/3rd_party/scriptaculous/scriptaculous-cache.js'></script>
-
-    <script type="text/javascript" src='/cache/lang_cache/1/ipb.lang.js' charset='UTF-8'></script>
-
 
     <link id="ipsCanonical" rel="canonical" href="/forum/11-grocery-crud-enterprise/"/>
 
@@ -711,72 +668,6 @@
     <link rel='up' href='/forum/3-support/'/>
 
 
-    <script type='text/javascript'>
-        //<![CDATA[
-        /* ---- URLs ---- */
-        ipb.vars['base_url'] = '/index.php?s=6d9b17e7f5a0054df48d8ebf08c515b4&';
-        ipb.vars['board_url'] = 'https://forums.grocerycrud.com';
-        ipb.vars['img_url'] = "/public/style_images/master";
-        ipb.vars['loading_img'] = '/public/style_images/master/loading.gif';
-        ipb.vars['active_app'] = 'forums';
-        ipb.vars['upload_url'] = '/uploads';
-        /* ---- Member ---- */
-        ipb.vars['member_id'] = parseInt(0);
-        ipb.vars['is_supmod'] = parseInt(0);
-        ipb.vars['is_admin'] = parseInt(0);
-        ipb.vars['secure_hash'] = '880ea6a14ea49e853634fbdc5015a024';
-        ipb.vars['session_id'] = '6d9b17e7f5a0054df48d8ebf08c515b4';
-        ipb.vars['twitter_id'] = 0;
-        ipb.vars['fb_uid'] = 0;
-        ipb.vars['auto_dst'] = parseInt(0);
-        ipb.vars['dst_in_use'] = parseInt();
-        ipb.vars['is_touch'] = false;
-        ipb.vars['member_group'] = {"g_mem_info": "1"}
-        /* ---- cookies ----- */
-        ipb.vars['cookie_id'] = '';
-        ipb.vars['cookie_domain'] = '';
-        ipb.vars['cookie_path'] = '/';
-        /* ---- Rate imgs ---- */
-        ipb.vars['rate_img_on'] = '/public/style_images/master/star.png';
-        ipb.vars['rate_img_off'] = '/public/style_images/master/star_off.png';
-        ipb.vars['rate_img_rated'] = '/public/style_images/master/star_rated.png';
-        /* ---- Uploads ---- */
-        ipb.vars['swfupload_swf'] = '/public/js/3rd_party/swfupload/swfupload.swf';
-        ipb.vars['swfupload_enabled'] = false;
-        ipb.vars['use_swf_upload'] = ('' == 'flash') ? true : false;
-        ipb.vars['swfupload_debug'] = false;
-        /* ---- other ---- */
-        ipb.vars['highlight_color'] = "#ade57a";
-        ipb.vars['charset'] = "UTF-8";
-        ipb.vars['seo_enabled'] = 1;
-
-        ipb.vars['seo_params'] = {
-            "start": "-",
-            "end": "\/",
-            "varBlock": "?",
-            "varPage": "page-",
-            "varSep": "&",
-            "varJoin": "="
-        };
-
-        /* Templates/Language */
-        ipb.templates['inlineMsg'] = "";
-        ipb.templates['ajax_loading'] = "<div id='ajax_loading'><img src='/public/style_images/master/ajax_loading.gif' alt='" + ipb.lang['loading'] + "' /></div>";
-        ipb.templates['close_popup'] = "<img src='/public/style_images/master/close_popup.png' alt='x' />";
-        ipb.templates['rss_shell'] = new Template("<ul id='rss_menu' class='ipbmenu_content'>#{items}</ul>");
-        ipb.templates['rss_item'] = new Template("<li><a href='#{url}' title='#{title}'>#{title}</a></li>");
-
-        ipb.templates['autocomplete_wrap'] = new Template("<ul id='#{id}' class='ipb_autocomplete' style='width: 250px;'></ul>");
-        ipb.templates['autocomplete_item'] = new Template("<li id='#{id}' data-url='#{url}'><img src='#{img}' alt='' class='ipsUserPhoto ipsUserPhoto_mini' />&nbsp;&nbsp;#{itemvalue}</li>");
-        ipb.templates['page_jump'] = new Template("<div id='#{id}_wrap' class='ipbmenu_content'><h3 class='bar'>Jump to page</h3><p class='ipsPad'><input type='text' class='input_text' id='#{id}_input' size='8' /> <input type='submit' value='Go' class='input_submit add_folder' id='#{id}_submit' /></p></div>");
-        ipb.templates['global_notify'] = new Template("<div class='popupWrapper'><div class='popupInner'><div class='ipsPad'>#{message} #{close}</div></div></div>");
-
-
-        ipb.templates['header_menu'] = new Template("<div id='#{id}' class='ipsHeaderMenu boxShadow'></div>");
-
-        Loader.boot();
-        //]]>
-    </script>
     <style type="text/css">
         .one .bsa_it_ad, .carbon-wrap {
             padding: 5px !important;
@@ -877,14 +768,7 @@
     </script>
 </head>
 <body id='ipboard_body'>
-<p id='content_jump' style="background: #d8dde8;padding: 20px 10px;font-size: 16px;text-align:center"> &#9888; In case
-    you've missed it we have migrated to our <a href="https://www.grocerycrud.com/" title="new website"
-                                                style="text-decoration: underline">new website</a>, with a brand <a
-        href="https://discuss.grocerycrud.com/" title="new forum" style="text-decoration: underline">new forum</a>. For
-    more details about the migration you can read our blog post for <a
-        href="https://www.grocerycrud.com/blog/new-website-migration" title="website migration"
-        style="text-decoration: underline">website migration</a>. This forum is read-only and soon will be archived.
-    &#9888; </p>
+<?php include_once("sections/top-info.php"); ?>
 <div id='ipbwrapper'>
     <!-- ::: TOP BAR: Sign in / register or user drop down and notification alerts ::: -->
     <div id='header_bar' class='clearfix'>
@@ -918,18 +802,7 @@
             <!-- ::: CONTENT ::: -->
 
 
-            <script type="text/javascript">
-                //<![CDATA[
-                //Search Setup
-                ipb.vars['search_type'] = 'forum';
-                ipb.vars['search_type_id'] = 11;
-                ipb.templates['topic_rename'] = new Template("<input type='text' id='#{inputid}' value='#{value}' class='input_text' size='50' maxlength='150' /> <input type='submit' value='Update' class='input_submit' id='#{submitid}' /> <a href='#' id='#{cancelid}' class='cancel' title='Cancel'>Cancel</a>");
-                var markerURL = ipb.vars['base_url'] + "app=forums&module=ajax&section=markasread&i=1"; // Ajax URL so don't use &amp;
-                var unreadIcon = "<img src='/public/style_images/master/f_icon_read.png' />";
 
-                ipb.templates['topic_moderation'] = new Template("<div id='comment_moderate_box' class='ipsFloatingAction' style='display: none'><span class='desc'>With <span id='comment_count'>#{count}</span> checked topics: </span><select id='tactInPopup' class='input_select'></select>&nbsp;&nbsp;<input type='button' class='input_submit' id='submitModAction' value='Go' /></div>");
-                //]]>
-            </script>
 
             <h1 class='ipsType_pagetitle'><?php echo $forum['name']; ?></h1>
             <div class='ipsType_pagedesc forum_rules'>
@@ -951,15 +824,7 @@
                         <li class='pagejump clickable pj0424018001'>
                             <a href='#'>Page 1 of 11
                                 <!--<img src='/public/style_images/master/dropdown.png' alt='+' />--></a>
-                            <script type='text/javascript'>
-                                ipb.global.registerPageJump('0424018001', {
-                                    url: "/forum/11-grocery-crud-enterprise/?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all",
-                                    stKey: 'st',
-                                    perPage: 30,
-                                    totalPages: 11,
-                                    anchor: ''
-                                });
-                            </script>
+
                         </li>
 
 
@@ -990,16 +855,7 @@
 
                     </ul>
                 </div>
-                <ul class='topic_buttons'>
 
-
-                    <li class='non_button'>
-                        <a data-clicklaunch="forumMarkRead" data-fid="11"
-                           href='/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=forum&amp;forumid=11&amp;returntoforumid=11'
-                           title='Mark this forum as read'><img src='/public/style_images/master/icon_check.png'/>
-                            &nbsp;Mark this forum as read</a>
-                    </li>
-                </ul>
 
 
             </div>
@@ -1009,66 +865,7 @@
 
 
             </div>
-            <div id='forum_filter_menucontent' class='ipbmenu_content ipsPad' style='display: none'>
-                <form id='filter_form' action="/forum/11-grocery-crud-enterprise/?changefilters=1" method="post">
-                    <strong>Show topic type</strong><br/>
-                    <select name="topicfilter" id='topic_filter' class='input_select'>
-                        <option value='all' selected='selected'>All Topics</option>
-                        <option value='open'>Open</option>
-                        <option value='hot'>Hot</option>
-                        <option value='poll'>Polls</option>
-                        <option value='locked'>Locked</option>
-                        <option value='moved'>Moved</option>
-                    </select>
-                    <br/><br/>
 
-                    <strong>Sort by</strong><br/>
-                    <select name="sort_key" id='sort_by' class='input_select'>
-                        <option value='last_post' selected='selected'>Last Post</option>
-                        <option value='last_poster_name'>Last Poster</option>
-                        <option value='title'>Topic Title</option>
-                        <option value='starter_name'>Topic Starter</option>
-                        <option value='start_date'>Topic Started</option>
-                        <option value='topic_hasattach'>Attachments</option>
-                        <option value='posts'>Replies</option>
-                        <option value='views'>Views</option>
-                    </select>
-                    <br/><br/>
-
-                    <strong>Sort direction</strong><br/>
-                    <select name="sort_by" id='direction' class='input_select'>
-                        <option value='Z-A' selected='selected'>Descending (Z-A)</option>
-                        <option value='A-Z'>Ascending (A-Z)</option>
-                    </select>
-                    <br/><br/>
-
-                    <strong>Time frame</strong><br/>
-                    <select name="prune_day" id='time_frame' class='input_select'>
-                        <option value='1'>From Today</option>
-                        <option value='5'>Last 5 days</option>
-                        <option value='7'>Last 7 days</option>
-                        <option value='10'>Last 10 days</option>
-                        <option value='15'>Last 15 days</option>
-                        <option value='20'>Last 20 days</option>
-                        <option value='25'>Last 25 days</option>
-                        <option value='30'>Last 30 days</option>
-                        <option value='60'>Last 60 days</option>
-                        <option value='90'>Last 90 days</option>
-                        <option value='100' selected='selected'>Show All</option>
-                        <option value='200'>Since Last Visit</option>
-                    </select>
-                    <br/><br/>
-
-                    <input type='checkbox' value='1' name='remember' class='input_check' id='remember_filter'/> <label
-                        for='remember_filter'>Remember filters</label>
-                    <br/><br/>
-
-                    <input type="submit" value="Update Filter" class="input_submit"/>
-                </form>
-            </div>
-            <script type='text/javascript'>
-                new ipb.Menu($('forum_filter'), $('forum_filter_menucontent'), {stopClose: true});
-            </script>
             <div class='ipsBox'>
                 <div class='ipsBox_container'>
                     <table class='ipb_table topic_list hover_rows '
@@ -1160,17 +957,7 @@
 
                     </table>
 
-                    <script type='text/javascript'>
-                        ipb.forums.fetchMore = {
-                            'f': parseInt("11"),
-                            'st': parseInt(""),
-                            'sort_by': "Z-A",
-                            'sort_key': "last_post",
-                            'topicfilter': "",
-                            'prune_day': "",
-                            'max_topics': "30"
-                        };
-                    </script>
+
 
                 </div>
             </div>
@@ -1186,15 +973,7 @@
                         <li class='pagejump clickable pj0424018001'>
                             <a href='#'>Page 1 of 11
                                 <!--<img src='/public/style_images/master/dropdown.png' alt='+' />--></a>
-                            <script type='text/javascript'>
-                                ipb.global.registerPageJump('0424018001', {
-                                    url: "/forum/11-grocery-crud-enterprise/?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all",
-                                    stKey: 'st',
-                                    perPage: 30,
-                                    totalPages: 11,
-                                    anchor: ''
-                                });
-                            </script>
+
                         </li>
 
 
@@ -1238,25 +1017,13 @@
         </div>
         <!-- ::: FOOTER (Change skin, language, mark as read, etc) ::: -->
         <div id='footer_utilities' class='main_width clearfix clear'>
-            <a rel="nofollow" href='#top' id='backtotop' title='Go to top'><img
-                    src='/public/style_images/master/top.png' alt=''/></a>
-            <ul class='ipsList_inline left'>
-                <li>
-                    <img src='/public/style_images/master/feed.png' alt='RSS Feed' id='rss_feed' class='clickable'/>
-                </li>
 
-                <li>
-                    <a href="/index.php?app=core&amp;module=help" title='View help' rel="help" accesskey='6'>Help</a>
-                </li>
-            </ul>
 
         </div>
 
         <div><img src='/index.php?app=core&amp;module=task' alt='' style='border: 0px;height:1px;width:1px;'/></div>
 
-        <script type="text/javascript">
-            ipb.global.lightBoxIsOff();
-        </script>
+
 
         <div id='inline_login_form' style='display: none'>
             <form action="/index.php?app=core&amp;module=global&amp;section=login&amp;do=process" method="post"
@@ -1329,18 +1096,6 @@
             </form>
         </div>
     </div>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23493740-5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-23493740-5');
-    </script>
+    <?php include('sections/google-analytics.php'); ?>
 </body>
 </html>

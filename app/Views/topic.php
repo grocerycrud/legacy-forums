@@ -434,7 +434,7 @@
     </script>
 </head>
 <body id='ipboard_body'>
-<p id='content_jump' style="background: #d8dde8;padding: 20px 10px;font-size: 16px;text-align:center"> &#9888; In case you've missed it we have migrated to our <a href="https://www.grocerycrud.com/" title="new website" style="text-decoration: underline">new website</a>, with a brand <a href="https://discuss.grocerycrud.com/" title="new forum" style="text-decoration: underline">new forum</a>. For more details about the migration you can read our blog post for <a href="https://www.grocerycrud.com/blog/new-website-migration" title="website migration" style="text-decoration: underline">website migration</a>. This forum is read-only and soon will be archived. &#9888; </p>
+<?php include_once("sections/top-info.php"); ?>
 <div id='ipbwrapper'>
     <!-- ::: TOP BAR: Sign in / register or user drop down and notification alerts ::: -->
     <div id='header_bar' class='clearfix'>
@@ -761,47 +761,8 @@
         </div>
         <!-- ::: FOOTER (Change skin, language, mark as read, etc) ::: -->
         <div id='footer_utilities' class='main_width clearfix clear'>
-            <a rel="nofollow" href='#top' id='backtotop' title='Go to top'><img src='/public/style_images/master/top.png' alt='' /></a>
-            <ul class='ipsList_inline left'>
-                <li>
-                    <img src='/public/style_images/master/feed.png' alt='RSS Feed' id='rss_feed' class='clickable' />
-                </li>
-
-
-
-
-                <li>
-                    <a rel="nofollow" id='mark_all_read' href="/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=all&amp;k=880ea6a14ea49e853634fbdc5015a024" title='Mark all as read'>Mark Community Read</a>
-                    <ul id='mark_all_read_menucontent' class='ipbmenu_content' style='display: none'>
-
-                        <li>
-
-                        </li>
-
-
-                        <li>
-                            <a href="/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=app&amp;markApp=forums&amp;k=880ea6a14ea49e853634fbdc5015a024">Forums</a>
-                        </li>
-
-
-                        <li>
-                            <a href="/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=app&amp;markApp=members&amp;k=880ea6a14ea49e853634fbdc5015a024">Members</a>
-                        </li>
-
-                        <li>
-                            <a href="/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=all&amp;k=880ea6a14ea49e853634fbdc5015a024"><strong>Mark all as read</strong></a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="/index.php?app=core&amp;module=help" title='View help' rel="help" accesskey='6'>Help</a>
-                </li>
-            </ul>
 
         </div>
-
-        <div><img src='/index.php?app=core&amp;module=task' alt='' style='border: 0px;height:1px;width:1px;' /></div>
 
         <script type='text/javascript' src='/public/js/3rd_party/lightbox.js'></script>
         <script type='text/javascript'>
@@ -852,74 +813,7 @@
             //]]>
         </script>
 
-        <div id='inline_login_form' style='display: none'>
-            <form action="/index.php?app=core&amp;module=global&amp;section=login&amp;do=process" method="post" id='login'>
-                <input type='hidden' name='auth_key' value='880ea6a14ea49e853634fbdc5015a024' />
-                <input type="hidden" name="referer" value="/topic/139616-newbie-question-about-installing-grocery-crud-for-codeigniter-4/" />
-
-
-                <br />
-                <div class='ipsForm ipsForm_horizontal'>
-                    <fieldset>
-                        <ul>
-                            <li class='ipsField'>
-                                <div class='ipsField_content'>
-                                    Need an account? <a href="/index.php?app=core&amp;module=global&amp;section=register" title='Register now!'>Register now!</a>
-                                </div>
-                            </li>
-                            <li class='ipsField ipsField_primary'>
-                                <label for='ips_username' class='ipsField_title'>Username</label>
-                                <div class='ipsField_content'>
-                                    <input id='ips_username' type='text' class='input_text' name='ips_username' size='30' />
-                                </div>
-                            </li>
-                            <li class='ipsField ipsField_primary'>
-                                <label for='ips_password' class='ipsField_title'>Forum Password</label>
-                                <div class='ipsField_content'>
-                                    <input id='ips_password' type='password' class='input_text' name='ips_password' size='30' /><br />
-                                    <a href='/index.php?app=core&amp;module=global&amp;section=lostpass' title='Retrieve password'>I've forgotten my password</a>
-                                </div>
-                            </li>
-                            <li class='ipsField ipsField_checkbox'>
-                                <input type='checkbox' id='inline_remember' checked='checked' name='rememberMe' value='1' class='input_check' />
-                                <div class='ipsField_content'>
-                                    <label for='inline_remember'>
-                                        <strong>Remember me</strong><br />
-                                        <span class='desc lighter'>This is not recommended for shared computers</span>
-                                    </label>
-                                </div>
-                            </li>
-
-                            <li class='ipsField ipsField_checkbox'>
-                                <input type='checkbox' id='inline_invisible' name='anonymous' value='1' class='input_check' />
-                                <div class='ipsField_content'>
-                                    <label for='inline_invisible'>
-                                        <strong>Sign in anonymously</strong><br />
-                                        <span class='desc lighter'>Don't add me to the active users list</span>
-                                    </label>
-                                </div>
-                            </li>
-
-
-                            <li class='ipsPad_top ipsForm_center desc ipsType_smaller'>
-                                <a rel="nofollow" href='/privacypolicy/'>Privacy Policy</a>
-                            </li>
-
-                        </ul>
-                    </fieldset>
-
-                </div>
-            </form>
-        </div>
     </div>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23493740-5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-23493740-5');
-    </script>
+    <?php include('sections/google-analytics.php'); ?>
 </body>
 </html>
