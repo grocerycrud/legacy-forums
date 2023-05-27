@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ForumModel;
+use App\Models\PostModel;
 use App\Models\TopicModel;
 
 class Website extends BaseController
@@ -24,8 +25,12 @@ class Website extends BaseController
         $topicModel = new TopicModel();
         $topic = $topicModel->getTopicByTid($topicId);
 
+        $postModel = new PostModel();
+        $posts = $postModel->getPosts($topicId);
+
         return view('topic', [
-            'topic' => $topic
+            'topic' => $topic,
+            'posts' => $posts
         ]);
     }
 

@@ -536,8 +536,7 @@
 
             <div class='maintitle clear clearfix'>
 	<span class='ipsType_small'>
-		
-			No replies to this topic
+
 		
 	</span>
 
@@ -550,21 +549,16 @@
                 <div class='ipsBox'>
                     <div class='ipsBox_container' id='ips_Posts'>
 
-                        <!--post:152626-->
 
-                        <div class='post_block hentry clear clearfix ' id='post_id_152626'>
-                            <a id='entry152626'></a>
-
-
+                        <?php foreach ($posts as $post) { ?>
+                        <div class='post_block hentry clear clearfix'>
 
                             <div itemscope itemtype="http://schema.org/UserComments" class='post_wrap' >
 
                                 <h3 class='row2'>
 			
 
-
                                     <span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="5559" class="_hovertrigger url fn name " href='/user/5559-daveoreardon/' title='View Profile'><span itemprop="name">daveoreardon</span></a></span>
-
 
 
                                 </h3>
@@ -620,20 +614,7 @@
                                     </p>
 
                                     <div itemprop="commentText" class='post entry-content '>
-                                        <!--cached-Mon, 22 May 2023 07:23:27 +0000--><div>I'm new to Grocery CRUD Enterprise, CodeIgniter 4 and Composer, so please be gentle with me...</div>
-                                        <div>&nbsp;</div>
-                                        <div>&nbsp;</div>
-                                        <div>I want to install Grocery CRUD Enterprise on a new server. I've already installed CodeIgniter 4 via Composer.</div>
-                                        <div>&nbsp;</div>
-                                        <div>&nbsp;</div>
-                                        <div>In these instructions for CodeIgniter 4 (<a href='https://www.grocerycrud.com/docs/grocery-crud-enterprise-codeigniter-4' class='bbc_url' title='External link' rel='nofollow external'>https://www.groceryc...e-codeigniter-4</a>), it descibes a non-composer installation.</div>
-                                        <div>&nbsp;</div>
-                                        <div>&nbsp;</div>
-                                        <div>And in these instructons for using Composer (<a href='https://www.grocerycrud.com/docs/grocery-crud-enterprise-installation' class='bbc_url' title='External link' rel='nofollow external'>https://www.groceryc...se-installation</a>), the steps are for Zend not for CodeIgniter.</div>
-                                        <div>&nbsp;</div>
-                                        <div>&nbsp;</div>
-                                        <div>Are there any instructions for installing Grocery CRUD for CodeIgniter v4 with Composer?</div>
-                                        <p>&nbsp;</p>
+                                        <?php echo $post->post; ?>
 
 
                                         <br />
@@ -664,7 +645,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <?php } ?>
 
                         <hr />
 
