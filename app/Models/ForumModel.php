@@ -36,6 +36,8 @@ class ForumModel extends Model
 
         return $this->db->table('fm_topics')
             ->where('forum_id', $forumId)
+            ->orderBy('pinned', 'DESC')
+            ->orderBy('last_post', 'DESC')
             ->limit($perPage, $offset)
             ->get()
             ->getResult();

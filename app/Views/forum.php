@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+/** @var array $topics */
+?><!DOCTYPE html>
 <html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta charset="UTF-8"/>
@@ -1084,8 +1086,8 @@
 
                         <?php ;
                         foreach ($topics as $topic) { ?>
-                        <tr itemscope itemtype="http://schema.org/Article" class='__topic  expandable' id='trow_139616'
-                            data-tid="139616">
+                        <tr itemscope itemtype="http://schema.org/Article" class='__topic  expandable' id='trow_<?php echo $topic->tid; ?>'
+                            data-tid="<?php echo $topic->tid; ?>">
                             <td class='col_f_icon altrow short'>
 
 
@@ -1093,33 +1095,34 @@
                             <td class='col_f_content '>
                                 <h4>
 
-                                    <a itemprop="url" id="tid-link-139616"
-                                       href="/topic/139616-newbie-question-about-installing-grocery-crud-for-codeigniter-4/"
+                                    <a itemprop="url" id="tid-link-<?php echo $topic->tid; ?>"
+                                       href="/topic/<?php echo $topic->tid; ?>-<?php echo $topic->title_seo; ?>/"
                                        title='Newbie question about installing Grocery CRUD for CodeIgniter 4 - started  28 November 2021 - 02:29 AM'
                                        class='topic_title'>
+                                        <?php if ($topic->pinned === "1") { ?>
+                                            <span class="ipsBadge ipsBadge_green">Pinned</span>&nbsp;
+                                        <?php } ?>
                                         <span itemprop="name"><?php echo($topic->title);?></a>
                                 </h4>
                                 <br/>
                                 <span class='desc lighter blend_links'>
-			Started by <a hovercard-ref="member" hovercard-id="5559" class="_hovertrigger url fn name "
-                          href='/user/5559-daveoreardon/' title='View Profile'><span itemprop="name">daveoreardon</span></a>, <span
-                                        itemprop="dateCreated">28 Nov 2021</span>
-
-
-
-		</span>
+                                    Started by <span class="fn name"><span itemprop="name">daveoreardon</span></span>,
+                                    <span itemprop="dateCreated">28 Nov 2021</span>
+		                        </span>
 
                             </td>
                             <td class='col_f_preview __topic_preview'>
 
-                                <a href='/topic/139616-newbie-question-about-installing-grocery-crud-for-codeigniter-4/'
+                                <a href='/topic/<?php echo $topic->tid; ?>-newbie-question-about-installing-grocery-crud-for-codeigniter-4/'
                                    class='expander closed' title='Preview this topic'>&nbsp;</a>
 
                             </td>
                             <td class='col_f_views desc blend_links'>
                                 <ul>
                                     <li>
-
+                                        <?php if ((int)$topic->posts > 10) { ?>
+                                            <span class="ipsBadge ipsBadge_orange">Hot</span>&nbsp;
+                                        <?php } ?>
                                         <?php echo number_format($topic->posts); ?> replies
                                         <meta itemprop="interactionCount" content="UserComments:0"/>
                                     </li>
@@ -1127,30 +1130,15 @@
                                 </ul>
                             </td>
                             <td class='col_f_post'>
-
-                                <a href='/user/5559-daveoreardon/' class='ipsUserPhotoLink left'>
-
+                                <span class='left'>
                                     <img
                                         src='https://secure.gravatar.com/avatar/f9d5f7a0d4f28160857b04ea4340a56a?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png'
                                         alt='Newbie question about installing Grocery CRUD for CodeIgniter 4 - last post by daveoreardon'
                                         class='ipsUserPhoto ipsUserPhoto_mini'
                                         onerror='this.onerror=null;this.src="http://www.grocerycrud.com/forums/public/style_images/master/profile/default_large.png";'/>
 
-                                </a>
-
-                                <ul class='last_post ipsType_small'>
-                                    <li><a hovercard-ref="member" hovercard-id="5559" class="_hovertrigger url fn name "
-                                           href='/user/5559-daveoreardon/' title='View Profile'><span itemprop="name">daveoreardon</span></a>
-                                    </li>
-                                    <li>
-                                        <a href='/topic/139616-newbie-question-about-installing-grocery-crud-for-codeigniter-4/?view=getlastpost'
-                                           title='Go to last post: Newbie question about installing Grocery CRUD for CodeIgniter 4'>
-                                            28 Nov 2021
-                                        </a>
-                                    </li>
-                                </ul>
+                                </span>
                             </td>
-
                         </tr>
                         <?php } ?>
 
