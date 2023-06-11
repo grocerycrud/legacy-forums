@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-
 class ForumModel extends Model
 {
     protected $table = 'fm_forums';
@@ -42,6 +41,85 @@ class ForumModel extends Model
             ->limit($perPage, $offset)
             ->get()
             ->getResult();
+    }
+
+    public function getPaginationLinksForTopics($forumId, $page = 1)
+    {
+        $perPage = 30;
+        $total = $this->db->table('fm_topics')
+            ->where('forum_id', $forumId)
+            ->countAllResults();
+
+        $totalPages = ceil($total / $perPage);
+
+        if ($total == 0 || $total <= $perPage) {
+            return [
+                'links' => [],
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
+        }
+
+        $paginationLinks = $this->_calculatePagination($page, $totalPages);
+
+        return [
+            'links' => $paginationLinks,
+            'currentPage' => $page,
+            'totalPages' => $totalPages
+        ];
+    }
+
+    private function _calculatePagination ($currentPage, $totalPages)
+    {
+        $links = [];
+
+        if ($currentPage > 1) {
+            $links[] = [
+                'link' => $this->_pagingLink(1),
+                'label' => 'first'
+            ];
+
+            $links[] = [
+                'link' => $this->_pagingLink($currentPage - 1),
+                'label' => 'previous'
+            ];
+        }
+
+        if ($totalPages > 5) {
+            for ($i = $currentPage; $i <= min($currentPage + 5, $totalPages); $i++) {
+                $links[] = [
+                    'link' => $this->_pagingLink($i),
+                    'label' => (string)$i
+                ];
+            }
+        } else {
+            for ($i = $currentPage; $i <= $totalPages; $i++) {
+                $links[] = [
+                    'link' => $this->_pagingLink($i),
+                    'label' => (string)$i
+                ];
+            }
+        }
+
+        if ($currentPage < $totalPages) {
+            $links[] = [
+                'link' => $this->_pagingLink(min($i + 1, $totalPages)),
+                'label' => 'next'
+            ];
+
+            if ($currentPage + 1 < $totalPages) {
+                $links[] = [
+                    'link' => $this->_pagingLink($totalPages),
+                    'label' => 'last'
+                ];
+            }
+        }
+
+        return $links;
+    }
+
+    public function _pagingLink($page) {
+        return 'my/link/' . $page;
     }
 
 }

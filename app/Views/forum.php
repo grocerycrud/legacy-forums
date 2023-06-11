@@ -1,5 +1,6 @@
 <?php
 /** @var array $topics */
+/** @var array $paginationData */
 ?><!DOCTYPE html>
 <html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
@@ -817,42 +818,57 @@
             <div class='topic_controls clearfix'>
                 <div class='pagination clearfix left '>
                     <ul class='ipsList_inline back left'>
-
+                        <li class='pagejump'>
+                            <?php if ($paginationData['totalPages'] == 1) { ?>
+                                Single Page
+                            <?php } else { ?>
+                                Page <?php echo $paginationData['currentPage']; ?> of <?php echo $paginationData['totalPages']; ?>
+                            <?php } ?>
+                        </li>
+                        <?php foreach ($paginationData['links'] as $link) {
+                            if ($link['label'] !== 'previous' && $link['label'] !== 'first') {
+                                continue;
+                            }
+                            ?>
+                            <li class='<?php echo $link['label']; ?>'>
+                                <a href="<?php echo $link['link']; ?>" title="<?php echo $link['label']; ?>">
+                                    <?php echo $link['label']; ?>
+                                </a>
+                            </li>
+                        <?php } ?>
 
                     </ul>
                     <ul class='ipsList_inline left pages'>
-                        <li class='pagejump clickable pj0424018001'>
-                            <a href='#'>Page 1 of 11
-                                <!--<img src='/public/style_images/master/dropdown.png' alt='+' />--></a>
 
-                        </li>
-
-
-                        <li class='page active'>1</li>
-
-
-                        <li class='page'><a
-                                href="/forum/11-grocery-crud-enterprise/?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all&st=30"
-                                title="2">2</a></li>
-
-
-                        <li class='page'><a
-                                href="/forum/11-grocery-crud-enterprise/?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all&st=60"
-                                title="3">3</a></li>
-
-
+                        <?php foreach ($paginationData['links'] as $link) {
+                            if (!is_numeric($link['label'])) {
+                                continue;
+                            }
+                            ?>
+                            <li class='page <?php if ($paginationData['currentPage'] == $link['label']) { echo "active"; } ?>'>
+                                <?php if ($paginationData['currentPage'] == $link['label']) { ?>
+                                    <?php echo $link['label']; ?>
+                                <?php } else { ?>
+                                <a href="<?php echo $link['link']; ?>" title="<?php echo $link['label']; ?>">
+                                    <?php echo $link['label']; ?>
+                                </a>
+                                <?php } ?>
+                            </li>
+                        <?php } ?>
                     </ul>
                     <ul class='ipsList_inline forward left'>
 
-                        <li class='next'><a
-                                href="/forum/11-grocery-crud-enterprise/?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all&st=30"
-                                title=" Next page" rel='next'>Next</a></li>
-
-
-                        <li class='last'><a
-                                href="/forum/11-grocery-crud-enterprise/?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all&st=300"
-                                title=" Go to last page" rel='last'>&raquo;</a></li>
-
+                        <?php foreach ($paginationData['links'] as $link) {
+                            if ($link['label'] !== 'next' && $link['label'] !== 'last') {
+                                continue;
+                            }
+                            ?>
+                            <li class='<?php echo $link['label']; ?>'>
+                                <a href="<?php echo $link['link']; ?>" title="<?php echo $link['label']; ?>">
+                                    <?php echo $link['label']; ?>
+                                </a>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
 

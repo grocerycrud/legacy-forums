@@ -47,9 +47,12 @@ class Website extends BaseController
         $forum = $forumModel->getForumById($forumId);
         $topics = $forumModel->getTopics($forumId);
 
+        $paginationData = $forumModel->getPaginationLinksForTopics($forumId);
+
         return view('forum', [
             'forum' => $forum,
-            'topics' => $topics
+            'topics' => $topics,
+            'paginationData' => $paginationData
         ]);
     }
 }

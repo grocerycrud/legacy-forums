@@ -39,11 +39,8 @@ class PostModel extends Model
         // replace [code] tags with <pre> tags
         $text = preg_replace('/\[code\](.*?)\[\/code\]/is', '<pre class="prettyprint prettyprinted">$1</pre>', $text);
 
-        // replace [url="http://www.grocerycrud.com/forums/user/1-web-johnny/"]web-johnny[/url]
-        // with <a href="http://www.grocerycrud.com/forums/user/1-web-johnny/">web-johnny</a>
+        // replace [url] tags with <a> tags
         $text = preg_replace('/\[url="(.*?)"\](.*?)\[\/url\]/is', '<strong>$2</strong>', $text);
-
-
 
         return $text;
     }
