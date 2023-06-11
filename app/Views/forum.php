@@ -944,7 +944,7 @@
                             </td>
                             <td class="col_f_post">
 
-                                <a href="https://forums.grocerycrud.com/user/3247-larasmith/" class="ipsUserPhotoLink left">
+                                <span class="ipsUserPhotoLink left">
                                     <?php if ($topic->pp_thumb_photo) {
                                         if (strstr($topic->pp_thumb_photo, 'http')) { ?>
                                             <img src="<?php echo $topic->pp_thumb_photo; ?>" alt="profile picture" class="ipsUserPhoto ipsUserPhoto_mini">
@@ -956,8 +956,7 @@
                                     } else { ?>
                                         <img src="/public/style_images/master/profile/default_large.png" alt="profile picture" class="ipsUserPhoto ipsUserPhoto_mini">
                                     <?php } ?>
-
-                                </a>
+                                </span>
 
                                 <ul class="last_post ipsType_small">
                                     <li><a hovercard-ref="member" hovercard-id="3247" class="url fn name  ___hover___member _hoversetup" href="https://forums.grocerycrud.com/user/3247-larasmith/" title="" id="anonymous_element_6"><span itemprop="name"><?php echo $topic->starter_name; ?></span></a></li>
@@ -979,48 +978,7 @@
             </div>
 
             <br/>
-            <div class='topic_controls clear'>
-                <div class='pagination clearfix left '>
-                    <ul class='ipsList_inline back left'>
 
-
-                    </ul>
-                    <ul class='ipsList_inline left pages'>
-                        <li class='pagejump clickable pj0424018001'>
-                            <a href='#'>Page 1 of 11
-                                <!--<img src='/public/style_images/master/dropdown.png' alt='+' />--></a>
-
-                        </li>
-
-
-                        <li class='page active'>1</li>
-
-
-                        <li class='page'><a
-                                href="/forum/11-grocery-crud-enterprise/?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all&st=30"
-                                title="2">2</a></li>
-
-
-                        <li class='page'><a
-                                href="/forum/11-grocery-crud-enterprise/?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all&st=60"
-                                title="3">3</a></li>
-
-
-                    </ul>
-                    <ul class='ipsList_inline forward left'>
-
-                        <li class='next'><a
-                                href="/forum/11-grocery-crud-enterprise/?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all&st=30"
-                                title=" Next page" rel='next'>Next</a></li>
-
-
-                        <li class='last'><a
-                                href="/forum/11-grocery-crud-enterprise/?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all&st=300"
-                                title=" Go to last page" rel='last'>&raquo;</a></li>
-
-                    </ul>
-                </div>
-            </div>
             <br class='clear'/>
             <div id='forum_footer' class='statistics clear clearfix'>
 

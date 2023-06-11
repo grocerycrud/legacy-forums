@@ -558,26 +558,31 @@
                                 <h3 class='row2'>
 			
 
-                                    <span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="5559" class="_hovertrigger url fn name " href='/user/5559-daveoreardon/' title='View Profile'><span itemprop="name">daveoreardon</span></a></span>
+                                    <span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="5559" class="_hovertrigger url fn name " href='/user/5559-daveoreardon/' title='View Profile'><span itemprop="name"><?php echo $post->author_name; ?></span></a></span>
 
 
                                 </h3>
                                 <div class='author_info'>
                                     <div itemscope itemtype="http://schema.org/Person" class='user_details'>
-                                        <span class='hide' itemprop="name">daveoreardon</span>
+                                        <span class='hide' itemprop="name"><?php echo $post->author_name; ?></span>
                                         <ul class='basic_info'>
 
                                             <p class='desc member_title'>Newbie</p>
 
                                             <li class='avatar'>
-
-                                                <a itemprop="url" href="/user/5559-daveoreardon/" title="View Profile: daveoreardon" class='ipsUserPhotoLink'>
-
-
-                                                    <img itemprop="image" src='https://secure.gravatar.com/avatar/f9d5f7a0d4f28160857b04ea4340a56a?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_large' />
-
-
-                                                </a>
+                                                <span class="ipsUserPhotoLink">
+                                                <?php if ($post->pp_thumb_photo) {
+                                                    if (strstr($post->pp_thumb_photo, 'http')) { ?>
+                                                        <img src="<?php echo $post->pp_thumb_photo; ?>" alt="profile picture" class="ipsUserPhoto ipsUserPhoto_large">
+                                                        <?php
+                                                    } else { ?>
+                                                        <img src="/uploads/<?php echo $post->pp_thumb_photo; ?>" alt="profile picture" class="ipsUserPhoto ipsUserPhoto_large">
+                                                        <?php
+                                                    }
+                                                } else { ?>
+                                                    <img src="/public/style_images/master/profile/default_large.png" alt="profile picture" class="ipsUserPhoto ipsUserPhoto_large">
+                                                <?php } ?>
+                                            </span>
 
                                             </li>
                                             <li class='group_title'>
