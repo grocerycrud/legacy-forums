@@ -610,7 +610,7 @@
                                 </div>
                                 <div class='post_body'>
                                     <p class='posted_info desc lighter ipsType_small'>
-                                        Posted <abbr class="published" itemprop="commentTime" title="2021-11-28T02:29:07+00:00">28 November 2021 - 02:29 AM</abbr>
+                                        Posted <abbr class="published" itemprop="commentTime" title="<?php echo $post->post_date_raw; ?>"><?php echo $post->post_date; ?></abbr>
                                     </p>
 
                                     <div itemprop="commentText" class='post entry-content '>

@@ -35,17 +35,39 @@ class PostModel extends Model
     ];
     protected $returnType = 'array';
 
+    private function _transformPostText($text) {
+        // replace [code] tags with <pre> tags
+        $text = preg_replace('/\[code\](.*?)\[\/code\]/is', '<pre class="prettyprint prettyprinted">$1</pre>', $text);
+
+        // replace [url="http://www.grocerycrud.com/forums/user/1-web-johnny/"]web-johnny[/url]
+        // with <a href="http://www.grocerycrud.com/forums/user/1-web-johnny/">web-johnny</a>
+        $text = preg_replace('/\[url="(.*?)"\](.*?)\[\/url\]/is', '<strong>$2</strong>', $text);
+
+
+
+        return $text;
+    }
+
     public function getPosts($topicId, $page = 1)
     {
         $perPage = 20;
         $offset = ($page - 1) * $perPage;
 
-        return $this->db->table('fm_posts')
+        $output = $this->db->table('fm_posts')
             ->where('topic_id', $topicId)
             ->orderBy('post_date', 'ASC')
             ->join('fm_profile_portal', 'fm_profile_portal.pp_member_id = fm_posts.author_id')
             ->limit($perPage, $offset)
             ->get()
             ->getResult();
+
+        foreach ($output as &$post) {
+
+            $post->post_date_raw = date('Y-m-d', $post->post_date) . "T" . date('H:i:s', $post->post_date) . "+00:00";
+            $post->post_date = date('d F Y - H:i A', $post->post_date);
+            $post->post = $this->_transformPostText($post->post);
+        }
+
+        return $output;
     }
 }

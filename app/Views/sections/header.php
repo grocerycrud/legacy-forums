@@ -1,7 +1,7 @@
 <div id='logo'>
 
     <a href='https://forums.grocerycrud.com' title='Go to community index' rel="home" accesskey='1'><img
-            src='http://www.grocerycrud.com/forums/public/style_images/18_grocery-crud-logo.png'
+            src='/public/style_images/18_grocery-crud-logo.png'
             alt='Logo'/></a>
 
 </div>
