@@ -34,20 +34,21 @@ class Website extends BaseController
         ]);
     }
 
-    public function forum($slug) {
+    public function forum($slug, $pageSlug = 'page-1') {
 
-        if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug)) {
+        if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug) || !preg_match('/^page-[0-9]+$/', $pageSlug)) {
             // throw Codeigniter 404 error
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
         $forumId = explode('-', $slug)[0];
+        $page = explode('-', $pageSlug)[1];
 
         $forumModel = new ForumModel();
         $forum = $forumModel->getForumById($forumId);
         $topics = $forumModel->getTopics($forumId);
 
-        $paginationData = $forumModel->getPaginationLinksForTopics($forumId);
+        $paginationData = $forumModel->getPaginationLinksForTopics($forumId, $slug, $page);
 
         return view('forum', [
             'forum' => $forum,

@@ -43,7 +43,7 @@ class ForumModel extends Model
             ->getResult();
     }
 
-    public function getPaginationLinksForTopics($forumId, $page = 1)
+    public function getPaginationLinksForTopics($forumId, $topicSlug = "", $page = 1)
     {
         $perPage = 30;
         $total = $this->db->table('fm_topics')
@@ -60,7 +60,7 @@ class ForumModel extends Model
             ];
         }
 
-        $paginationLinks = $this->_calculatePagination($page, $totalPages);
+        $paginationLinks = $this->_calculatePagination($page, $totalPages, $topicSlug);
 
         return [
             'links' => $paginationLinks,
@@ -69,18 +69,18 @@ class ForumModel extends Model
         ];
     }
 
-    private function _calculatePagination ($currentPage, $totalPages)
+    private function _calculatePagination ($currentPage, $totalPages, $topicSlug)
     {
         $links = [];
 
         if ($currentPage > 1) {
             $links[] = [
-                'link' => $this->_pagingLink(1),
+                'link' => $this->_pagingLink($topicSlug, 1),
                 'label' => 'first'
             ];
 
             $links[] = [
-                'link' => $this->_pagingLink($currentPage - 1),
+                'link' => $this->_pagingLink($topicSlug, $currentPage - 1),
                 'label' => 'previous'
             ];
         }
@@ -88,14 +88,14 @@ class ForumModel extends Model
         if ($totalPages > 5) {
             for ($i = $currentPage; $i <= min($currentPage + 5, $totalPages); $i++) {
                 $links[] = [
-                    'link' => $this->_pagingLink($i),
+                    'link' => $this->_pagingLink($topicSlug, $i),
                     'label' => (string)$i
                 ];
             }
         } else {
             for ($i = $currentPage; $i <= $totalPages; $i++) {
                 $links[] = [
-                    'link' => $this->_pagingLink($i),
+                    'link' => $this->_pagingLink($topicSlug, $i),
                     'label' => (string)$i
                 ];
             }
@@ -103,13 +103,13 @@ class ForumModel extends Model
 
         if ($currentPage < $totalPages) {
             $links[] = [
-                'link' => $this->_pagingLink(min($i + 1, $totalPages)),
+                'link' => $this->_pagingLink($topicSlug, min($i + 1, $totalPages)),
                 'label' => 'next'
             ];
 
             if ($currentPage + 1 < $totalPages) {
                 $links[] = [
-                    'link' => $this->_pagingLink($totalPages),
+                    'link' => $this->_pagingLink($topicSlug, $totalPages),
                     'label' => 'last'
                 ];
             }
@@ -118,8 +118,11 @@ class ForumModel extends Model
         return $links;
     }
 
-    public function _pagingLink($page) {
-        return 'my/link/' . $page;
+    public function _pagingLink($topicSlug, $page = 1) {
+        if ($page == 1) {
+            return "/forum/$topicSlug";
+        }
+        return "/forum/$topicSlug/page-$page";
     }
 
 }
