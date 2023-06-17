@@ -516,6 +516,17 @@
                                                     echo "Member";
                                                 }?>
                                             </li>
+
+                                            <?php if ($post->author_name === "web-johnny") { ?>
+                                            <li class="group_icon">
+                                                <img src="/public/style_extra/team_icons/admin.png" alt="">
+                                            </li>
+
+                                            <li class="post_count desc lighter">
+                                                1,166 posts
+                                            </li>
+                                            <?php }?>
+
                                         </ul>
 
 
