@@ -493,9 +493,6 @@
                                     <div itemscope itemtype="http://schema.org/Person" class='user_details'>
                                         <span class='hide' itemprop="name"><?php echo $post->author_name; ?></span>
                                         <ul class='basic_info'>
-
-                                            <p class='desc member_title'>Newbie</p>
-
                                             <li class='avatar'>
                                                 <span class="ipsUserPhotoLink">
                                                 <?php if ($post->pp_thumb_photo) {
@@ -513,19 +510,12 @@
 
                                             </li>
                                             <li class='group_title'>
-                                                Members
+                                                <?php if ($post->author_name === "web-johnny") { ?>
+                                                    <span style="color:red;">Administrator</span>
+                                                <?php } else {
+                                                    echo "Member";
+                                                }?>
                                             </li>
-                                            <li class='group_icon'>
-
-                                                <img src='/public/style_images/master/bullet_black.png' alt='Pip' />
-
-                                            </li>
-
-                                            <li class='post_count desc lighter'>
-                                                2 posts
-                                            </li>
-
-
                                         </ul>
 
 
