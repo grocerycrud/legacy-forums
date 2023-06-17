@@ -21,6 +21,7 @@ class Website extends BaseController
 
         $topicId = explode('-', $slug)[0];
         $page = explode('-', $pageSlug)[1];
+        $canonicalUrl = $page === "1" ? 'topic/' . $slug : 'topic/' . $slug . '/' . $pageSlug;
 
         $topicModel = new TopicModel();
         $topic = $topicModel->getTopicByTid($topicId);
@@ -37,7 +38,8 @@ class Website extends BaseController
         return view('topic', [
             'topic' => $topic,
             'posts' => $posts,
-            'paginationData' => $paginationData
+            'paginationData' => $paginationData,
+            'canonicalUrl' => $canonicalUrl
         ]);
     }
 
@@ -50,6 +52,7 @@ class Website extends BaseController
 
         $forumId = explode('-', $slug)[0];
         $page = explode('-', $pageSlug)[1];
+        $canonicalUrl = $page === "1" ? 'forum/' . $slug : 'forum/' . $slug . '/' . $pageSlug;
 
         $forumModel = new ForumModel();
         $forum = $forumModel->getForumById($forumId);
@@ -64,7 +67,8 @@ class Website extends BaseController
         return view('forum', [
             'forum' => $forum,
             'topics' => $topics,
-            'paginationData' => $paginationData
+            'paginationData' => $paginationData,
+            'canonicalUrl' => $canonicalUrl
         ]);
     }
 }

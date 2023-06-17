@@ -1,13 +1,14 @@
 <?php
-/** @var array $topics */
-/** @var array $paginationData */
+/** @var $topics */
+/** @var $paginationData */
+/** @var $canonicalUrl */
 ?><!DOCTYPE html>
 <html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta charset="UTF-8"/>
     <title>Grocery CRUD Enterprise - grocery CRUD forum</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <link rel="shortcut icon" href="/assets/themes/default/images/favicon.png"/>
+    <link rel="shortcut icon" href="/favicon.png"/>
     <link rel="image_src" href='https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png'/>
 
 
@@ -655,18 +656,7 @@
 
 
 
-    <link id="ipsCanonical" rel="canonical" href="/forum/11-grocery-crud-enterprise/"/>
-
-
-    <link rel='next'
-          href='/forum/11-grocery-crud-enterprise/page-2?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all'/>
-
-
-    <link rel='last'
-          href='/forum/11-grocery-crud-enterprise/page-11?prune_day=100&sort_by=Z-A&sort_key=last_post&topicfilter=all'/>
-
-
-    <link rel='up' href='/forum/3-support/'/>
+    <link rel="canonical" href="https://forums.grocerycrud.com/<?php echo $canonicalUrl; ?>" />
 
 
     <style type="text/css">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>grocery CRUD forum</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <link rel="shortcut icon" href="/assets/themes/default/images/favicon.png"/>
+    <link rel="shortcut icon" href="/favicon.png"/>
     <link rel="image_src" href='https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png'/>
 
 
@@ -465,7 +465,7 @@
     <meta property="og:url" content="Array"/>
 
 
-    <link id="ipsCanonical" rel="canonical" href="https://forums.grocerycrud.com"/>
+    <link id="ipsCanonical" rel="canonical" href="https://forums.grocerycrud.com/"/>
 
 
     <style type="text/css">

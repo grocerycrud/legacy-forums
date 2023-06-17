@@ -1,13 +1,14 @@
 <?php
-/** @var array $posts */
-/** @var array $topic */
+/** @var $posts */
+/** @var $topic */
+/** @var $canonicalUrl */
 ?><!DOCTYPE html>
 <html lang="en"  xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta charset="UTF-8" />
     <title><?php echo $topic["title"]; ?> - Grocery CRUD Enterprise - grocery CRUD forum</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="shortcut icon" href="/assets/themes/default/images/favicon.png" />
+    <link rel="shortcut icon" href="/favicon.png" />
     <link rel="image_src" href='https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png' />
     <script type='text/javascript'>
         //<![CDATA[
@@ -246,31 +247,10 @@
 
 
 
-    <link id="ipsCanonical" rel="canonical" href="/topic/139616-newbie-question-about-installing-grocery-crud-for-codeigniter-4/" />
+    <link rel="canonical" href="https://forums.grocerycrud.com/<?php echo $canonicalUrl; ?>" />
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <link rel='up' href='/forum/11-grocery-crud-enterprise/' />
-
-
-
-
-
-
-
-    <link rel='author' href='/user/5559-daveoreardon/' />
 
 
 
@@ -505,7 +485,7 @@
                                 <h3 class='row2'>
 			
 
-                                    <span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="5559" class="_hovertrigger url fn name " href='/user/5559-daveoreardon/' title='View Profile'><span itemprop="name"><?php echo $post->author_name; ?></span></a></span>
+                                    <span itemprop="creator name" class="author vcard"><span class="fn name "><span itemprop="name"><?php echo $post->author_name; ?></span></span></span>
 
 
                                 </h3>
