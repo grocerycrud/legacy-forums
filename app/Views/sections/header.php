@@ -1,6 +1,6 @@
 <div id='logo'>
 
-    <a href='https://forums.grocerycrud.com' title='Go to community index' rel="home" accesskey='1'><img
+    <a href='/' title='Go to community index' rel="home" accesskey='1'><img
             src='/public/style_images/18_grocery-crud-logo.png'
             alt='Logo'/></a>
 

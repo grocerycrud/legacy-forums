@@ -37,7 +37,7 @@ class ForumModel extends Model
         $perPage = 30;
         $offset = ($page - 1) * $perPage;
 
-        return $this->db->table('fm_topics')
+        $output = $this->db->table('fm_topics')
             ->where('forum_id', $forumId)
             ->orderBy('pinned', 'DESC')
             ->orderBy('last_post', 'DESC')
@@ -45,6 +45,13 @@ class ForumModel extends Model
             ->limit($perPage, $offset)
             ->get()
             ->getResult();
+
+        foreach ($output as &$topic) {
+            $topic->start_date_raw = date('Y-m-d', $topic->start_date) . "T" . date('H:i:s', $topic->start_date) . "+00:00";
+            $topic->start_date = date('d F Y - H:i A', $topic->start_date);
+        }
+
+        return $output;
     }
 
     public function getPaginationLinksForTopics($forumId, $forumSlug = "", $page = 1)

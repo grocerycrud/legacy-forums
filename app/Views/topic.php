@@ -465,17 +465,11 @@
 
             <!-- ::: CONTENT ::: -->
 
-            <a href='/user/5559-daveoreardon/' class='ipsUserPhotoLink'>
-
-                <img src='https://secure.gravatar.com/avatar/f9d5f7a0d4f28160857b04ea4340a56a?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_medium left' />
-
-            </a>
-
-            <div itemscope itemtype="http://schema.org/Article" class='ipsBox_withphoto'>
+            <div itemscope itemtype="http://schema.org/Article" class='ipsBox_withoutphoto'>
 
                 <h1 itemprop="name" class='ipsType_pagetitle'><?php echo $topic["title"]; ?></h1>
                 <div class='desc lighter blend_links'>
-                    Started by <?php echo $topic['starter_name']; ?>, <span itemprop="dateCreated">Nov 28 2021 02:29 AM</span>
+                    Started by <?php echo $topic['starter_name']; ?>
                 </div>
 
 
@@ -590,15 +584,7 @@
 
 
 
-                                    <ul id='postControlsNormal_152626' class='post_controls clear clearfix' >
-                                        <li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
 
-
-
-
-
-
-                                    </ul>
 
                                 </div>
                             </div>
@@ -608,40 +594,12 @@
                         <hr />
 
 
-                        <script type="text/javascript">
-                            var pid = parseInt(152626);
-                            if ( pid > ipb.topic.topPid ){
-                                ipb.topic.topPid = pid;
-                            }
 
-                            // Show multiquote for JS browsers
-                            if ( $('multiq_152626') )
-                            {
-                                $('multiq_152626').show();
-                            }
-
-                            if( $('toggle_post_152626') )
-                            {
-                                $('toggle_post_152626').show();
-                            }
-
-                            // Add perm data
-                            ipb.topic.deletePerms[152626] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
-
-                        </script>
 
                     </div>
                 </div>
 
                 <hr />
-                <div class='topic_controls clear ipsPad_top_bottom_half'>
-
-                    <div class='ipsPad_top_slimmer right'>
-
-                        <a href='/forum/11-grocery-crud-enterprise/' class="ipsType_small desc">Back to Grocery CRUD Enterprise</a>
-
-                    </div>
-                </div>
 
                 <!-- Close topic -->
             </div>
@@ -670,25 +628,7 @@
                 <input type="hidden" name="tact" id="tact" value="" />
             </form>
 
-            <ol class='breadcrumb bottom ipsList_inline left clearfix clear'>
-                <li><a href='/'>grocery CRUD forum</a></li>
-
-
-                <li><span class='nav_sep'>&rarr;</span> <a href='/forum/3-support/' title='Return to Support'>Support</a></li>
-
-
-
-                <li><span class='nav_sep'>&rarr;</span> <a href='/forum/11-grocery-crud-enterprise/' title='Return to Grocery CRUD Enterprise'>Grocery CRUD Enterprise</a></li>
-
-
-
-
-                <li class='right ipsType_smaller'>
-                    <a rel="nofollow" href='/privacypolicy/'>Privacy Policy</a>
-                </li>
-
-
-            </ol>
+            <br/>
         </div>
         <!-- ::: FOOTER (Change skin, language, mark as read, etc) ::: -->
         <div id='footer_utilities' class='main_width clearfix clear'>

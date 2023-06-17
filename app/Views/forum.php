@@ -860,8 +860,8 @@
                                 </h4>
                                 <br/>
                                 <span class='desc lighter blend_links'>
-                                    Started by <span class="fn name"><span itemprop="name">daveoreardon</span></span>,
-                                    <span itemprop="dateCreated">28 Nov 2021</span>
+                                    Started by <span class="fn name"><span itemprop="name"><?php echo $topic->starter_name; ?></span></span>,
+                                    <span itemprop="dateCreated"><?php echo $topic->start_date; ?></span>
 		                        </span>
 
                             </td>
@@ -900,11 +900,9 @@
                                 </span>
 
                                 <ul class="last_post ipsType_small">
-                                    <li><a hovercard-ref="member" hovercard-id="3247" class="url fn name  ___hover___member _hoversetup" href="https://forums.grocerycrud.com/user/3247-larasmith/" title="" id="anonymous_element_6"><span itemprop="name"><?php echo $topic->starter_name; ?></span></a></li>
+                                    <li><em><span class="fn name  ___hover___member _hoversetup" title="" id="anonymous_element_6"><span itemprop="name"><?php echo $topic->starter_name; ?></span></em></li>
                                     <li>
-                                        <a href="https://forums.grocerycrud.com/topic/139614-delete-the-physical-uploaded-file-when-it-is-deleted-using-the-delete-button-in-file-upload/?view=getlastpost" title="Go to last post: Delete the physical uploaded file when it is Deleted using the Delete Button in File Upload">
-                                            30 Jul 2021
-                                        </a>
+                                            <?php echo $topic->start_date; ?>
                                     </li>
                                 </ul>
                             </td>
