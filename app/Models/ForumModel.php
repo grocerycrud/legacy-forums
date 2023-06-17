@@ -30,6 +30,10 @@ class ForumModel extends Model
 
     public function getTopics($forumId, $page = 1)
     {
+        if ((int)$page < 1) {
+            return false;
+        }
+
         $perPage = 30;
         $offset = ($page - 1) * $perPage;
 
@@ -45,6 +49,10 @@ class ForumModel extends Model
 
     public function getPaginationLinksForTopics($forumId, $forumSlug = "", $page = 1)
     {
+        if ((int)$page < 1) {
+            return false;
+        }
+
         $perPage = 30;
         $total = $this->db->table('fm_topics')
             ->where('forum_id', $forumId)

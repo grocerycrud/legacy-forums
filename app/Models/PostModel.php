@@ -47,6 +47,10 @@ class PostModel extends Model
 
     public function getPosts($topicId, $page = 1)
     {
+        if ((int)$page < 1) {
+            return false;
+        }
+
         $perPage = 20;
         $offset = ($page - 1) * $perPage;
 
@@ -70,6 +74,10 @@ class PostModel extends Model
 
     public function getPaginationLinksForPosts($topicId, $topicSlug = "", $page = 1)
     {
+        if ((int)$page < 1) {
+            return false;
+        }
+
         $perPage = 20;
 
         $totalPosts = $this->db->table('fm_posts')
