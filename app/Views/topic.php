@@ -24,8 +24,6 @@
 
 
 
-    <link rel="stylesheet" type="text/css"  href="/public/style_css/prettify.css?ipbv=863bb407e1bf463ff5f60a6c1d241122" />
-
 
 
 
@@ -256,7 +254,7 @@
 
 
 
-    <link rel='stylesheet' type='text/css' title='Main' media='print' href='/public/style_css/css_18/ipb_print.css' />
+
 
 
 
@@ -467,46 +465,6 @@
 
             <!-- ::: CONTENT ::: -->
 
-
-
-            <script type="text/javascript">
-                //<![CDATA[
-                ipb.topic.inSection = 'topicview';
-                ipb.topic.topic_id  = 139616;
-                ipb.topic.forum_id  = 11;
-                ipb.topic.start_id  = 0;
-                ipb.topic.topPid    = 0;
-                ipb.topic.counts    = { postTotal: 1,
-                    curStart:  ipb.topic.start_id,
-                    perPage:   20 };
-                //Search Setup
-                ipb.vars['search_type']			= 'forum';
-                ipb.vars['search_type_id']		= 11;
-                ipb.vars['search_type_2']		= 'topic';
-                ipb.vars['search_type_id_2']	= 139616;
-
-
-                // Delete stuff set up
-                ipb.topic.deleteUrls['hardDelete'] = new Template( ipb.vars['base_url'] + "app=forums&module=moderate&section=moderate&do=04&f=11&t=139616&st=&auth_key=880ea6a14ea49e853634fbdc5015a024&p=#{pid}" );
-                ipb.topic.deleteUrls['softDelete'] = new Template( ipb.vars['base_url'] + "app=forums&module=moderate&section=moderate&do=postchoice&tact=sdelete&t=139616&f=11&auth_key=880ea6a14ea49e853634fbdc5015a024&selectedpids[#{pid}]=#{pid}&pid=#{pid}" );
-
-
-                ipb.templates['post_moderation'] = new Template("<div id='comment_moderate_box' class='ipsFloatingAction' style='display: none'><span class='desc'>With <span id='comment_count'>#{count}</span> checked posts: </span><select id='tactInPopup' class='input_select'><option value='approve'>Approve</option><option value='delete'>Hide</option><option value='sundelete'>Unhide</option><option value='deletedo'>Delete</option><option value='merge'>Merge</option><option value='split'>Split</option><option value='move'>Move</option></select>&nbsp;&nbsp;<input type='button' class='input_submit' id='submitModAction' value='Go' /></div>");
-
-                //]]>
-            </script>
-
-
-
-
-            <div class='__like right' data-app="forums" data-area="topics" data-relid="139616" data-isfave="">
-                <span class='ipsButton_extra right _fmore clickable' title='1 member(s) follow this topic' data-tooltip="1 member(s) follow this topic"><img src='/public/style_images/master/icon_users.png' /> <strong>1</strong></span>
-
-            </div>
-            <script type="text/javascript">
-                var FAVE_TEMPLATE = new Template( "<h3>Unfollow this topic</h3><div class='ipsPad'><span class='desc'>If you unfollow this topic you will no longer receive any notifications</span><br /><p class='ipsForm_center'><input type='button' value='Unfollow this topic' class='input_submit _funset' /></p></div>");
-            </script>
-
             <a href='/user/5559-daveoreardon/' class='ipsUserPhotoLink'>
 
                 <img src='https://secure.gravatar.com/avatar/f9d5f7a0d4f28160857b04ea4340a56a?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_medium left' />
@@ -696,14 +654,6 @@
             </div>
             <br />
 
-            <script type="text/javascript" src="/public/js/3rd_party/prettify/prettify.js"></script>
-            <script type='text/javascript' src='/public/js/3rd_party/prettify/lang-sql.js'></script>
-            <!-- By default we load generic code, php, css, sql and xml/html; load others here if desired -->
-            <script type="text/javascript">
-                //<![CDATA[
-                Event.observe( window, 'load', function(e){ prettyPrint() });
-                //]]>
-            </script>
             <div id='multiQuoteInsert' style='display: none;' class='ipsFloatingAction'>
                 <span class='ipsButton no_width' id='mqbutton'>Reply to quoted posts</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='multiQuoteClear' class='ipsType_smaller desc' title='Clear the posts you have selected with MultiQuote'>Clear</a> &nbsp;&nbsp;&nbsp;
             </div>
@@ -744,55 +694,6 @@
         <div id='footer_utilities' class='main_width clearfix clear'>
 
         </div>
-
-        <script type='text/javascript' src='/public/js/3rd_party/lightbox.js'></script>
-        <script type='text/javascript'>
-            //<![CDATA[
-            // Lightbox Configuration
-            LightboxOptions = Object.extend({
-                fileLoadingImage:        '/public/style_images/master/lightbox/loading.gif',
-                fileBottomNavCloseImage: '/public/style_images/master/lightbox/closelabel.gif',
-                overlayOpacity: 0.8,   // controls transparency of shadow overlay
-                animate: true,         // toggles resizing animations
-                resizeSpeed: 7,        // controls the speed of the image resizing animations (1=slowest and 10=fastest)
-                borderSize: 10,         //if you adjust the padding in the CSS, you will need to update this variable
-                // When grouping images this is used to write: Image # of #.
-                // Change it for non-english localization
-                labelImage: "Image",
-                labelOf: "of"
-            }, window.LightboxOptions || {});
-            /* Watch for a lightbox image and set up our downloadbutton watcher */
-            document.observe('click', (function(event){
-                var target = event.findElement('a[rel*="lightbox"]') || event.findElement('area[rel*="lightbox"]') || event.findElement('span[rel*="lightbox"]');
-                if (target) {
-                    event.stop();
-                    gbl_addDownloadButton();
-                }
-            }).bind(this));
-            var _to    = '';
-            var _last  = '';
-            function gbl_addDownloadButton()
-            {
-                if ( typeof( ipsLightbox.lightboxImage ) != 'undefined' && ipsLightbox.lightboxImage.src )
-                {
-                    if ( _last != ipsLightbox.lightboxImage.src )
-                    {
-                        if ( ! $('gbl_d') )
-                        {
-                            $('bottomNav').insert( { top: "<div id='gbl_d' style='text-align:right;padding-bottom:4px;'></div>" } );
-                        }
-
-                        $('gbl_d').update( "<a href='"+ ipsLightbox.lightboxImage.src + "' target='_blank'><img src='/public/style_images/master/lightbox/download-icon.png' /></a>" );
-
-                        _last = ipsLightbox.lightboxImage.src;
-                    }
-                }
-
-                /* Check for init and then keep checking for new image */
-                _to = setTimeout( "gbl_addDownloadButton()", 1000 );
-            }
-            //]]>
-        </script>
 
     </div>
     <?php include('sections/google-analytics.php'); ?>
