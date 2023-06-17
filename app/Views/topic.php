@@ -6,7 +6,7 @@
 <html lang="en"  xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta charset="UTF-8" />
-    <title><?php echo $topic["title"]; ?> - Grocery CRUD Enterprise - grocery CRUD forum</title>
+    <title><?php echo $topic["title"]; ?> - grocery CRUD forum</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="shortcut icon" href="/favicon.png" />
     <link rel="image_src" href='https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png' />
