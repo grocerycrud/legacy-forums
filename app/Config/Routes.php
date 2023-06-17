@@ -39,6 +39,7 @@ $routes->get('/forum/(:segment)/(:segment)', 'Website::forum/$1/$2');
 // Redirects
 $routes->get('/best-content', 'Redirects::redirect_to_home_page');
 $routes->get('/tags/(:segment)/(:segment)', 'Redirects::redirect_to_home_page');
+$routes->get('/user/(:segment)', 'Redirects::redirect_to_home_page');
 
 /*
  * --------------------------------------------------------------------
