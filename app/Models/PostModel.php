@@ -67,4 +67,82 @@ class PostModel extends Model
 
         return $output;
     }
+
+    public function getPaginationLinksForPosts($topicId, $topicSlug = "", $page = 1)
+    {
+        $perPage = 20;
+
+        $totalPosts = $this->db->table('fm_posts')
+            ->where('topic_id', $topicId)
+            ->countAllResults();
+
+        $totalPages = ceil($totalPosts / $perPage);
+
+        if ((int)$page > $totalPages) {
+            return false;
+        }
+
+        if ($totalPosts == 0 || $totalPosts <= $perPage) {
+            return [
+                'links' => [],
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
+        }
+
+        $paginationLinks = $this->_calculatePagination($page, $totalPages, $topicSlug);
+
+        return [
+            'links' => $paginationLinks,
+            'currentPage' => $page,
+            'totalPages' => $totalPages
+        ];
+    }
+
+    private function _calculatePagination ($currentPage, $totalPages, $topicSlug)
+    {
+        $links = [];
+
+        if ($currentPage > 1) {
+            $links[] = [
+                'link' => $this->_pagingLink($topicSlug, 1),
+                'label' => 'first'
+            ];
+
+            $links[] = [
+                'link' => $this->_pagingLink($topicSlug, $currentPage - 1),
+                'label' => 'previous'
+            ];
+        }
+
+        for ($i = max($currentPage - 2, 1); $i <= min($currentPage + 2, $totalPages); $i++) {
+            $links[] = [
+                'link' => $this->_pagingLink($topicSlug, $i),
+                'label' => (string)$i
+            ];
+        }
+
+        if ($currentPage < $totalPages) {
+            $links[] = [
+                'link' => $this->_pagingLink($topicSlug, min($i, $totalPages)),
+                'label' => 'next'
+            ];
+
+            if ($currentPage + 1 < $totalPages) {
+                $links[] = [
+                    'link' => $this->_pagingLink($topicSlug, $totalPages),
+                    'label' => 'last'
+                ];
+            }
+        }
+
+        return $links;
+    }
+
+    private function _pagingLink($topicSlug, $page = 1) {
+        if ($page == 1) {
+            return "/topic/$topicSlug";
+        }
+        return "/topic/$topicSlug/page-$page";
+    }
 }

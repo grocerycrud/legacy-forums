@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+/** @var array $posts */
+/** @var array $topic */
+?><!DOCTYPE html>
 <html lang="en"  xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta charset="UTF-8" />
@@ -524,15 +527,9 @@
             </div>
 
 
-            <br />
-            <div class='topic_controls'>
+            <?php include(__DIR__ . '/sections/pagination.php'); ?>
 
-                <ul class='topic_buttons'>
-                    <li class='disabled'><span>Please log in to reply</span></li>
-
-
-                </ul>
-            </div>
+            <br/>
 
             <div class='maintitle clear clearfix'>
 	<span class='ipsType_small'>
@@ -543,8 +540,6 @@
             </div>
 
             <div class='topic hfeed clear clearfix'>
-
-
 
                 <div class='ipsBox'>
                     <div class='ipsBox_container' id='ips_Posts'>

@@ -13,24 +13,31 @@ class Website extends BaseController
         return view('home-page');
     }
 
-    public function topic($slug)
+    public function topic($slug, $pageSlug = 'page-1')
     {
-        if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug)) {
-            // throw Codeigniter 404 error
+        if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug) || !preg_match('/^page-[0-9]+$/', $pageSlug)) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
         $topicId = explode('-', $slug)[0];
+        $page = explode('-', $pageSlug)[1];
 
         $topicModel = new TopicModel();
         $topic = $topicModel->getTopicByTid($topicId);
 
         $postModel = new PostModel();
-        $posts = $postModel->getPosts($topicId);
+        $posts = $postModel->getPosts($topicId, $page);
+
+        $paginationData = $postModel->getPaginationLinksForPosts($topicId, $slug, $page);
+
+        if ($paginationData === false) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
 
         return view('topic', [
             'topic' => $topic,
-            'posts' => $posts
+            'posts' => $posts,
+            'paginationData' => $paginationData
         ]);
     }
 
@@ -46,9 +53,13 @@ class Website extends BaseController
 
         $forumModel = new ForumModel();
         $forum = $forumModel->getForumById($forumId);
-        $topics = $forumModel->getTopics($forumId);
+        $topics = $forumModel->getTopics($forumId, $page);
 
         $paginationData = $forumModel->getPaginationLinksForTopics($forumId, $slug, $page);
+
+        if ($paginationData === false) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
 
         return view('forum', [
             'forum' => $forum,

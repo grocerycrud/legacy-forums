@@ -32,7 +32,9 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Website::index');
 $routes->get('/topic/(:segment)', 'Website::topic/$1');
+$routes->get('/topic/(:segment)/(:segment)', 'Website::topic/$1/$2');
 $routes->get('/forum/(:segment)', 'Website::forum/$1');
+$routes->get('/forum/(:segment)/(:segment)', 'Website::forum/$1/$2');
 
 /*
  * --------------------------------------------------------------------

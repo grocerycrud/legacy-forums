@@ -6,9 +6,10 @@
 
 </div>
 
+<?php if ($_ENV['SHOW_ADS']) { ?>
 <!-- AdPacks.com Zone Code -->
 <div style="float:right;width:300px;margin-top:-21px;margin-right:-8px;margin-left:10px;">
-    <!-- <script type="text/javascript" src="http://cdn.adpacks.com/adpacks.js?legacyid=1271391&zoneid=1386&key=19492eb42d0fd695352ecaefa1dc0a1d&serve=C6SI42Y&placement=wwwgrocerycrudcom&circle=dev" id="_adpacks_js" onerror="javascript: adblock_detected();"></script> -->
+
     <div class="ads">
         <script
             async
@@ -47,6 +48,7 @@
         <div style="clear: both"></div>
     </div>
     <!-- End AdPacks.com Zone Code -->
+    <?php } ?>
 </div>
 </div>
 <!-- ::: APPLICATION TABS ::: -->
