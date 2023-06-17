@@ -36,6 +36,12 @@ class PostModel extends Model
     protected $returnType = 'array';
 
     private function _transformPostText($text) {
+        // replace "http://www.grocerycrud.com/forums/" or "https://www.grocerycrud.com/forums/" with "/"
+        $text = preg_replace('/https?:\/\/www.grocerycrud.com\/forums\//is', '/', $text);
+
+        // replace <#EMO_DIR#> with 'default'
+        $text = str_replace('<#EMO_DIR#>', 'default', $text);
+
         // replace [code] tags with <pre> tags
         $text = preg_replace('/\[code\](.*?)\[\/code\]/is', '<pre class="prettyprint prettyprinted">$1</pre>', $text);
 
