@@ -445,11 +445,13 @@
 
             <!-- ::: CONTENT ::: -->
 
-            <div itemscope itemtype="http://schema.org/Article" class='ipsBox_withoutphoto'>
+            <?php include(__DIR__ . '/sections/photo-thumbnail/photo-thumbnail-medium.php'); ?>
+
+            <div itemscope itemtype="http://schema.org/Article" class='ipsBox_withphoto'>
 
                 <h1 itemprop="name" class='ipsType_pagetitle'><?php echo $topic["title"]; ?></h1>
                 <div class='desc lighter blend_links'>
-                    Started by <?php echo $topic['starter_name']; ?>
+                    Started by <?php echo $topic['starter_name']; ?>, <?php echo $topic['start_date']; ?>
                 </div>
 
 

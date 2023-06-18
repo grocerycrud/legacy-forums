@@ -8,9 +8,23 @@ class ForumModel extends Model
     protected $table = 'fm_forums';
     protected $primaryKey = 'id';
     protected $allowedFields = [
-        'id', 'topics', 'posts', 'last_post', 'last_poster_id', 'last_poster_name',
-        'name', 'description', 'position', 'use_ibc', 'use_html', 'password',
-        'password_override', 'last_title', 'last_id', 'sort_key', 'sort_order',
+        'id',
+        'topics',
+        'posts',
+        'last_post',
+        'last_poster_id',
+        'last_poster_name',
+        'name',
+        'description',
+        'position',
+        'use_ibc',
+        'use_html',
+        'password',
+        'password_override',
+        'last_title',
+        'last_id',
+        'sort_key',
+        'sort_order',
         'prune', 'topicfilter', 'show_rules', 'preview_posts', 'allow_poll',
         'allow_pollbump', 'inc_postcount', 'skin_id', 'parent_id', 'redirect_url',
         'redirect_on', 'redirect_hits', 'rules_title', 'rules_text',
@@ -41,7 +55,7 @@ class ForumModel extends Model
             ->where('forum_id', $forumId)
             ->orderBy('pinned', 'DESC')
             ->orderBy('last_post', 'DESC')
-            ->join('fm_profile_portal', 'fm_profile_portal.pp_member_id = fm_topics.starter_id')
+            ->join('fm_profile_portal', 'fm_profile_portal.pp_member_id = fm_topics.last_poster_id')
             ->limit($perPage, $offset)
             ->get()
             ->getResult();
@@ -49,6 +63,9 @@ class ForumModel extends Model
         foreach ($output as &$topic) {
             $topic->start_date_raw = date('Y-m-d', $topic->start_date) . "T" . date('H:i:s', $topic->start_date) . "+00:00";
             $topic->start_date = date('d F Y - H:i A', $topic->start_date);
+
+            $topic->last_post_raw = date('Y-m-d', $topic->last_post) . "T" . date('H:i:s', $topic->last_post) . "+00:00";
+            $topic->last_post = date('d F Y - H:i A', $topic->last_post);
         }
 
         return $output;

@@ -48,6 +48,15 @@ class TopicModel extends Model
 
     public function getTopicByTid($id)
     {
-        return $this->where('tid', $id)->first();
+        $output =
+            $this->where('tid', $id)
+                ->join('fm_profile_portal', 'fm_profile_portal.pp_member_id = fm_topics.starter_id')
+                ->first();
+        if ($output) {
+            $output['start_date_raw'] = date('Y-m-d', $output['start_date']) . "T" . date('H:i:s', $output['start_date']) . "+00:00";
+            $output['start_date'] = date('d F Y - H:i A', $output['start_date']);
+        }
+
+        return $output;
     }
 }

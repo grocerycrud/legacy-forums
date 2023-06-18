@@ -1,4 +1,6 @@
-<div id='logo'>
+<?php
+/* @var array $forum */
+?><div id='logo'>
 
     <a href='/' title='Go to community index' rel="home" accesskey='1'><img
             src='/public/style_images/18_grocery-crud-logo.png'
@@ -62,20 +64,23 @@
 <div id='content' class='clearfix'>
     <!-- ::: NAVIGATION BREADCRUMBS ::: -->
 
+    <?php if (!empty($forum)) { ?>
     <div id='secondary_navigation' class='clearfix'>
         <ol class='breadcrumb top ipsList_inline left'>
-            <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-                <a href="/">grocery CRUD website</a>&nbsp;
-                <span class="nav_sep">&rarr;</span>
-            </li>
             <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a href='/' itemprop="url">
                     <span itemprop="title">grocery CRUD forum</span>
                 </a>
+                <span class="nav_sep">&rarr;</span>
             </li>
-
+                <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a href='/forum/<?php echo $forum['id']; ?>-<?php echo $forum['name_seo']; ?>' itemprop="url">
+                        <span itemprop="title"><?php echo $forum['name']; ?></span>
+                    </a>
+                </li>
         </ol>
     </div>
+    <?php } ?>
     <br/>
 
     <noscript>

@@ -26,6 +26,9 @@ class Website extends BaseController
         $topicModel = new TopicModel();
         $topic = $topicModel->getTopicByTid($topicId);
 
+        $forumModel = new ForumModel();
+        $forum = $forumModel->getForumById($topic['forum_id']);
+
         $postModel = new PostModel();
         $posts = $postModel->getPosts($topicId, $page);
 
@@ -39,7 +42,8 @@ class Website extends BaseController
             'topic' => $topic,
             'posts' => $posts,
             'paginationData' => $paginationData,
-            'canonicalUrl' => $canonicalUrl
+            'canonicalUrl' => $canonicalUrl,
+            'forum' => $forum
         ]);
     }
 

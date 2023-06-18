@@ -891,9 +891,9 @@
                                 </span>
 
                                 <ul class="last_post ipsType_small">
-                                    <li><em><span class="fn name  ___hover___member _hoversetup" title="" id="anonymous_element_6"><span itemprop="name"><?php echo $topic->starter_name; ?></span></em></li>
+                                    <li><em><span class="fn name  ___hover___member _hoversetup" title="" id="anonymous_element_6"><span itemprop="name"><?php echo $topic->last_poster_name; ?></span></em></li>
                                     <li>
-                                            <?php echo $topic->start_date; ?>
+                                            <?php echo $topic->last_post; ?>
                                     </li>
                                 </ul>
                             </td>
