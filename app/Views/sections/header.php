@@ -66,17 +66,19 @@
 
     <?php if (!empty($forum)) { ?>
     <div id='secondary_navigation' class='clearfix'>
-        <ol class='breadcrumb top ipsList_inline left'>
-            <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-                <a href='/' itemprop="url">
-                    <span itemprop="title">grocery CRUD forum</span>
+        <ol class='breadcrumb top ipsList_inline left' itemtype="https://schema.org/BreadcrumbList" itemscope>
+            <li itemprop="itemListElement" itemtype="https://schema.org/ListItem" itemscope>
+                <a href='/' itemprop="item">
+                    <span itemprop="name">grocery CRUD forum</span>
                 </a>
+                <meta itemprop="position" content="1"/>
                 <span class="nav_sep">&rarr;</span>
             </li>
-                <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-                    <a href='/forum/<?php echo $forum['id']; ?>-<?php echo $forum['name_seo']; ?>' itemprop="url">
-                        <span itemprop="title"><?php echo $forum['name']; ?></span>
+                <li itemprop="itemListElement" itemtype="https://schema.org/ListItem" itemscope>
+                    <a href='/forum/<?php echo $forum['id']; ?>-<?php echo $forum['name_seo']; ?>' itemprop="item">
+                        <span itemprop="name"><?php echo $forum['name']; ?></span>
                     </a>
+                    <meta itemprop="position" content="2"/>
                 </li>
         </ol>
     </div>
