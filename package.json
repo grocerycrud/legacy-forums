@@ -1,0 +1,7 @@
+{
+  "name": "legacy-forums",
+  "packageManager": "yarn@3.2.0",
+  "scripts": {
+    "remove-cache": "sh scripts/caching.sh"
+  }
+}

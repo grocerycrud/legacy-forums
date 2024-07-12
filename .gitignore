@@ -98,6 +98,7 @@ _modules/*
 # Jetbrains editors (PHPStorm, etc)
 .idea/
 *.iml
+*.editorconfig
 
 # Netbeans
 nbproject/
@@ -127,3 +128,12 @@ nb-configuration.xml
 
 public/public
 public/uploads
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.pnp.cjs
+/.yarn/
+.yarnrc.yml
+yarn.lock
