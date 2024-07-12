@@ -10,6 +10,8 @@ class Website extends BaseController
 {
     public function index()
     {
+        $this->_pageCache();
+
         return view('home-page');
     }
 
@@ -18,6 +20,8 @@ class Website extends BaseController
         if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug) || !preg_match('/^page-[0-9]+$/', $pageSlug)) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
+
+        $this->_pageCache();
 
         $topicId = explode('-', $slug)[0];
         $page = explode('-', $pageSlug)[1];
@@ -54,6 +58,8 @@ class Website extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
+        $this->_pageCache();
+
         $forumId = explode('-', $slug)[0];
         $page = explode('-', $pageSlug)[1];
         $canonicalUrl = $page === "1" ? 'forum/' . $slug : 'forum/' . $slug . '/' . $pageSlug;
@@ -74,5 +80,11 @@ class Website extends BaseController
             'paginationData' => $paginationData,
             'canonicalUrl' => $canonicalUrl
         ]);
+    }
+
+    private function _pageCache() {
+        if ($_ENV['WEBPAGE_CACHE']) {
+            $this->cachePage(2592000); // 30 days
+        }
     }
 }

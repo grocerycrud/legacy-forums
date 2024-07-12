@@ -447,13 +447,13 @@
 
             <?php include(__DIR__ . '/sections/photo-thumbnail/photo-thumbnail-medium.php'); ?>
 
-            <div itemscope itemtype="http://schema.org/Article" class='ipsBox_withphoto'>
+            <div itemscope itemtype="https://schema.org/Article" class='ipsBox_withphoto'>
 
-                <h1 itemprop="name" class='ipsType_pagetitle'><?php echo $topic["title"]; ?></h1>
+                <h1 itemprop="headline" class='ipsType_pagetitle'><?php echo $topic["title"]; ?></h1>
                 <div class='desc lighter blend_links'>
-                    Started by <?php echo $topic['starter_name']; ?>, <?php echo $topic['start_date']; ?>
+                    Started by <span itemprop="author"><?php echo $topic['starter_name']; ?></span>, <?php echo $topic['start_date']; ?>
+                    <time itemprop="datePublished" datetime="<?php echo $topic['start_date_raw']; ?>"></time>
                 </div>
-
 
                 <br />
 
@@ -482,17 +482,17 @@
                         <?php foreach ($posts as $post) { ?>
                         <div class='post_block hentry clear clearfix'>
 
-                            <div itemscope itemtype="http://schema.org/UserComments" class='post_wrap' >
+                            <div itemscope itemtype="https://schema.org/UserComments" class='post_wrap' >
 
                                 <h3 class='row2'>
 			
 
-                                    <span itemprop="creator name" class="author vcard"><span class="fn name "><span itemprop="name"><?php echo $post->author_name; ?></span></span></span>
+                                    <span itemprop="creator name" class="author vcard"><span class="fn name "><span itemprop="author"><?php echo $post->author_name; ?></span></span></span>
 
 
                                 </h3>
                                 <div class='author_info'>
-                                    <div itemscope itemtype="http://schema.org/Person" class='user_details'>
+                                    <div itemscope itemtype="https://schema.org/Person" class='user_details'>
                                         <span class='hide' itemprop="name"><?php echo $post->author_name; ?></span>
                                         <ul class='basic_info'>
                                             <li class='avatar'>

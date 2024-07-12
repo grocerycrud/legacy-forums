@@ -831,7 +831,7 @@
 
                         <?php ;
                         foreach ($topics as $topic) { ?>
-                        <tr itemscope itemtype="http://schema.org/Article" class='__topic  expandable' id='trow_<?php echo $topic->tid; ?>'
+                        <tr itemscope itemtype="https://schema.org/Article" class='__topic  expandable' id='trow_<?php echo $topic->tid; ?>'
                             data-tid="<?php echo $topic->tid; ?>">
                             <td class='col_f_icon altrow short'>
 
