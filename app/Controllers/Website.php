@@ -17,8 +17,12 @@ class Website extends BaseController
 
     public function topic($slug, $pageSlug = 'page-1')
     {
-        if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug) || !preg_match('/^page-[0-9]+$/', $pageSlug)) {
+        if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug)) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        if (!preg_match('/^page-[0-9]+$/', $pageSlug)) {
+            $pageSlug = 'page-1';
         }
 
         $this->_pageCache();
@@ -53,9 +57,13 @@ class Website extends BaseController
 
     public function forum($slug, $pageSlug = 'page-1') {
 
-        if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug) || !preg_match('/^page-[0-9]+$/', $pageSlug)) {
+        if (!preg_match('/^[0-9]+-[0-9a-z-]+$/', $slug)) {
             // throw Codeigniter 404 error
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        if (!preg_match('/^page-[0-9]+$/', $pageSlug)) {
+            $pageSlug = 'page-1';
         }
 
         $this->_pageCache();
