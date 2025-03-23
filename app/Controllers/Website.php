@@ -34,6 +34,10 @@ class Website extends BaseController
         $topicModel = new TopicModel();
         $topic = $topicModel->getTopicByTid($topicId);
 
+        if ($topic === null) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
         $forumModel = new ForumModel();
         $forum = $forumModel->getForumById($topic['forum_id']);
 
