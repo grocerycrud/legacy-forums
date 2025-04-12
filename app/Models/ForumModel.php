@@ -42,6 +42,13 @@ class ForumModel extends Model
         return $this->where('id', $id)->first();
     }
 
+    public function getAll()
+    {
+        // Get only the forums that are not deleted
+        $this->where('topics >', '0');
+        return $this->findAll();
+    }
+
     public function getTopics($forumId, $page = 1)
     {
         if ((int)$page < 1) {

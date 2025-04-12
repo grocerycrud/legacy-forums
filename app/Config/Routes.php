@@ -43,6 +43,8 @@ $routes->get('/tags/(:segment)/(:segment)', 'Redirects::redirect_to_home_page');
 $routes->get('/tags/(:segment)', 'Redirects::redirect_to_home_page');
 $routes->get('/user/(:segment)', 'Redirects::redirect_to_home_page');
 
+$routes->cli('sitemap/generate', 'Sitemap::generate');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

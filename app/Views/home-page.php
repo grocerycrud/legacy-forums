@@ -595,8 +595,7 @@
 
                     <div id='category_3' class='category_block block_wrap'>
                         <h3 class='maintitle'>
-                            <a class='toggle right' href='#' title="Toggle Support">Toggle Support</a> <a
-                                href="/forum/3-support/" title='View Support'>Support</a>
+                            Support
                         </h3>
                         <div class='ipsBox table_wrap'>
                             <div class='ipsBox_container'>
@@ -840,8 +839,7 @@
 
                     <div id='category_7' class='category_block block_wrap'>
                         <h3 class='maintitle'>
-                            <a class='toggle right' href='#' title="Toggle Development">Toggle Development</a> <a
-                                href="/forum/7-development/" title='View Development'>Development</a>
+                            Development
                         </h3>
                         <div class='ipsBox table_wrap'>
                             <div class='ipsBox_container'>

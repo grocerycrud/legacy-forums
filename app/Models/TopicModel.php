@@ -59,4 +59,13 @@ class TopicModel extends Model
 
         return $output;
     }
+
+    public function getAll()
+    {
+        return $this->orderBy('pinned', 'DESC')
+            ->orderBy('posts', 'DESC')
+            ->orderBy('last_post', 'DESC')
+            ->join('fm_profile_portal', 'fm_profile_portal.pp_member_id = fm_topics.last_poster_id')
+            ->findAll();
+    }
 }
