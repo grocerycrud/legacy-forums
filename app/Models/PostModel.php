@@ -78,6 +78,13 @@ class PostModel extends Model
         return $output;
     }
 
+    public function getTotalPosts($topicId)
+    {
+        return $this->db->table('fm_posts')
+            ->where('topic_id', $topicId)
+            ->countAllResults();
+    }
+
     public function getPaginationLinksForPosts($topicId, $topicSlug = "", $page = 1)
     {
         if ((int)$page < 1) {

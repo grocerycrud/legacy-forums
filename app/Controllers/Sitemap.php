@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\TopicModel;
 use App\Models\ForumModel;
+use App\Models\PostModel;
 
 class Sitemap extends Controller
 {
@@ -20,6 +21,7 @@ class Sitemap extends Controller
 
         $forumModel = new ForumModel();
         $topicModel = new TopicModel();
+        $postModel = new PostModel();
 
         foreach ($sitemapTypes as $type) {
 
@@ -34,12 +36,27 @@ class Sitemap extends Controller
             }
 
             if ($type === 'topics') {
+                $perPage = 20;
                 $topicModel = new TopicModel();
 
                 $allTopics = $topicModel->getAll();
 
                 foreach ($allTopics as $topic) {
                     $sitemapUrls[] = $host . '/topic/' . $topic['tid'] . '-' . $topic['title_seo'];
+
+                    $pages = 1;
+                    if ($topic['posts'] > 10) {
+                        // Since in the database we don't have the real post numbers, whenever we have more than 1 post
+                        // we are querying the database to get the real number of posts
+                        $totalPosts = $postModel->getTotalPosts($topic['tid']);
+                        $pages = ceil($totalPosts / $perPage);
+                    }
+
+                    if ($pages > 1) {
+                        for ($i = 2; $i <= $pages; $i++) {
+                            $sitemapUrls[] = $host . '/topic/' . $topic['tid'] . '-' . $topic['title_seo'] . '/page-' . $i;
+                        }
+                    }
                 }
             }
 
