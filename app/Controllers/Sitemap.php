@@ -51,7 +51,14 @@ class Sitemap extends Controller
                 $allTopics = $topicModel->getAll();
 
                 foreach ($allTopics as $topic) {
-                    $sitemapUrls[] = $host . '/topic/' . $topic['tid'] . '-' . $topic['title_seo'];
+
+                    // Check if we have any % character in the title. Those are now causing a 404 page and
+                    // hence, I am not adding it to the sitemap at the moment
+                    if (strpos($topic['title_seo'], '%') === false) {
+                        $sitemapUrls[] = $host . '/topic/' . $topic['tid'] . '-' . $topic['title_seo'];
+                    } else {
+                        // echo $host . '/topic/' . $topic['tid'] . '-' . $topic['title_seo']. "\n";
+                    }
 
                     $pages = 1;
                     if ($topic['posts'] > 10) {
