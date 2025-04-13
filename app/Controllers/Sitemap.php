@@ -26,12 +26,21 @@ class Sitemap extends Controller
         foreach ($sitemapTypes as $type) {
 
             if ($type === 'forums') {
-
+                $perPage = 30;
 
                 $allForums = $forumModel->getAll();
 
                 foreach ($allForums as $forum) {
                     $sitemapUrls[] = $host . '/forum/' . $forum['id'] . '-' . $forum['name_seo'];
+
+                    $totalTopics = $topicModel->getTotalTopicsByForumId($forum['id']);
+
+                    $pages = $totalTopics > 0 ? ceil($totalTopics / $perPage) : 1;
+                    if ($pages > 1) {
+                        for ($i = 2; $i <= $pages; $i++) {
+                            $sitemapUrls[] = $host . '/forum/' . $forum['id'] . '-' . $forum['name_seo'] . '/page-' . $i;
+                        }
+                    }
                 }
             }
 

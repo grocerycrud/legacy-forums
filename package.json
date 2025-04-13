@@ -1,6 +1,7 @@
 {
   "name": "legacy-forums",
   "scripts": {
-    "remove-cache": "sh scripts/caching.sh"
+    "remove-cache": "sh scripts/caching.sh",
+    "sitemap-generate": "sh scripts/sitemap-generate.sh"
   }
 }

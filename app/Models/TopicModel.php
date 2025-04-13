@@ -68,4 +68,10 @@ class TopicModel extends Model
             ->join('fm_profile_portal', 'fm_profile_portal.pp_member_id = fm_topics.last_poster_id')
             ->findAll();
     }
+
+    public function getTotalTopicsByForumId($forumId)
+    {
+        return $this->where('forum_id', $forumId)
+            ->countAllResults();
+    }
 }
