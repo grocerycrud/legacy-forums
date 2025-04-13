@@ -841,7 +841,7 @@
                                 <h4>
 
                                     <a itemprop="url" id="tid-link-<?php echo $topic->tid; ?>"
-                                       href="/topic/<?php echo $topic->tid; ?>-<?php echo $topic->title_seo; ?>/"
+                                       href="/topic/<?php echo $topic->tid; ?>-<?php echo $topic->title_seo; ?>"
                                        title='Newbie question about installing Grocery CRUD for CodeIgniter 4 - started  28 November 2021 - 02:29 AM'
                                        class='topic_title'>
                                         <?php if ($topic->pinned === "1") { ?>
@@ -857,9 +857,6 @@
 
                             </td>
                             <td class='col_f_preview __topic_preview'>
-
-                                <a href='/topic/<?php echo $topic->tid; ?>-newbie-question-about-installing-grocery-crud-for-codeigniter-4/'
-                                   class='expander closed' title='Preview this topic'>&nbsp;</a>
 
                             </td>
                             <td class='col_f_views desc blend_links'>
