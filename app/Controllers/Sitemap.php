@@ -15,7 +15,7 @@ class Sitemap extends Controller
 
         $host = 'https://forums.grocerycrud.com';
 
-        $sitemapUrls[] = $host;
+        $sitemapUrls[] = $host . "/";
 
         $sitemapTypes = ['forums', 'topics'];
 
