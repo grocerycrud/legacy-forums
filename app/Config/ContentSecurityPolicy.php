@@ -173,4 +173,44 @@ class ContentSecurityPolicy extends BaseConfig
      * Replace nonce tag automatically
      */
     public bool $autoNonce = true;
+
+    /**
+     * Specifies a reporting endpoint to which violation reports ought to be sent.
+     */
+    public ?string $reportTo = null;
+
+    /**
+     * Specifies valid sources for JavaScript inline event
+     * handlers and JavaScript URLs.
+     *
+     * @var list<string>|string
+     */
+    public array|string $scriptSrcAttr = 'self';
+
+    /**
+     * Specifies valid sources for JavaScript <script> elements.
+     *
+     * @var list<string>|string
+     */
+    public array|string $scriptSrcElem = 'self';
+
+    /**
+     * Specifies valid sources for stylesheets inline
+     * style attributes and `<style>` elements.
+     *
+     * @var list<string>|string
+     */
+    public array|string $styleSrcAttr = 'self';
+
+    /**
+     * Specifies valid sources for stylesheets <link> elements.
+     *
+     * @var list<string>|string
+     */
+    public array|string $styleSrcElem = 'self';
+
+    /**
+     * @var list<string>|string
+     */
+    public array|string $workerSrc = [];
 }

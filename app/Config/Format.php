@@ -74,4 +74,13 @@ class Format extends BaseConfig
     {
         return Services::format()->getFormatter($mime);
     }
+
+    /**
+     * --------------------------------------------------------------------------
+     * Maximum depth for JSON encoding.
+     * --------------------------------------------------------------------------
+     *
+     * This value determines how deep the JSON encoder will traverse nested structures.
+     */
+    public int $jsonEncodeDepth = 512;
 }
