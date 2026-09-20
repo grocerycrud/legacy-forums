@@ -35,6 +35,7 @@ $routes->get('/topic/(:segment)', 'Website::topic/$1');
 $routes->get('/topic/(:segment)/(:segment)', 'Website::topic/$1/$2');
 $routes->get('/forum/(:segment)', 'Website::forum/$1');
 $routes->get('/forum/(:segment)/(:segment)', 'Website::forum/$1/$2');
+$routes->get('/attachment/(:num)', 'Attachment::download/$1');
 
 // Redirects
 $routes->get('/best-content', 'Redirects::redirect_to_home_page');

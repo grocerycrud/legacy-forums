@@ -191,7 +191,9 @@
     <![endif]-->
 
     <style type='text/css'>
-        img.bbc_img { max-width: 100% !important; }
+        img.bbc_img { max-width: 100% !important; height: auto !important; }
+        a.attachment-image { display: inline-block; }
+        a.attachment-file { font-weight: bold; }
     </style>
     <meta property="og:title" content=""/>
     <meta property="og:site_name" content="grocery CRUD forum"/>
