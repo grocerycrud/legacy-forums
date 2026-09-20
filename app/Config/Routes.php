@@ -28,21 +28,26 @@ $routes->setAutoRoute(false);
  * --------------------------------------------------------------------
  */
 
+// Every public route answers HEAD as well as GET. CodeIgniter treats HEAD as a
+// verb of its own, so a plain get() route replies 404 to a HEAD request, which
+// would make uptime monitors report the site as down.
+$verbs = ['GET', 'HEAD'];
+
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Website::index');
-$routes->get('/topic/(:segment)', 'Website::topic/$1');
-$routes->get('/topic/(:segment)/(:segment)', 'Website::topic/$1/$2');
-$routes->get('/forum/(:segment)', 'Website::forum/$1');
-$routes->get('/forum/(:segment)/(:segment)', 'Website::forum/$1/$2');
-$routes->get('/attachment/(:num)', 'Attachment::download/$1');
+$routes->match($verbs, '/', 'Website::index');
+$routes->match($verbs, '/topic/(:segment)', 'Website::topic/$1');
+$routes->match($verbs, '/topic/(:segment)/(:segment)', 'Website::topic/$1/$2');
+$routes->match($verbs, '/forum/(:segment)', 'Website::forum/$1');
+$routes->match($verbs, '/forum/(:segment)/(:segment)', 'Website::forum/$1/$2');
+$routes->match($verbs, '/attachment/(:num)', 'Attachment::download/$1');
 
 // Redirects
-$routes->get('/best-content', 'Redirects::redirect_to_home_page');
-$routes->get('/some/edit/link/(:segment)', 'Redirects::redirect_to_home_page');
-$routes->get('/tags/(:segment)/(:segment)', 'Redirects::redirect_to_home_page');
-$routes->get('/tags/(:segment)', 'Redirects::redirect_to_home_page');
-$routes->get('/user/(:segment)', 'Redirects::redirect_to_home_page');
+$routes->match($verbs, '/best-content', 'Redirects::redirect_to_home_page');
+$routes->match($verbs, '/some/edit/link/(:segment)', 'Redirects::redirect_to_home_page');
+$routes->match($verbs, '/tags/(:segment)/(:segment)', 'Redirects::redirect_to_home_page');
+$routes->match($verbs, '/tags/(:segment)', 'Redirects::redirect_to_home_page');
+$routes->match($verbs, '/user/(:segment)', 'Redirects::redirect_to_home_page');
 
 $routes->cli('sitemap/generate', 'Sitemap::generate');
 
