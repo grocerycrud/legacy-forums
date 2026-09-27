@@ -640,7 +640,7 @@
 <img
     src='https://secure.gravatar.com/avatar/f9d5f7a0d4f28160857b04ea4340a56a?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png'
     alt='Newbie question about insta... - last post by daveoreardon' class='ipsUserPhoto ipsUserPhoto_mini'
-    onerror='this.onerror=null;this.src="http://www.grocerycrud.com/forums/public/style_images/master/profile/default_large.png";'/>
+    onerror='this.onerror=null;this.src="/public/style_images/master/profile/default_large.png";'/>
 
     </span>
 
@@ -694,7 +694,7 @@
                                                     src='https://secure.gravatar.com/avatar/7c7949a13ac2be59fd97b9696b6e009a?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png'
                                                     alt='Try to &#34;CRUD&#34; from... - last post by majd94'
                                                     class='ipsUserPhoto ipsUserPhoto_mini'
-                                                    onerror='this.onerror=null;this.src="http://www.grocerycrud.com/forums/public/style_images/master/profile/default_large.png";'/>
+                                                    onerror='this.onerror=null;this.src="/public/style_images/master/profile/default_large.png";'/>
 
                                             </span>
 
@@ -750,7 +750,7 @@
                                                     src='https://secure.gravatar.com/avatar/3e5f09970499d7751938a6cb9f42d695?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png'
                                                     alt='Confirmation Message on add... - last post by dwdc'
                                                     class='ipsUserPhoto ipsUserPhoto_mini'
-                                                    onerror='this.onerror=null;this.src="http://www.grocerycrud.com/forums/public/style_images/master/profile/default_large.png";'/>
+                                                    onerror='this.onerror=null;this.src="/public/style_images/master/profile/default_large.png";'/>
 
                                             </a>
 
@@ -806,7 +806,7 @@
                                                     src='https://secure.gravatar.com/avatar/0a67f77001ecb7fc0a20bde6af80ceba?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png'
                                                     alt='image crud. Are there any i... - last post by joeybing'
                                                     class='ipsUserPhoto ipsUserPhoto_mini'
-                                                    onerror='this.onerror=null;this.src="http://www.grocerycrud.com/forums/public/style_images/master/profile/default_large.png";'/>
+                                                    onerror='this.onerror=null;this.src="/public/style_images/master/profile/default_large.png";'/>
 
                                             </a>
 
@@ -884,7 +884,7 @@
                                                     src='https://secure.gravatar.com/avatar/428190ece2c80a4351ac4b52cd999ea7?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png'
                                                     alt='How to pass extra data on a... - last post by daniilmedved'
                                                     class='ipsUserPhoto ipsUserPhoto_mini'
-                                                    onerror='this.onerror=null;this.src="http://www.grocerycrud.com/forums/public/style_images/master/profile/default_large.png";'/>
+                                                    onerror='this.onerror=null;this.src="/public/style_images/master/profile/default_large.png";'/>
 
                                             </a>
 
@@ -939,7 +939,7 @@
                                                     src='https://secure.gravatar.com/avatar/77e783326660723929f626400fc8ac2c?s=100&amp;d=https%3A%2F%2Fforums.grocerycrud.com%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png'
                                                     alt='[ANSWERED] set_relation and... - last post by dmanolias'
                                                     class='ipsUserPhoto ipsUserPhoto_mini'
-                                                    onerror='this.onerror=null;this.src="http://www.grocerycrud.com/forums/public/style_images/master/profile/default_large.png";'/>
+                                                    onerror='this.onerror=null;this.src="/public/style_images/master/profile/default_large.png";'/>
 
                                             </a>
 
