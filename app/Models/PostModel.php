@@ -46,6 +46,9 @@ class PostModel extends Model
         // replace "http://www.grocerycrud.com/forums/" or "https://www.grocerycrud.com/forums/" with "/"
         $text = preg_replace('/https?:\/\/www.grocerycrud.com\/forums\//is', '/', $text);
 
+        // point old documentation links to the v1.x documentation
+        $text = $this->_replaceDocumentationLinks($text);
+
         // replace <#EMO_DIR#> with 'default'
         $text = str_replace('<#EMO_DIR#>', 'default', $text);
 
@@ -59,6 +62,25 @@ class PostModel extends Model
         $text = $this->_replaceAttachmentTags($text, $attachments);
 
         return $text;
+    }
+
+    /**
+     * The old documentation now lives under /v1.x/. Every form of the old link
+     * is rewritten to the same URL: http or https, with or without www, the
+     * colon stored as "&#58;", or no scheme at all. The rest of the path is kept.
+     */
+    private function _replaceDocumentationLinks($text)
+    {
+        // Most posts have no documentation link, so skip the regex for them.
+        if (stripos($text, 'grocerycrud.com/documentation') === false) {
+            return $text;
+        }
+
+        return preg_replace(
+            '~(?:https?(?::|&#58;)//|(?<![\w./-]))(?:www\.)?grocerycrud\.com/documentation(?![\w-])~i',
+            'https://www.grocerycrud.com/v1.x/documentation',
+            $text
+        );
     }
 
     /**
