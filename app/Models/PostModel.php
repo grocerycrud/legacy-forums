@@ -55,6 +55,9 @@ class PostModel extends Model
         // replace [code] tags with <pre> tags
         $text = preg_replace('/\[code\](.*?)\[\/code\]/is', '<pre class="prettyprint prettyprinted">$1</pre>', $text);
 
+        // style IPB's stored code blocks like the [code] ones
+        $text = $this->_styleStoredCodeBlocks($text);
+
         // replace [url] tags with <a> tags
         $text = preg_replace('/\[url="(.*?)"\](.*?)\[\/url\]/is', '<strong>$2</strong>', $text);
 
@@ -79,6 +82,26 @@ class PostModel extends Model
         return preg_replace(
             '~(?:https?(?::|&#58;)//|(?<![\w./-]))(?:www\.)?grocerycrud\.com/documentation(?![\w-])~i',
             'https://www.grocerycrud.com/v1.x/documentation',
+            $text
+        );
+    }
+
+    /**
+     * IPB stored code blocks as <pre class="_prettyXprint ..."> and switched
+     * the class back to "prettyprint" only when it displayed the post. Add the
+     * classes our CSS styles. Only the real tag is matched, so HTML that a user
+     * quoted as text (&lt;pre class="_prettyXprint") is left alone.
+     */
+    private function _styleStoredCodeBlocks($text)
+    {
+        // Most posts have no stored code block, so skip the replace for them.
+        if (strpos($text, '_prettyXprint') === false) {
+            return $text;
+        }
+
+        return str_replace(
+            '<pre class="_prettyXprint',
+            '<pre class="prettyprint prettyprinted _prettyXprint',
             $text
         );
     }

@@ -16,4 +16,4 @@ Details for open tasks are in `todo-details.md`.
 ## 2. Owner suggestions
 
 - [x] **2.1** Point old documentation links in posts to the v1.x documentation.
-- [ ] **2.2** Style IPB's `_prettyXprint` code blocks like `[code]` blocks.
+- [x] **2.2** Style IPB's `_prettyXprint` code blocks like `[code]` blocks.
