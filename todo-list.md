@@ -29,13 +29,17 @@
 - [ ] **2.1** Point old documentation links in posts to the v1.x documentation.
   Replace `http://www.grocerycrud.com/documentation/*` with
   `https://www.grocerycrud.com/v1.x/documentation/*`, keeping the rest of the
-  path. For example:
+  path. Every form of the old link is rewritten to the same URL, whether it
+  starts with `http://`, `https://`, `http://www.` or `https://www.`:
 
-  - `http://www.grocerycrud.com/documentation/options_functions/set_relation_n_n`
-  - becomes `https://www.grocerycrud.com/v1.x/documentation/options_functions/set_relation_n_n`
+  | Old link in the post | Becomes |
+  | --- | --- |
+  | `http://www.grocerycrud.com/documentation/options_functions/set_relation_n_n` | `https://www.grocerycrud.com/v1.x/documentation/options_functions/set_relation_n_n` |
+  | `https://www.grocerycrud.com/documentation/options_functions/set_relation_n_n` | `https://www.grocerycrud.com/v1.x/documentation/options_functions/set_relation_n_n` |
+  | `http://grocerycrud.com/documentation/options_functions/set_relation_n_n` | `https://www.grocerycrud.com/v1.x/documentation/options_functions/set_relation_n_n` |
+  | `https://grocerycrud.com/documentation/options_functions/set_relation_n_n` | `https://www.grocerycrud.com/v1.x/documentation/options_functions/set_relation_n_n` |
 
-  Every form of the old link is rewritten to the same URL, whether it starts
-  with `http://`, `https://`, `http://www.` or `https://www.`. The dump has
+  The dump has
   1,039 such links: 959 `http://www.`, 78 `https://www.` and 2 `http://`
   without `www`. The rewrite belongs in `PostModel::_transformPostText()`, since
   the archive never writes to the database.
