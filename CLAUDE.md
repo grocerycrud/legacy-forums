@@ -253,6 +253,45 @@ Limits of the local copy:
 - Don't use `pkill -f "php -S ..."` to restart the server — the pattern also
   matches the shell running the command and kills it.
 
+## Before and after screenshots
+
+For every change that shows on a page, show the owner before and after
+screenshots in the chat:
+
+- **Full page**, never cropped to the changed part.
+- The same URL on both, picked so the change is clearly visible.
+- Save them in the session's scratchpad directory and send them with the
+  `SendUserFile` tool. **Never commit screenshots** or save them inside the repo.
+
+Serve the old code next to the new one from a git worktree in the scratchpad,
+on port 8081, while the working copy stays on 8080 (`$S` is the scratchpad
+directory):
+
+```bash
+git worktree add $S/before origin/master   # or the commit before the change
+ln -s "$PWD/vendor" $S/before/vendor && cp .env $S/before/.env
+(cd $S/before && PHP_CLI_SERVER_WORKERS=4 php -S localhost:8081 -t public > /tmp/php-before.log 2>&1 &)
+```
+
+Take the screenshots with the pre-installed Playwright and Chromium:
+
+```js
+// node shot.js /topic/1318-x $S
+const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+(async () => {
+  const [url, dir] = process.argv.slice(2);
+  const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+  const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  for (const [port, name] of [[8081, 'before'], [8080, 'after']]) {
+    await page.goto(`http://localhost:${port}${url}`, { waitUntil: 'networkidle' });
+    await page.screenshot({ path: `${dir}/${name}.png`, fullPage: true });
+  }
+  await browser.close();
+})();
+```
+
+Remove the worktree when done: `git worktree remove --force $S/before`.
+
 ## Ground rules
 
 - No write operations. The archive is read-only.
