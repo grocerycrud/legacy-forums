@@ -16,6 +16,9 @@ else
   chmod 766 $CACHE_DIR
 fi
 
+# Put back the index.html that git tracks, so the folder stays in the repo
+cp writable/cache/index.html $CACHE_DIR/index.html
+
 echo ""
 
 echo "Done!"
