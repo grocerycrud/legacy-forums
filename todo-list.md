@@ -29,3 +29,10 @@
 - [x] **2.1** Point old documentation links in posts to the v1.x
   documentation (`https://www.grocerycrud.com/v1.x/documentation/...`), in
   `PostModel::_transformPostText()`.
+- [ ] **2.2** Style IPB's stored code blocks like `[code]` blocks. IPB 3.x
+  saved code as `<pre class="_prettyXprint _lang-php _linenums:0">`: the
+  `prettyprint` class renamed so the editor would not highlight it, and switched
+  back only when IPB displayed the post. We never switch it back, so 1,870 posts
+  (3,232 blocks) miss the `pre.prettyprint` box style. Add
+  `prettyprint prettyprinted` to their class in
+  `PostModel::_transformPostText()`, checking for `_prettyXprint` first.
