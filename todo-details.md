@@ -26,10 +26,6 @@ The inner joins on `fm_profile_portal` drop anything by a member without a
 profile row, so topic 2582 returns 404. Use a `LEFT JOIN` and show the default
 avatar.
 
-## 1.7 Replace the default CodeIgniter `README.md`
-
-Write a short one that points to `CLAUDE.md`.
-
 ## 1.8 *(on hold)* Fix the 20 topic pages with non-ASCII slugs
 
 Topics with Russian, Arabic, Persian, `ç` or `…` in their slug return 400.

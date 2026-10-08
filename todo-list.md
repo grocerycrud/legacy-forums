@@ -10,7 +10,7 @@ Details for open tasks are in `todo-details.md`.
 - [ ] **1.4** Add a GitHub Action that runs the tests and the crawl.
 - [ ] **1.5** Stop losing guest posts (topic 2582 returns 404).
 - [x] **1.6** Use the local default image for the home page fallback avatars.
-- [ ] **1.7** Replace the default CodeIgniter `README.md`.
+- [x] **1.7** Replace the default CodeIgniter `README.md`.
 - [ ] **1.8** *(on hold)* Fix the 20 topic pages with non-ASCII slugs.
 - [x] **1.9** Fill the `"Array"` meta tags (description, `og:*`) with real values.
 - [x] **1.10** Build canonical URLs from the stored slug, not the requested one.
