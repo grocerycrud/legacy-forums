@@ -843,7 +843,7 @@
 
                                     <a itemprop="url" id="tid-link-<?php echo $topic->tid; ?>"
                                        href="/topic/<?php echo $topic->tid; ?>-<?php echo $topic->title_seo; ?>"
-                                       title='Newbie question about installing Grocery CRUD for CodeIgniter 4 - started  28 November 2021 - 02:29 AM'
+                                       title="<?php echo ipb_text($topic->title); ?> - started <?php echo esc($topic->start_date); ?>"
                                        class='topic_title'>
                                         <?php if ($topic->pinned === "1") { ?>
                                             <span class="ipsBadge ipsBadge_green">Pinned</span>&nbsp;

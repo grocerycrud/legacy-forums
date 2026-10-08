@@ -36,6 +36,20 @@ Topics with Russian, Arabic, Persian, `ç` or `…` in their slug return 400.
 CodeIgniter's `permittedURIChars` rejects them, and the slug check in
 `Website.php` would 404 them. URLs must stay the same.
 
+## 1.15 Keep `index.php` out of the old redirects
+
+`Redirects::redirect_to_home_page()` uses `redirect()->to('/')`, which goes
+through `site_url()`. With `$indexPage = 'index.php'` in `app/Config/App.php`,
+`/tags/…`, `/user/…`, `/best-content` and `/some/edit/link/…` 301 to
+`/index.php/`, unless the live `.env` sets `app.indexPage`. Check the live
+`Location` header first. The fix is `redirect()->to(base_url(), 301)`, as
+`Website::_redirectTo()` does.
+
+## 1.16 Show times on a 12-hour clock
+
+The models format dates with `'d F Y - H:i A'`, so a 24-hour hour gets an
+AM/PM suffix: `17:15 PM`. Use `h:i A`. It affects every date on the site.
+
 ## 2.3 Answer HEAD requests with a lighter query
 
 A HEAD request runs the full controller and renders the whole view, and PHP

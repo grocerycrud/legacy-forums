@@ -17,6 +17,9 @@ Details for open tasks are in `todo-details.md`.
 - [x] **1.11** 301 a bad page part (`/page-01`, `/page-0`, `/garbage`) to the clean URL.
 - [x] **1.12** Point `robots.txt` at the sitemap.
 - [x] **1.13** Escape topic titles and forum names.
+- [x] **1.14** Give each topic link in the forum lists its own tooltip.
+- [ ] **1.15** Keep `index.php` out of the old redirects (`/tags/…`, `/user/…`).
+- [ ] **1.16** Show times on a 12-hour clock (`17:15 PM` today).
 
 ## 2. Owner suggestions
 
