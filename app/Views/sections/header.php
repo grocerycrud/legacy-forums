@@ -76,7 +76,7 @@
             </li>
                 <li itemprop="itemListElement" itemtype="https://schema.org/ListItem" itemscope>
                     <a href='/forum/<?php echo $forum['id']; ?>-<?php echo $forum['name_seo']; ?>' itemprop="item">
-                        <span itemprop="name"><?php echo $forum['name']; ?></span>
+                        <span itemprop="name"><?php echo ipb_text($forum['name']); ?></span>
                     </a>
                     <meta itemprop="position" content="2"/>
                 </li>
