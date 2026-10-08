@@ -235,6 +235,51 @@ class PostModel extends Model
         return $output;
     }
 
+    /**
+     * The start of the topic's first post as plain text, for the meta
+     * description. Empty when the post has no text (an image only, say).
+     */
+    public function getTopicExcerpt($topicId)
+    {
+        $firstPost = $this->db->table('fm_posts')
+            ->select('post')
+            ->where('topic_id', $topicId)
+            ->orderBy('post_date', 'ASC')
+            ->limit(1)
+            ->get()
+            ->getRow();
+
+        return $firstPost === null ? '' : self::toPlainText($firstPost->post);
+    }
+
+    /**
+     * Turns IPB legacy markup (HTML, entities and BBCode) into one line of
+     * plain text, cut at a word boundary. The result is not escaped.
+     */
+    public static function toPlainText($text, $maxLength = 160)
+    {
+        // Code reads badly in a search result, so drop it altogether.
+        $text = preg_replace('~\[code\].*?\[/code\]|<pre\b.*?</pre>~is', ' ', (string)$text);
+        $text = preg_replace(self::ATTACHMENT_TAG_PATTERN, ' ', $text);
+        $text = preg_replace('~\[\*\]|\[/?[a-z]+(?:=[^\]]*)?\]~i', ' ', $text);
+        $text = strip_tags(preg_replace('~<[^>]*>~', ' ', $text));
+        $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $text = trim(preg_replace('~\s+~u', ' ', $text));
+
+        if (mb_strlen($text) <= $maxLength) {
+            return $text;
+        }
+
+        $text = mb_substr($text, 0, $maxLength);
+        $lastSpace = mb_strrpos($text, ' ');
+
+        if ($lastSpace !== false && $lastSpace > $maxLength / 2) {
+            $text = mb_substr($text, 0, $lastSpace);
+        }
+
+        return rtrim($text, " ,.;:-") . '…';
+    }
+
     public function getTotalPosts($topicId)
     {
         return $this->db->table('fm_posts')
