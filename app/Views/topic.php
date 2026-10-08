@@ -2,6 +2,7 @@
 /** @var $posts */
 /** @var $topic */
 /** @var $canonicalUrl */
+/** @var $metaDescription */
 ?><!DOCTYPE html>
 <html lang="en"  xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
@@ -195,40 +196,39 @@
         a.attachment-image { display: inline-block; }
         a.attachment-file { font-weight: bold; }
     </style>
-    <meta property="og:title" content=""/>
+    <meta property="og:title" content="<?php echo esc(html_entity_decode($topic['title'], ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>"/>
     <meta property="og:site_name" content="grocery CRUD forum"/>
     <meta property="og:image" content="https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png"/>
     <meta property="og:type" content="article" />
 
 
 
-    <meta property="og:updated_time" content="Array" />
+    <meta property="og:updated_time" content="<?php echo date('c', (int)$topic['last_post']); ?>" />
 
 
 
 
 
 
-    <meta name="keywords" content="Array" />
 
 
 
 
 
 
-    <meta name="description" content="Array" />
+    <meta name="description" content="<?php echo esc($metaDescription); ?>" />
 
 
 
-    <meta property="og:description" content="Array" />
+    <meta property="og:description" content="<?php echo esc($metaDescription); ?>" />
 
 
 
 
-    <meta name="identifier-url" content="Array" />
+    <meta name="identifier-url" content="<?php echo esc('https://forums.grocerycrud.com/' . $canonicalUrl); ?>" />
 
 
-    <meta property="og:url" content="Array" />
+    <meta property="og:url" content="<?php echo esc('https://forums.grocerycrud.com/' . $canonicalUrl); ?>" />
 
 
 

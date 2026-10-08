@@ -42,6 +42,19 @@ class ForumModel extends Model
         return $this->where('id', $id)->first();
     }
 
+    /**
+     * The forum's description as plain text, for the meta description. A few
+     * forums have none, so fall back to the name.
+     */
+    public function getDescriptionText(array $forum)
+    {
+        $description = PostModel::toPlainText($forum['description']);
+
+        return $description !== ''
+            ? $description
+            : PostModel::toPlainText($forum['name']) . ' - grocery CRUD forum';
+    }
+
     public function getAll()
     {
         // Get only the forums that are not deleted

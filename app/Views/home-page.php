@@ -452,17 +452,17 @@
             max-width: 100% !important;
         }
     </style>
-    <meta property="og:title" content=""/>
+    <meta property="og:title" content="grocery CRUD forum"/>
     <meta property="og:site_name" content="grocery CRUD forum"/>
     <meta property="og:image"
           content="https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png"/>
     <meta property="og:type" content="article"/>
 
 
-    <meta name="identifier-url" content="Array"/>
+    <meta name="identifier-url" content="https://forums.grocerycrud.com/"/>
 
 
-    <meta property="og:url" content="Array"/>
+    <meta property="og:url" content="https://forums.grocerycrud.com/"/>
 
 
     <link id="ipsCanonical" rel="canonical" href="https://forums.grocerycrud.com/"/>

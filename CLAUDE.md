@@ -48,6 +48,11 @@ All of the above answer both GET and HEAD.
 Slugs must match `^[0-9]+-[0-9a-z-]+$`. Only the leading number is used to look
 up the record; the text part is ignored. A slug that doesn't match gives a 404.
 
+Because any text part loads the page, the canonical link, `og:url` and the
+pagination links are built from the slug stored in the database
+(`title_seo` / `name_seo`), not from the requested one. Records whose stored
+slug is empty or percent-encoded keep the requested slug.
+
 ### Every route must answer HEAD as well as GET
 
 CodeIgniter treats `HEAD` as a verb in its own right, so a route declared with
