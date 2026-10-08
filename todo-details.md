@@ -41,11 +41,6 @@ through `site_url()`. With `$indexPage = 'index.php'` in `app/Config/App.php`,
 `Location` header first. The fix is `redirect()->to(base_url(), 301)`, as
 `Website::_redirectTo()` does.
 
-## 1.16 Show times on a 12-hour clock
-
-The models format dates with `'d F Y - H:i A'`, so a 24-hour hour gets an
-AM/PM suffix: `17:15 PM`. Use `h:i A`. It affects every date on the site.
-
 ## 2.3 Answer HEAD requests with a lighter query
 
 A HEAD request runs the full controller and renders the whole view, and PHP

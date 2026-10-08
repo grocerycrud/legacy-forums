@@ -54,7 +54,7 @@ class TopicModel extends Model
                 ->first();
         if ($output) {
             $output['start_date_raw'] = date('Y-m-d', $output['start_date']) . "T" . date('H:i:s', $output['start_date']) . "+00:00";
-            $output['start_date'] = date('d F Y - H:i A', $output['start_date']);
+            $output['start_date'] = date('d F Y - h:i A', $output['start_date']);
         }
 
         return $output;

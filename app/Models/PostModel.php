@@ -228,7 +228,7 @@ class PostModel extends Model
         foreach ($output as &$post) {
 
             $post->post_date_raw = date('Y-m-d', $post->post_date) . "T" . date('H:i:s', $post->post_date) . "+00:00";
-            $post->post_date = date('d F Y - H:i A', $post->post_date);
+            $post->post_date = date('d F Y - h:i A', $post->post_date);
             $post->post = $this->_transformPostText($post->post, $attachments);
         }
 

@@ -82,10 +82,10 @@ class ForumModel extends Model
 
         foreach ($output as &$topic) {
             $topic->start_date_raw = date('Y-m-d', $topic->start_date) . "T" . date('H:i:s', $topic->start_date) . "+00:00";
-            $topic->start_date = date('d F Y - H:i A', $topic->start_date);
+            $topic->start_date = date('d F Y - h:i A', $topic->start_date);
 
             $topic->last_post_raw = date('Y-m-d', $topic->last_post) . "T" . date('H:i:s', $topic->last_post) . "+00:00";
-            $topic->last_post = date('d F Y - H:i A', $topic->last_post);
+            $topic->last_post = date('d F Y - h:i A', $topic->last_post);
         }
 
         return $output;
