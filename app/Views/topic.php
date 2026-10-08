@@ -7,7 +7,7 @@
 <html lang="en"  xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta charset="UTF-8" />
-    <title><?php echo $topic["title"]; ?> - grocery CRUD forum</title>
+    <title><?php echo ipb_text($topic["title"]); ?> - grocery CRUD forum</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="shortcut icon" href="/favicon.png" />
     <link rel="image_src" href='https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png' />
@@ -196,7 +196,7 @@
         a.attachment-image { display: inline-block; }
         a.attachment-file { font-weight: bold; }
     </style>
-    <meta property="og:title" content="<?php echo esc(html_entity_decode($topic['title'], ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>"/>
+    <meta property="og:title" content="<?php echo ipb_text($topic['title']); ?>"/>
     <meta property="og:site_name" content="grocery CRUD forum"/>
     <meta property="og:image" content="https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png"/>
     <meta property="og:type" content="article" />
@@ -451,7 +451,7 @@
 
             <div itemscope itemtype="https://schema.org/Article" class='ipsBox_withphoto'>
 
-                <h1 itemprop="headline" class='ipsType_pagetitle'><?php echo $topic["title"]; ?></h1>
+                <h1 itemprop="headline" class='ipsType_pagetitle'><?php echo ipb_text($topic["title"]); ?></h1>
                 <div class='desc lighter blend_links'>
                     Started by <span itemprop="author"><?php echo $topic['starter_name']; ?></span>, <?php echo $topic['start_date']; ?>
                     <time itemprop="datePublished" datetime="<?php echo $topic['start_date_raw']; ?>"></time>

@@ -70,6 +70,10 @@ Note that a HEAD request still runs the full controller and renders the view;
 PHP just discards the body. That is fine at UptimeRobot's polling rate,
 especially with the page cache on.
 
+This is on purpose and is an owner decision (`todo-list.md`, 3.1): the
+monitor's requests must check that the site can still read the real database.
+Don't change the caching or response headers of HEAD requests or 404 pages.
+
 ## Database
 
 Original IPB table and column names, unchanged:

@@ -35,3 +35,14 @@ Write a short one that points to `CLAUDE.md`.
 Topics with Russian, Arabic, Persian, `ç` or `…` in their slug return 400.
 CodeIgniter's `permittedURIChars` rejects them, and the slug check in
 `Website.php` would 404 them. URLs must stay the same.
+
+## 2.3 Answer HEAD requests with a lighter query
+
+A HEAD request runs the full controller and renders the whole view, and PHP
+then throws the body away. Answer HEAD from a cheap query instead, for example
+only checking that the topic or forum id exists, and return the same status
+code GET would give.
+
+It must still query the real database: that is why HEAD exists here (owner
+decision 3.1). Keep the 404s and 301s identical to GET's, and keep HEAD and GET
+on separate page cache entries.

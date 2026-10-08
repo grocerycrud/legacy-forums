@@ -8,7 +8,7 @@
 <html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta charset="UTF-8"/>
-    <title><?php echo $forum["name"]; ?> - grocery CRUD forum</title>
+    <title><?php echo ipb_text($forum["name"]); ?> - grocery CRUD forum</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <link rel="shortcut icon" href="/favicon.png"/>
     <link rel="image_src" href='https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png'/>
@@ -638,7 +638,7 @@
             max-width: 100% !important;
         }
     </style>
-    <meta property="og:title" content="<?php echo esc(html_entity_decode($forum['name'], ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>"/>
+    <meta property="og:title" content="<?php echo ipb_text($forum['name']); ?>"/>
     <meta property="og:site_name" content="grocery CRUD forum"/>
     <meta property="og:image"
           content="https://www.grocerycrud.com/assets/themes/default/images/forums-facebook-image.png"/>
@@ -797,7 +797,7 @@
 
 
 
-            <h1 class='ipsType_pagetitle'><?php echo $forum['name']; ?></h1>
+            <h1 class='ipsType_pagetitle'><?php echo ipb_text($forum['name']); ?></h1>
             <div class='ipsType_pagedesc forum_rules'>
 
                 <?php echo $forum['description']; ?>
@@ -848,7 +848,7 @@
                                         <?php if ($topic->pinned === "1") { ?>
                                             <span class="ipsBadge ipsBadge_green">Pinned</span>&nbsp;
                                         <?php } ?>
-                                        <span itemprop="name"><?php echo($topic->title);?></a>
+                                        <span itemprop="name"><?php echo ipb_text($topic->title); ?></a>
                                 </h4>
                                 <br/>
                                 <span class='desc lighter blend_links'>
