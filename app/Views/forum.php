@@ -645,10 +645,10 @@
     <meta property="og:type" content="article"/>
 
 
-    <meta name="description" content="<?php echo esc($metaDescription); ?>"/>
+    <meta name="description" content="<?php echo meta_attr($metaDescription); ?>"/>
 
 
-    <meta property="og:description" content="<?php echo esc($metaDescription); ?>"/>
+    <meta property="og:description" content="<?php echo meta_attr($metaDescription); ?>"/>
 
 
     <meta name="identifier-url" content="<?php echo esc('https://forums.grocerycrud.com/' . $canonicalUrl); ?>"/>
