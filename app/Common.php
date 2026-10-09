@@ -20,19 +20,20 @@ if (! function_exists('ipb_text')) {
      * with their special characters already as entities (&#39;, &#38;), so a
      * plain esc() would show the entities on the page. Decode first, then
      * escape, so the text reads the same and nothing in it can become markup.
+     * Escaped with meta_attr(), so only use it in text or inside double quotes.
      */
     function ipb_text($text): string
     {
-        return esc(html_entity_decode((string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+        return meta_attr(html_entity_decode((string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
     }
 }
 
 if (! function_exists('meta_attr')) {
     /**
-     * Escapes plain text for a double-quoted attribute, such as a meta
-     * description. Unlike esc() it leaves single quotes alone, so "I'm"
+     * Escapes plain text for page text or a double-quoted attribute, such as
+     * a meta description. Unlike esc() it leaves single quotes alone, so "I'm"
      * stays readable in the page source instead of turning into &#039;.
-     * Only use it inside double quotes.
+     * Never use it inside a single-quoted attribute.
      */
     function meta_attr($text): string
     {
