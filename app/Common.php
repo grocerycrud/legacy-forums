@@ -26,3 +26,16 @@ if (! function_exists('ipb_text')) {
         return esc(html_entity_decode((string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
     }
 }
+
+if (! function_exists('meta_attr')) {
+    /**
+     * Escapes plain text for a double-quoted attribute, such as a meta
+     * description. Unlike esc() it leaves single quotes alone, so "I'm"
+     * stays readable in the page source instead of turning into &#039;.
+     * Only use it inside double quotes.
+     */
+    function meta_attr($text): string
+    {
+        return htmlspecialchars((string) $text, ENT_COMPAT | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8');
+    }
+}
