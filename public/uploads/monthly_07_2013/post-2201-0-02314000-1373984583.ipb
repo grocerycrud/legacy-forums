@@ -1,0 +1,144 @@
+﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Pets extends CI_Controller {
+	
+	public $data= array();
+	
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->helper('url');	
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->load->library('grocery_CRUD');
+		$this->load->library('auth');
+		$this->data['login'] =  $this->auth->read('username');
+		
+		if(!$this->auth->is_loggedin())
+		{
+			redirect('/login/', 'refresh');
+		}
+	}
+	
+	public function dogs() 
+	{
+	
+		$data['login'] =  $this->auth->read('username');
+		$this->grocery_crud->set_theme('datatables');
+		$this->grocery_crud->set_table('dogs');
+		$this->grocery_crud->set_relation('owner_id','clients','{firstname} {lastname}');
+		$this->grocery_crud->columns('id','owner_id','sex','chip_number','nickname');
+		$this->grocery_crud->set_subject('Zwierze');
+		$this->grocery_crud->unset_export();
+		$this->grocery_crud->unset_print();
+		
+		$this->grocery_crud->add_action('More', '', '','ui-icon-plus',array($this,'example'));
+		
+		$this->grocery_crud->set_relation('race_id','races', 'name');
+		$this->grocery_crud->required_fields('owner_id','sex','chip_number','nickname', 'race_id', 'color', 'name', 'born');
+		
+		$this->grocery_crud->set_rules('chip_number','Nr. Chip / Tatuaż','required|callback_chip_check');
+		
+		$this->grocery_crud->callback_add_field('dad_id',array($this,'add_field_callback_1'));
+		$this->grocery_crud->callback_edit_field('dad_id',array($this,'add_field_callback_1'));
+		$this->grocery_crud->callback_add_field('mom_id',array($this,'add_field_callback_2'));
+		$this->grocery_crud->callback_edit_field('mom_id',array($this,'add_field_callback_2'));
+
+		$this->grocery_crud->display_as('owner_id','Właściciel')
+							->display_as('id','Nr.')
+							->display_as('name','Nazwa zwierzaka')
+							->display_as('chip_number','Nr. Chip / Tatuaż')
+							->display_as('nickname','Przydomek')
+							->display_as('race_id','Rasa')
+							->display_as('born','Urodzony dnia')
+							->display_as('color','Maść')
+							->display_as('dad_id','Ojciec')
+							->display_as('mom_id','Mama')
+							->display_as('sex','Płeć');
+							
+		$this->grocery_crud->field_type('sex','dropdown', array('m' => 'Mężczyzna', 'k' => 'Kobieta'))
+							->field_type('born', 'date');
+		
+		//$this->grocery_crud->callback_after_insert(array($this, 'update_info'));
+		//$this->grocery_crud->callback_after_update(array($this, 'update_info'));
+	
+
+		$data['tabela'] = $this->grocery_crud->render();
+		
+		if(	$this->grocery_crud->getState() == 'add' || $this->grocery_crud->getState() == 'edit' ) {
+			$this->grocery_crud->add_fields('dad_id');
+			$this->grocery_crud->edit_fields('dad_id');
+		}
+		
+		
+		$this->load->view('main_view_header', (array)$data);
+		$this->load->view('pets_view_tabela', (array)$data);
+		$this->load->view('main_view_footer');
+	}
+	
+	function example($primary_key , $row)
+	{
+		return site_url('/more/dogs?pet_id='.$row->id);
+	}
+	
+	function chip_check($str) {
+	
+		$tmp = preg_replace('/\s+/', '', $str);
+		if(preg_match('/^([a-zA-Z]{0,1})([0-9]+)([a-zA-Z]{0,1})$/D',$tmp)) {
+			return true;
+		} else if (preg_match('/^[0-9]{15}$/D',$str)){
+			return true;
+		} else if (!preg_match('/^[0-9]{15}$/D',$str)){
+			$this->form_validation->set_message('chip_check', 'W polu %s wykryto numer chip o niepoprawnej długości ('.strlen($str).')');
+			return false;
+		} else {
+			$this->form_validation->set_message('chip_check', 'W polu %s błędną wartość - nie pasującą do wzoru chipu i tatuażu!');
+			return false;
+		}
+	
+	}
+	
+	function add_field_callback_1()
+	{
+		$output = array('0' => 'Wybierz wartość.');
+		
+		$query = $this->db->query("SELECT `id` , `name`, `chip_number` , `nickname` FROM `pets` WHERE sex='m'");
+		foreach ($query->result_array() as $row)
+		{
+			$output += array ( $row['id'] => $row['name'].' - '.$row['nickname'].' - '.$row['chip_number'] );
+		}	
+				
+		return form_dropdown('e1', $output, '0', 'id="e1"');
+	}
+	
+	function add_field_callback_2()
+	{
+		$output = array('0' => 'Wybierz wartość.');
+		
+		$query = $this->db->query("SELECT `id` , `name`, `chip_number` , `nickname` FROM `pets` WHERE sex='k'");
+		foreach ($query->result_array() as $row)
+		{
+			$output += array ( $row['id'] => $row['name'].' - '.$row['nickname'].' - '.$row['chip_number'] );
+		}	
+				
+		return form_dropdown('e2', $output, '0', 'id="e2"');
+	}
+	
+	function update_info($post_array,$primary_key)
+	{
+		//$query = $this->db->query("TRUNCATE TABLE pets");
+		//print_r($post_array);
+		//print_r($primary_key);
+		
+		$data = array(
+						'dad_id' => $post_array['field-dad_id']
+				);
+		$this->db->where('id', $primary_key);
+		$this->db->update('pets', $data);
+
+		return true;
+	}
+	
+	
+}
+		

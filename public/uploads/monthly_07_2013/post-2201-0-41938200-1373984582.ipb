@@ -1,0 +1,57 @@
+﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class More extends CI_Controller {
+	
+	public $data= array();
+	
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->helper('url');	
+		$this->load->helper('form');
+		$this->load->library('auth');
+		$this->load->library('parser');
+		$this->load->library('grocery_CRUD');
+		$this->data['login'] =  $this->auth->read('username');
+		
+		if(!$this->auth->is_loggedin())
+		{
+			redirect('/login/', 'refresh');
+		}
+	}
+		
+	public function index() { }
+	
+	public function dogs() {
+		$this->load->model('Pets_model','pets');
+		
+		if($this->input->get('pet_id')) {
+			$id = $this->input->get('pet_id');
+			$this->session->set_userdata('pet_id',$id);
+		} else {
+			$id = $this->session->userdata('pet_id');
+		}
+		
+		$tabela = null;
+		if($this->pets->is_female($id,'dogs')){
+			$this->grocery_crud->set_theme('datatables');
+			$this->grocery_crud->set_table('female_card');
+			$this->grocery_crud->set_subject('Zwierze');
+			$this->grocery_crud->where('pet_id',$id);
+			$this->grocery_crud->unset_export();
+			$this->grocery_crud->unset_print();
+					
+			$tabela = $this->grocery_crud->render();
+		}
+		
+		$data = array('sex' => $this->pets->is_female($id,'dogs'),
+					  'tabela' => $tabela,
+					  'more' => $this->pets->more_data($id,'dogs'),
+					  'login' => $this->data['login']);
+		
+		$this->load->view('main_view_header', (array)$data);
+		$this->load->view('main_view_more', (array)$data);
+		$this->load->view('main_view_footer');
+	}
+
+}

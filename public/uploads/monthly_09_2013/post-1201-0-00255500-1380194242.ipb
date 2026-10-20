@@ -1,0 +1,139 @@
+	
+	function _example_output($output = null)
+	{
+		$this->load->view('view_crud_output_framed.php', $output);	
+	}
+	/*
+	* CUSTOM DEPENDENT DROPDOWN
+	*/
+	function crud_daily_reports()
+	{
+		//GROCERY CRUD SETUP
+			$crud = new grocery_CRUD();
+			$crud->set_theme('datatables');
+			$crud->set_table('teacher_monthly_reports');
+			$crud->columns('reportID','date','location','number_contacts','contact_names','day_hours','year_hours','levelID','activityID','date_submitted','categoryID','notes');
+			$crud->display_as('levelID','Level')
+				 ->display_as('activityID','Activity')
+				 ->display_as('categoryID','Category')
+				 ->display_as('day_hours','Extended Day Hours')
+				 ->display_as('year_hours','Extended Year Hours');
+			$crud->set_subject('Monthly Reports');
+			$crud->set_relation('categoryID','category','category_title');
+			$crud->set_relation('activityID','activity','activity_title');
+			$crud->set_relation('levelID','level','level_title');
+			$crud->set_relation('location','location_lookup','location_options');
+			$crud->fields('date','date_submitted','categoryID','activityID','levelID','location','day_hours','year_hours','number_contacts','contact_names','notes');
+			$crud->required_fields('categoryID','activityID','levelID','location');	
+			$crud->unset_texteditor	('notes','contact_names');
+			$state = $crud->getState();
+				if($state == "add")
+				{
+				$requested_date = $this->uri->segment(3);			
+				$crud->field_type('date', 'hidden', $requested_date);
+				}
+				$state = $crud->getState();
+				if($state == "edit")
+				{
+				$crud->field_type('date', 'readonly');
+				}			
+			$todays_date = date('Y-m-d');			
+			$crud->field_type('date_submitted', 'hidden', $todays_date);
+			$crud->unset_list();	
+			$crud->unset_back_to_list();
+
+			$crud->callback_after_insert(array($this, 'redirect_to_month'));
+			
+			$output = $crud->render();
+			
+			//DEPENDENT DROPDOWN SETUP
+			$dd_data = array(
+				//GET THE STATE OF THE CURRENT PAGE - E.G LIST | ADD
+				'dd_state' =>  $crud->getState(),
+				//SETUP YOUR DROPDOWNS
+				//Parent field item always listed first in array, in this case countryID
+				//Child field items need to follow in order, e.g stateID then cityID
+				'dd_dropdowns' => array('categoryID','activityID','levelID'),
+				//SETUP URL POST FOR EACH CHILD
+				//List in order as per above
+				'dd_url' => array('', site_url().'/controller_site/get_activities/', site_url().'/controller_site/get_levels/'),
+				//LOADER THAT GETS DISPLAYED NEXT TO THE PARENT DROPDOWN WHILE THE CHILD LOADS
+				'dd_ajax_loader' => base_url().'ajax-loader.gif'
+			);
+			$output->dropdown_setup = $dd_data;
+			
+		$this->load->model("model_get_db");
+		$data['directory_info'] = $this->model_get_db->getUserinfo();				
+		$data['tab'] = "dashboard";
+		$this->load->view('view_header', $data);	    
+		$this->load->view('view_generic_side_bar', $data);
+	    $this->_example_output_framed($output);
+   		$this->load->view('view_footer_java_free');
+	}
+
+		function redirect_to_month()
+		{
+			$controller = "controller_site";
+			$function = "my_monthly_reports";
+		$crud->set_lang_string('insert_success_message',
+		'Your data has been successfully stored into the database.<br/>Please wait while you are redirecting to the list page.
+		<script type="text/javascript">
+		window.location = "'.site_url($controller.'/'.$function).'";
+		</script>
+		<div style="display:none">
+		'
+		);	
+		}
+
+	//GET JSON OF STATES
+	function get_activities()
+	{
+		$categoryID = $this->uri->segment(3);
+		
+		$this->db->select("*")
+				 ->from('activity')
+				 ->where('categoryID', $categoryID);
+		$db = $this->db->get();
+		
+		$array = array();
+		foreach($db->result() as $row):
+			$array[] = array("value" => $row->activity_id, "property" => $row->activity_title);
+		endforeach;
+		
+		echo json_encode($array);
+		exit;
+	}
+	
+	//GET JSON OF CITIES
+	function get_levels()
+	{
+		$activityID = $this->uri->segment(3);
+		
+		$this->db->select("*")
+				 ->from('level')
+				 ->where('activityID', $activityID);
+		$db = $this->db->get();
+		
+		$array = array();
+		foreach($db->result() as $row):
+			$array[] = array("value" => $row->level_id, "property" => $row->level_title);
+		endforeach;
+		
+		echo json_encode($array);
+		exit;
+	}
+	
+	
+	
+    	
+	    
+    function _example_output_open($output = null)
+    {
+        $this->load->view('view_crud_output_open.php',$output); 
+    }
+    
+    function _example_output_framed($output = null)
+    {
+        $this->load->view('view_crud_output_framed.php',$output); 
+    }
+    

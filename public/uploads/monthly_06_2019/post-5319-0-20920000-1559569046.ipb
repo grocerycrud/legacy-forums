@@ -1,0 +1,644 @@
+<?php
+
+/*
+	Additional features added by genya to grocery_CRUD.
+*/
+class Grocery_CRUD_mod extends Grocery_CRUD 
+{
+	protected $custom_render_state = false;
+	protected $additional_state_options = array(0 => NULL);
+	protected $additional_states = array(0	=> 'unknown');
+
+	/*
+		User functions / externals.
+	*/		
+	public function add_state($new_state, $view_filename, $final_url, $validation_url = null, $callback = null)
+	{
+		/*
+			Add state code for custom action.
+			
+			$view_filname will be check if it exists in _theme_view method.
+			If $validation_url is blank the $final_url is the valdiation and final url.
+		*/
+		
+		if(isset($new_state) && $new_state != NULL && $new_state != '' && is_string($new_state)
+			&& isset($final_url) && $final_url != NULL && $final_url != '' && array_search($new_state, $this->states) == FALSE && isset($view_filename))
+		{
+			$this->additional_states[] = $new_state;
+			$this->additional_state_options[] = array(
+													'final_url' => $final_url,
+													'validation_url' => $validation_url,
+													'view_filename' => $view_filename,
+													'callback' => $callback,
+													);
+		}
+		else
+		{
+			die("Incorrect use of add_state method.");
+		}
+	}
+
+
+	/*
+		Internals
+	*/
+    protected function showCustomForm($state_info)
+	{
+		$this->set_js_lib($this->default_javascript_path.'/'.grocery_CRUD::JQUERY);
+
+		$data 				= $this->get_common_data();
+		$data->types 		= $this->get_field_types();
+
+		$data->field_values = $this->get_edit_values($state_info->primary_key);
+
+		//$data->add_url		= $this->getAddUrl();
+		$data->list_url 	= $this->getListUrl();
+		
+		//$data->delete_url	= $this->getDeleteUrl($state_info);
+		//$data->read_url		= $this->getReadUrl($state_info->primary_key);
+		//$data->input_fields = $this->get_edit_input_fields($data->field_values);
+		$data->unique_hash			= $this->get_method_hash();
+
+		//$data->fields 		= $this->get_edit_fields();
+		//$data->hidden_fields	= $this->get_edit_hidden_fields();
+		$data->unset_back_to_list	= $this->unset_back_to_list;
+
+		$data->is_ajax 			= $this->_is_ajax();
+		$data->primary_key = $state_info->primary_key;
+
+		$data->final_url	= $this->additional_state_options[$state_info->state_code]['final_url'];
+		$data->validation_url	= $this->additional_state_options[$state_info->state_code]['validation_url'] == NULL ? $data->final_url : $this->additional_state_options[$state_info->state_code]['validation_url'];
+
+		$additional_data = NULL;
+		if($this->additional_state_options[$state_info->state_code]['callback'] != NULL)
+		{
+			$additional_data = call_user_func($this->additional_state_options[$state_info->state_code]['callback'], $state_info->primary_key);
+		}
+		$data->additional_data = $additional_data;
+
+		$this->_theme_view($this->additional_state_options[$state_info->state_code]['view_filename'], $data);
+		$this->_inline_js("var js_date_format = '".$this->js_date_format."';");
+
+		$this->_get_ajax_results();
+	}
+
+	//override
+    public function getStateInfo()
+    {
+        $state_code = $this->getStateCode();
+        $segment_object = $this->get_state_info_from_url();
+
+        $first_parameter = $segment_object->first_parameter;
+        $second_parameter = $segment_object->second_parameter;
+
+        $state_info = (object)array();
+		
+		if(isset($this->custom_render_state) && $this->custom_render_state)
+		{
+			if ($first_parameter !== null) {
+				$state_info = (object) array('primary_key' => $first_parameter, 'state_code' => $state_code);
+            } else {
+				$state_name = $this->additional_states[$state_code];
+				throw new Exception('On the custom state '.$state_name.' the Primary key cannot be null', 6);
+				die();
+			}			
+		}
+		else
+		{
+			switch ($state_code) {
+				case self::STATE_LIST:
+				case self::STATE_ADD:
+					//for now... do nothing! Keeping this switch here in case we need any information at the future.
+					break;
+
+				case self::STATE_EDIT:
+				case self::STATE_READ:
+					if ($first_parameter !== null) {
+						$state_info = (object) array('primary_key' => $first_parameter);
+					} else {
+						throw new Exception('On the state "edit" the Primary key cannot be null', 6);
+						die();
+					}
+					break;
+
+				case self::STATE_DELETE:
+					if ($first_parameter !== null) {
+						$state_info = (object) array('primary_key' => $first_parameter);
+					} else {
+						throw new Exception('On the state "delete" the Primary key cannot be null',7);
+						die();
+					}
+					break;
+
+				case self::STATE_DELETE_MULTIPLE:
+					if (!empty($_POST) && !empty($_POST['ids']) && is_array($_POST['ids'])) {
+						$state_info = (object) array('ids' => $_POST['ids']);
+					} else {
+						throw new Exception('On the state "Delete Multiple" you need send the ids as a post array.');
+						die();
+					}
+					break;
+
+				case self::STATE_CLONE:
+					if ($first_parameter !== null) {
+						$state_info = (object) array('primary_key' => $first_parameter);
+					} else {
+						throw new Exception('On the state "clone" the Primary key cannot be null', 20);
+						die();
+					}
+					break;
+
+				case self::STATE_INSERT:
+					if(!empty($_POST))
+					{
+						$state_info = (object)array('unwrapped_data' => $_POST);
+					}
+					else
+					{
+						throw new Exception('On the state "insert" you must have post data',8);
+						die();
+					}
+					break;
+
+				case 6:
+					if(!empty($_POST) && $first_parameter !== null)
+					{
+						$state_info = (object)array('primary_key' => $first_parameter,'unwrapped_data' => $_POST);
+					}
+					elseif(empty($_POST))
+					{
+						throw new Exception('On the state "update" you must have post data',9);
+						die();
+					}
+					else
+					{
+						throw new Exception('On the state "update" the Primary key cannot be null',10);
+						die();
+					}
+					break;
+
+				case 7:
+				case 8:
+				case 16: //export to excel
+				case 17: //print
+					$state_info = (object)array();
+					$data = !empty($_POST) ? $_POST : $_GET;
+
+					if(!empty($data['per_page']))
+					{
+						$state_info->per_page = is_numeric($data['per_page']) ? $data['per_page'] : null;
+					}
+					if(!empty($data['page']))
+					{
+						$state_info->page = is_numeric($data['page']) ? $data['page'] : null;
+					}
+					//If we request an export or a print we don't care about what page we are
+					if($state_code === 16 || $state_code === 17)
+					{
+						$state_info->page = 1;
+						$state_info->per_page = 1000000; //a very big number!
+					}
+					if(!empty($data['order_by'][0]))
+					{
+						$state_info->order_by = $data['order_by'];
+					}
+					if(!empty($data['search_text']))
+					{
+						if(empty($data['search_field']))
+						{
+							$search_text = strip_tags($data['search_field']);
+							$state_info->search = (object)array('field' => null , 'text' => $data['search_text']);
+						}
+						else
+						{
+							if (is_array($data['search_field'])) {
+								$search_array = array();
+								foreach ($data['search_field'] as $search_key => $search_field_name) {
+									$search_array[$search_field_name] = !empty($data['search_text'][$search_key]) ? $data['search_text'][$search_key] : '';
+								}
+								$state_info->search	= $search_array;
+							} else {
+								$state_info->search	= (object)array(
+									'field' => strip_tags($data['search_field']) ,
+									'text' => $data['search_text'] );
+							}
+						}
+					}
+					break;
+
+				case 9:
+
+					break;
+
+				case 10:
+					if($first_parameter !== null)
+					{
+						$state_info = (object)array('primary_key' => $first_parameter);
+					}
+					break;
+
+				case 11:
+					$state_info->field_name = $first_parameter;
+					break;
+
+				case 12:
+					$state_info->field_name = $first_parameter;
+					$state_info->file_name = $second_parameter;
+					break;
+
+				case 13:
+					$state_info->field_name = $_POST['field_name'];
+					$state_info->search 	= $_POST['term'];
+					break;
+
+				case 14:
+					$state_info->field_name = $_POST['field_name'];
+					$state_info->search 	= $_POST['term'];
+					break;
+
+				case 15:
+					$state_info = (object)array(
+						'primary_key' 		=> $first_parameter,
+						'success_message'	=> true
+					);
+					break;
+			}
+		}
+		
+        return $state_info;
+    }
+
+	// override
+	protected function get_state_info_from_url()
+	{
+		/*
+			Modified if custom action is invoked.
+		*/
+		$ci = &get_instance();
+
+		$segment_position = count($ci->uri->segments) + 1;
+		$operation = 'list';
+
+		$segements = $ci->uri->segments;
+		
+		foreach($segements as $num => $value)
+		{
+			if($value != 'unknown' && (in_array($value, $this->states) ||  in_array($value, $this->additional_states))) // this line modified
+			{
+				$segment_position = (int)$num;
+				$operation = $value; //I don't have a "break" here because I want to ensure that is the LAST segment with name that is in the array.
+			}
+		}
+
+		$function_name = $this->get_method_name();
+
+		if($function_name == 'index' && !in_array('index',$ci->uri->segments))
+			$segment_position++;
+
+		$first_parameter = isset($segements[$segment_position+1]) ? $segements[$segment_position+1] : null;
+		$second_parameter = isset($segements[$segment_position+2]) ? $segements[$segment_position+2] : null;
+
+		return (object)array('segment_position' => $segment_position, 'operation' => $operation, 'first_parameter' => $first_parameter, 'second_parameter' => $second_parameter);
+	}
+
+	// override
+	protected function getStateCode()
+	{
+		/*
+			Modified to get custom state if needed.
+		*/
+		$state_string = $this->get_state_info_from_url()->operation;
+
+		if( $state_string != 'unknown' && in_array( $state_string, $this->states ) ) // grocery CRUD orginal states
+		{
+			$state_code =  array_search($state_string, $this->states);
+		}
+		elseif( $state_string != 'unknown' && in_array( $state_string, $this->additional_states ) ) // custom states
+		{
+			$this->custom_render_state = true;
+			$state_code =  array_search($state_string, $this->additional_states);			
+		}
+		else
+		{
+			$state_code = 0;
+		}
+		
+		return $state_code;
+	}
+
+
+	// override
+	public function render()
+	{
+		$this->pre_render();
+
+		if( $this->state_code != 0 )
+		{
+			$this->state_info = $this->getStateInfo();
+		}
+		else
+		{
+			throw new Exception('The state is unknown , I don\'t know what I will do with your data!', 4);
+			die();
+		}
+		
+		if(isset($this->custom_render_state) && $this->custom_render_state)
+		{	
+			if($this->theme === null)
+				$this->set_theme($this->default_theme);
+			$this->setThemeBasics();
+
+			$this->set_basic_Layout();
+
+			$state_info = $this->getStateInfo();
+			
+			$this->showCustomForm($state_info);
+		}
+		else
+		{
+			switch ($this->state_code) {
+				case 15://success
+				case 1://list
+					if($this->unset_list)
+					{
+						throw new Exception('You don\'t have permissions for this operation', 14);
+						die();
+					}
+
+					if($this->theme === null)
+						$this->set_theme($this->default_theme);
+					$this->setThemeBasics();
+
+					$this->set_basic_Layout();
+
+					$state_info = $this->getStateInfo();
+					
+					$this->showList(false,$state_info);
+
+				break;
+
+				case 2://add
+					if($this->unset_add)
+					{
+						throw new Exception('You don\'t have permissions for this operation', 14);
+						die();
+					}
+
+					if($this->theme === null)
+						$this->set_theme($this->default_theme);
+					$this->setThemeBasics();
+
+					$this->set_basic_Layout();
+
+					$this->showAddForm();
+
+				break;
+
+				case 3://edit
+					if($this->unset_edit)
+					{
+						throw new Exception('You don\'t have permissions for this operation', 14);
+						die();
+					}
+
+					if($this->theme === null)
+						$this->set_theme($this->default_theme);
+					$this->setThemeBasics();
+
+					$this->set_basic_Layout();
+
+					$state_info = $this->getStateInfo();
+
+					$this->showEditForm($state_info);
+
+				break;
+
+				case 4://delete
+					if($this->unset_delete)
+					{
+						throw new Exception('This user is not allowed to do this operation', 14);
+						die();
+					}
+
+					$state_info = $this->getStateInfo();
+					$delete_result = $this->db_delete($state_info);
+
+					$this->delete_layout( $delete_result );
+				break;
+
+				case 5://insert
+					if($this->unset_add)
+					{
+						throw new Exception('This user is not allowed to do this operation', 14);
+						die();
+					}
+
+					$state_info = $this->getStateInfo();
+					$insert_result = $this->db_insert($state_info);
+
+					$this->insert_layout($insert_result);
+				break;
+
+				case 6://update
+					if($this->unset_edit)
+					{
+						throw new Exception('This user is not allowed to do this operation', 14);
+						die();
+					}
+
+					$state_info = $this->getStateInfo();
+					$update_result = $this->db_update($state_info);
+
+					$this->update_layout( $update_result,$state_info);
+				break;
+
+				case 7://ajax_list
+
+					if($this->unset_list)
+					{
+						throw new Exception('You don\'t have permissions for this operation', 14);
+						die();
+					}
+
+					if($this->theme === null)
+						$this->set_theme($this->default_theme);
+					$this->setThemeBasics();
+
+					$this->set_basic_Layout();
+
+					$state_info = $this->getStateInfo();
+					$this->set_ajax_list_queries($state_info);
+					
+					$this->showList(true);
+
+				break;
+
+				case 8://ajax_list_info
+
+					if($this->theme === null)
+						$this->set_theme($this->default_theme);
+					$this->setThemeBasics();
+
+					$this->set_basic_Layout();
+
+					$state_info = $this->getStateInfo();
+					$this->set_ajax_list_queries($state_info);
+					
+					$this->showListInfo();
+				break;
+
+				case 9://insert_validation
+
+					$validation_result = $this->db_insert_validation();
+
+					$this->validation_layout($validation_result);
+				break;
+
+				case 10://update_validation
+
+					$validation_result = $this->db_update_validation();
+
+					$this->validation_layout($validation_result);
+				break;
+
+				case 11://upload_file
+
+					$state_info = $this->getStateInfo();
+
+					$upload_result = $this->upload_file($state_info);
+
+					$this->upload_layout($upload_result, $state_info->field_name);
+				break;
+
+				case 12://delete_file
+					$state_info = $this->getStateInfo();
+
+					$delete_file_result = $this->delete_file($state_info);
+
+					$this->delete_file_layout($delete_file_result);
+				break;
+				/*
+				case 13: //ajax_relation
+					$state_info = $this->getStateInfo();
+
+					$ajax_relation_result = $this->ajax_relation($state_info);
+
+					$ajax_relation_result[""] = "";
+
+					echo json_encode($ajax_relation_result);
+					die();
+				break;
+
+				case 14: //ajax_relation_n_n
+					echo json_encode(array("34" => 'Johnny' , "78" => "Test"));
+					die();
+				break;
+				*/
+				case 16: //export to excel
+					//a big number just to ensure that the table characters will not be cutted.
+					$this->character_limiter = 1000000;
+
+					if($this->unset_export)
+					{
+						throw new Exception('You don\'t have permissions for this operation', 15);
+						die();
+					}
+
+					if($this->theme === null)
+						$this->set_theme($this->default_theme);
+					$this->setThemeBasics();
+
+					$this->set_basic_Layout();
+
+					$state_info = $this->getStateInfo();
+					$this->set_ajax_list_queries($state_info);
+					$this->exportToExcel($state_info);
+				break;
+
+				case 17: //print
+					//a big number just to ensure that the table characters will not be cutted.
+					$this->character_limiter = 1000000;
+
+					if($this->unset_print)
+					{
+						throw new Exception('You don\'t have permissions for this operation', 15);
+						die();
+					}
+
+					if($this->theme === null)
+						$this->set_theme($this->default_theme);
+					$this->setThemeBasics();
+
+					$this->set_basic_Layout();
+
+					$state_info = $this->getStateInfo();
+					
+					$this->set_ajax_list_queries($state_info);
+					$this->print_webpage($state_info);
+					break;
+
+				case grocery_CRUD_States::STATE_READ:
+					if($this->unset_read)
+					{
+						throw new Exception('You don\'t have permissions for this operation', 14);
+						die();
+					}
+
+					if($this->theme === null)
+						$this->set_theme($this->default_theme);
+					$this->setThemeBasics();
+
+					$this->set_basic_Layout();
+
+					$state_info = $this->getStateInfo();
+
+					$this->showReadForm($state_info);
+
+					break;
+
+				case grocery_CRUD_States::STATE_DELETE_MULTIPLE:
+
+					if($this->unset_delete)
+					{
+						throw new Exception('This user is not allowed to do this operation');
+						die();
+					}
+
+					$state_info = $this->getStateInfo();
+					$delete_result = $this->db_multiple_delete($state_info);
+
+					$this->delete_layout($delete_result);
+
+					break;
+
+
+				case grocery_CRUD_States::STATE_CLONE:
+					if ($this->unset_clone) {
+						throw new Exception('You don\'t have permissions for this operation', 14);
+						die();
+					}
+
+					if ($this->theme === null) {
+						$this->set_theme($this->default_theme);
+					}
+					$this->setThemeBasics();
+
+					$this->set_basic_Layout();
+
+					$state_info = $this->getStateInfo();
+
+					$this->showCloneForm($state_info);
+
+					break;
+
+
+			}
+		
+		}
+		
+		return $this->get_layout();	
+	}
+
+}
+
+?>

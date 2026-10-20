@@ -1,0 +1,132 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+session_start(); //we need to call PHP's session object to access it through CI
+ 
+class Main extends CI_Controller {
+
+ 
+    function __construct()
+    {
+        parent::__construct();
+ 
+        $this->load->library('grocery_CRUD');
+		$this->load->database();
+		$this->load->helper('url');
+    }
+ 
+    public function index()
+    {
+        echo "<h1>Faktury i korespondencje</h1>";//Just an example to ensure that we get into the function
+		
+	}
+	
+	
+	public function fakturyp()
+    {	
+	
+	
+		// wyłączenie opcji usuwania rekordów
+		$crud = new grocery_CRUD();
+		$crud->set_table('fakturyp');
+		//$crud->set_theme('datatables');
+		//relacje
+		$crud->set_relation('Nazwa_firmy','firma','Nazwa_firmy_klienta');
+		
+		$crud->unset_delete();
+		$output = $crud->render();
+		$this->_example_output($output);
+		
+		
+        // $this->grocery_crud->set_table('fakturyp');
+		
+        // $output = $this->grocery_crud->render();
+ 
+        // $this->_example_output($output); 
+    }
+	
+	public function fakturyg()
+    {
+		// wyłączenie opcji usuwania rekordów
+		$crud = new grocery_CRUD();
+		$crud->set_table('fakturyg');
+		$crud->set_theme('datatables');
+		//relacje
+		$crud->set_relation('Nazwa_firmy','firma','Nazwa_firmy_klienta');
+		
+		//$crud->unset_delete();
+		$output = $crud->render();
+		$this->_example_output($output);
+        // $this->grocery_crud->set_table('fakturyg');
+        // $output = $this->grocery_crud->render();
+ 
+        // $this->_example_output($output); 
+    }
+	
+	
+	public function korespondencjep()
+    {
+		// wyłączenie opcji usuwania rekordów
+		$crud = new grocery_CRUD();
+		$crud->set_table('korespondencjep');
+		$crud->set_theme('datatables');
+		$crud->unset_delete();
+		$output = $crud->render();
+		$this->_example_output($output);
+        // $this->grocery_crud->set_table('korespondencjep');
+        // $output = $this->grocery_crud->render();
+ 
+        // $this->_example_output($output); 
+    }
+	
+	public function korespondencjew()
+    {
+		// wyłączenie opcji usuwania rekordów
+		$crud = new grocery_CRUD();
+		$crud->set_table('korespondencjew');
+		$crud->set_theme('datatables');
+		$crud->unset_delete();
+		$output = $crud->render();
+		$this->_example_output($output);
+        // $this->grocery_crud->set_table('korespondencjew');
+        // $output = $this->grocery_crud->render();
+ 
+        // $this->_example_output($output); 
+    }
+	
+	public function firmy()
+	{
+		$crud = new grocery_CRUD();
+		$crud->set_table('firma');
+		$crud->set_theme('datatables');
+		$crud->unset_delete();
+		$output = $crud->render();
+		$this->_example_output($output);
+	}	
+	
+	
+	//przekazywanie danych do widoku
+	function _example_output($output = null)
+ 
+    {
+        $this->load->view('our_template.php',$output);    
+    }
+	
+	//usuwanie dancyh
+	public function delete_selection()
+	{
+	   $id_array = array();
+	   $selection = $this->input->post("selection", TRUE);
+	   $id_array = explode("|", $selection);
+
+	   foreach($id_array as $item):
+		  if($item != ''):
+		  //DELETE ROW
+		  $this->db->where('Lp', $item );
+		  $this->db->delete('fakturyp');
+		  endif;
+	   endforeach;
+	}
+	
+}
+ 
+/* End of file main.php */
+/* Location: ./application/controllers/main.php */ 

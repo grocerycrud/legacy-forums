@@ -1,0 +1,114 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ 
+class Main extends CI_Controller {
+ 
+    function __construct()
+    {
+        parent::__construct();
+ 
+        /* Standard Libraries of codeigniter are required */
+        $this->load->database();
+        $this->load->helper('url');
+
+        /* ------------------ */ 
+ 
+        $this->load->library('grocery_CRUD');
+ 
+    }
+ 
+    public function index()
+    {
+        echo "<h1>Welcome to the world of Codeigniter</h1>";//Just an example to ensure that we get into the function
+                die();
+    }
+ 
+    public function riviste()
+    {
+        $crud = new grocery_CRUD();
+		
+		$crud->set_subject('Rivista');
+		$crud->set_table('riviste');
+		
+		/* impostazioni campi visibili in griglia e forms */
+		$crud->columns('journal_id','cod_bib','issn','eissn','titolo','provider','anno_iniziale','anno_finale','moving_wall','url','stato_abb','stato');
+		$crud->display_as('cod_bib','Codice biblioteca');
+        $crud->display_as('issn','ISSN');
+        $crud->display_as('eissn','eISSN');
+		$crud->display_as('titolo','Titolo');
+        $crud->display_as('editore','Editore');
+        $crud->display_as('provider','Provider');
+		$crud->display_as('anno_iniziale','Anno inizio visibilità');
+        $crud->display_as('vol_inziale','Volume iniziale');
+        $crud->display_as('fasc_iniziale','Fascicolo inziale');
+		$crud->display_as('anno_finale','Anno fine visibilità');
+        $crud->display_as('vol_finale','Volume finale');
+        $crud->display_as('fasc_finale','Fascicolo finale');
+		$crud->display_as('moving_wall','Moving Wall');
+        $crud->display_as('mod_accesso','Modalità di accesso');
+        $crud->display_as('rete_accesso','Rete di accesso');
+		$crud->display_as('login','Username di accesso');
+        $crud->display_as('pw','Password di accesso');
+        $crud->display_as('url','URL della risorsa');
+		$crud->display_as('stato_abb','Stato abbonamento');
+        $crud->display_as('note','Note'); 
+		
+	
+/*		$crud->add_fields('cod_bib','issn','eissn','titolo','editore','provider','anno_iniziale','vol_iniziale','fasc_inziale','anno_finale','vol_finale','fasc_finale','moving_wall','mod_accesso','rete_accesso','login','pw','url','stato_abb','note');
+   		$crud->edit_fields('cod_bib','issn','eissn','titolo','editore','provider','anno_iniziale','vol_iniziale','fasc_inziale','anno_finale','vol_finale','fasc_finale','moving_wall','mod_accesso','rete_accesso','login','pw','url','stato_abb','note');
+ */
+ 		
+		
+		$crud->required_fields('cod_bib','titolo','provider','mod_accesso','rete_accesso','stato_abb'); 
+		
+	
+		
+/*		$crud->fields('journal_id','cod_bib','issn','eissn','titolo','editore','provider','anno_iniziale','vol_iniziale','fasc_inziale','anno_finale','vol_finale','fasc_finale','moving_wall','mod_accesso','rete_accesso','login','pw','url','stato_abb','note');
+    	$crud->required_fields('cod_bib','titolo','provider','mod_accesso','rete_accesso','stato_abb'); */
+		/* *********************** */
+		
+		/* funzione per stato di UPDATE*/
+		$crud->callback_before_update(array($this,'update_journal_status'));
+		
+	
+		/* funzione per stato di CANCELLAZIONE */	
+		$crud->callback_delete(array($this,'delete_journal_status'));
+		
+		/* funzione per stato di INSERT */
+		$crud->callback_before_insert(array($this,'insert_journal_status'));
+		
+		
+        $output = $crud->render();
+ 
+        $this->_example_output($output);        
+    }
+	/*	funzione per stato di UPDATE*/
+	function update_journal_status($post_array) {
+  		
+  		$post_array['stato'] = 'UPD';
+ 
+  		return $post_array;
+	}     
+
+	/* funzione per stato di INSERT*/
+	function insert_journal_status($post_array) {
+  		
+  		$post_array['stato'] = 'NEW';
+ 
+  		return $post_array;
+	}        
+
+	/* funzione per stato di CANCELLAZIONE */	
+	public function delete_journal_status($primary_key)
+	{
+    	return $this->db->update('riviste',array('stato' => 'CANC'),array('journal_id' => $primary_key));
+	}
+ 
+    function _example_output($output = null)
+ 
+    {
+        $this->load->view('our_template.php',$output);    
+    }
+}
+ 
+/* End of file main.php */
+/* Location: ./application/controllers/main.php */

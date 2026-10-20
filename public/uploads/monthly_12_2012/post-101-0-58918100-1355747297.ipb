@@ -1,0 +1,36 @@
+<?php
+/**
+ * Description of my_gc
+ *
+ * @author Arif
+ */
+class My_gc extends grocery_CRUD {
+    function __construct() {
+        parent::__construct();
+    }
+    
+    /**
+     * delete file --- extend parent function and delete the thumbnail
+     * @param object $state_info
+     * @param string $filepath -- eg., /www/my_site/assets/images/ 
+     */
+    protected function delete_file($state_info, $filepath = NULL)
+    {
+        $result = parent::delete_file($state_info);
+        if($result):            
+            if($filepath == NULL):
+                $upload_info = $this->upload_fields[$state_info->field_name];
+                $filepath = $upload_info->upload_path."/thumb_".$state_info->file_name;
+            else:
+                $filepath = $filepath."thumb_".$state_info->file_name;
+            endif;
+            
+            @unlink($filepath);
+            return true;
+        endif;
+        
+        return false;
+    }
+}
+
+?>

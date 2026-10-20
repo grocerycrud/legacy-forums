@@ -1,0 +1,49 @@
+<?php
+	$lang['list_add'] 				= 'Nueva';
+	$lang['list_actions'] 			= 'Acciones';
+	$lang['list_page'] 				= 'P&aacute;gina';	
+	$lang['list_paging_of'] 		= 'de';
+	$lang['list_displaying']		= 'Mostrando de {start} a {end} de un total de {results} entradas';
+	$lang['list_filtered_from']		= '(filtrado desde {total_results} entradas en total)';
+	$lang['list_show_entries']		= 'Muestra {paging} entradas';
+	$lang['list_no_items']			= 'No hay elementos que mostrar';
+	$lang['list_zero_entries']		= 'Mostrando de 0 a 0 de un total de 0 elementos';
+	$lang['list_search'] 			= 'Buscar';	
+	$lang['list_search_all'] 		= 'Buscar en todo';
+	$lang['list_clear_filtering'] 	= 'Borrar filtro';
+	$lang['list_delete'] 			= 'Eliminar';
+	$lang['list_edit'] 				= 'Editar';	
+	$lang['list_paging_first'] 		= 'Primero';
+	$lang['list_paging_previous'] 	= 'Anterior';
+	$lang['list_paging_next'] 		= 'siguiente';
+	$lang['list_paging_last'] 		= '&Uacute;ltimo';
+	$lang['list_loading'] 			= 'Cargando...';	
+
+	$lang['form_edit'] 				= 'Editar';
+	$lang['form_back_to_list'] 		= 'volver al listado';
+	$lang['form_update_changes'] 	= 'Guardar cambios';
+	$lang['form_cancel'] 			= 'Cancelar';	
+	$lang['form_update_loading'] 	= 'Un momento, guardando cambios...';
+	$lang['update_success_message'] = 'Los datos se han grabado correctamente en la base de datos.';	
+	$lang['form_go_back_to_list'] 	= 'Volver al listado';
+	
+	$lang['form_add'] 				= 'Añadir';
+	$lang['insert_success_message'] = 'Los datos se han dado de alta correctamente en la base de datos.';
+	$lang['form_or']				= 'o';
+	$lang['form_save'] 				= 'Guardar';
+	$lang['form_insert_loading'] 	= 'Un momento, guardando datos...';
+	
+	$lang['form_upload_a_file'] 	= 'Subir un archivo';
+	$lang['form_upload_delete'] 	= 'borrar';
+	$lang['form_button_clear'] 		= 'Limpiar';	
+	
+	$lang['delete_success_message'] = 'Se ha eliminado correctamente de la base de datos.';
+	$lang['delete_error_message'] 	= 'No se ha podido borrar de la base de datos.';
+	
+	/* Javascript messages */
+	$lang['alert_add_form']			= 'Los datos aún no se han guardado.\\n¿Estás seguro de querer volver a la lista?';
+	$lang['alert_edit_form']		= 'Los cambios aún no se han guardado.\\n¿Estás seguro de querer volver a la lista?';
+	$lang['alert_delete']			= '¿Estas seguro de querer borrar esta entrada?';
+	
+	$lang['insert_error']			= 'Se ha producido un error al dar de alta.';
+	$lang['update_error']			= 'Se ha producido un error al guardar.';

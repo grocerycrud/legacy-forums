@@ -1,0 +1,64 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ 
+class Main extends CI_Controller {
+ 
+function __construct()
+{
+        parent::__construct();
+ 
+/* Standard Libraries of codeigniter are required */
+$this->load->database();
+$this->load->helper('url');
+/* ------------------ */ 
+ 
+$this->load->library('grocery_CRUD');
+ 
+}
+ 
+public function index()
+{
+echo "<h1>Codeigniter avec database ajoutée a la config</h1>";//Just an example to ensure that we get into the function
+die();
+}
+ 
+ 
+ 
+ public function bootstrap() 
+{
+$crud = new grocery_CRUD();
+ 
+$crud->set_theme('bootstrap');
+
+$crud->set_language("french");
+$crud->set_table('VENTES_VOLS');
+$crud->set_subject('Vols rémunérés');
+
+/* Selection box pour l'entrée "nature_du_vol" */
+$crud->field_type('nature_du_vol','dropdown', array(
+'Bapteme' => 'Vol Bapteme',
+'Bapteme+film' => 'Vol Bapteme + film',
+'Decouverte' => 'Vol Decouverte',
+'Decouverte+film' => 'Vol Decouverte + film',
+'Initiation' => 'Vol Initiation',
+'Initiation+film' => 'Vol Initiation + film',
+'Wonderbox' => 'Wonderbox',
+'Autre' => 'Autre'
+));
+ 
+$output = $crud->render();
+$this->_example_output($output);  
+}
+
+
+
+function _example_output($output = null)
+{
+$this->load->view('our_template.php',$output);    
+}
+
+
+}
+ 
+/* End of file Main.php */
+/* Location: ./application/controllers/Main.php */
+ 

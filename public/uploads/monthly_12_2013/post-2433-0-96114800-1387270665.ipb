@@ -1,0 +1,630 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>OSU OREME DATA - Borehole hydrogeophysics</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta name="description" content="DESCRIPTION DU SITE ICI"/>
+	<meta name="keywords" content="MOTS CLES DU SITE ICI"/> 
+	<meta name="author" content=""/> 
+	<!--  Chargement CSS -->
+	<link rel="stylesheet" type="text/css" href="http://localhost/osu/assets/css/base_style.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="http://localhost/osu/assets/css/style.css" media="screen"/>
+	<link type="text/css" href="http://localhost/osu/assets/css/flick/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+	<link type="text/css" href="http://localhost/osu/assets/css/jquery.qtip.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="http://localhost/osu/assets/js/jwysiwyg/jquery.wysiwyg.old-school.css" />
+	<link rel="stylesheet" type="text/css" href="http://localhost/osu/assets/js/uploadify/uploadify.css" />
+	<link rel="stylesheet" type="text/css" href="http://localhost/osu/assets/js/form_validator/css/validationEngine.jquery.css" />
+	<!-- Hacks pour ie :-( -->
+	<!--[if IE]>
+		<link rel="stylesheet" type="text/css" href="http://localhost/osu/assets/css/ie.css" />
+	<![endif]-->
+	<!--  Chargements JS Statiques -->
+	<script src="http://localhost/osu/assets/js/jquery-1.7.2.min.js" type="text/javascript"></script>	
+	<script src="http://localhost/osu/assets/js/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="http://localhost/osu/assets/js/jquery.qtip.min.js"></script>
+	<script type="text/javascript" src="http://localhost/osu/assets/js/jwysiwyg/jquery.wysiwyg.js"></script>
+	<script type="text/javascript" src="http://localhost/osu/assets/js/jwysiwyg/controls/wysiwyg.link.js"></script>
+	<script type="text/javascript" src="http://localhost/osu/assets/js/jquery.ui.timepicker.addon.js"></script>
+	<script type="text/javascript" src="http://localhost/osu/assets/js/form_validator/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="http://localhost/osu/assets/js/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="http://localhost/osu/assets/js/jquery.ui.totop.js"></script>
+	<script type="text/javascript" src="http://localhost/osu/assets/js/form_validator/js/languages/jquery.validationEngine-en.js"></script>	
+	<!-- OpenLayers -->
+		<!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
+	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	<!-- Doit rester en dernière position -->
+	<script type="text/javascript" src="http://localhost/osu/assets/js/custom.js"></script>
+	<!--  Scripts a la demande -->
+	<link type="text/css" rel="stylesheet" href="http://localhost/osu/assets/image_crud/css/fineuploader.css"/><link type="text/css" rel="stylesheet" href="http://localhost/osu/assets/image_crud/css/photogallery.css"/><link type="text/css" rel="stylesheet" href="http://localhost/osu/assets/image_crud/css/colorbox.css"/><script type="text/javascript" src="http://localhost/osu/assets/image_crud/js/fineuploader-3.2.min.js"></script><script type="text/javascript" src="http://localhost/osu/assets/image_crud/js/jquery.colorbox-min.js"></script></head>
+<!-- OpenLayers -->
+<body>		 
+				 
+<div class="outer-container">
+	<div class="inner-container">
+		<div class="bandeau_firstheader">
+			<ul id="bandeau_first">
+									<li class="firstheaderleft"> <img src="http://localhost/osu/assets/icons/user.png" title="" alt="" class="absmiddle" /> Welcome back, admin &nbsp; <img src="http://localhost/osu/assets/icons/door_out.png" title="" alt="" class="absmiddle" /> <a href="http://localhost/osu/login/logout">Logout</a></li>
+								<li class="firstheaderleft"> <img src="http://localhost/osu/assets/icons/star.png" title="" alt="" class="absmiddle" /> <a href="http://localhost/osu/users/my_page/admin" >My page</a></li>
+				<li class="firstheaderright"><a href="http://localhost/osu/langue/change/fr"><img src="http://localhost/osu/assets/icons/flags/fr.png" title="Francais" alt="[FR]" class="absmiddle" /></a> <a href="http://localhost/osu/langue/change/en"><img src="http://localhost/osu/assets/icons/flags/gb.png" title="English" alt="[GB]" class="absmiddle" /></a> <a href="http://localhost/osu/langue/change/es"><img src="http://localhost/osu/assets/icons/flags/es.png" title="Español" alt="[ES]" class="absmiddle" /></a></li>
+			</ul>
+		</div>
+
+		<div class="bandeau_header">
+			<div class="title">
+				<div class="sitename"><a href="http://localhost/osu/">OSU OREME DATA</a></div>
+				<div class="photohead"> <img src="http://localhost/osu/assets/headpicture/default.jpg"  alt="logo" /></div>	
+				<div class="slogan">Site expérimental de publication des données de l'OSU OREME</div>
+			</div>	<!-- title -->
+		</div> <!-- bandeau_header -->
+							  
+			
+		<div id="bandeau_accessmenu" class="bandeau_accessmenu">
+			<div id="bouton_menu" class="access_menu">
+				 Close menu			</div>
+		</div>
+	
+		<div class="bandeau_path">
+			<div class="access_path">
+				<a href="http://localhost/osu/">Home</a> > <a href="http://localhost/osu/borehole">Borehole</a> > <a href="http://localhost/osu/borehole/borehole_crud">Metadata</a> > <a href="http://localhost/osu/borehole/borehole_crud/example1">Example1</a>			</div>
+		</div>
+
+                          
+    <!--  Content of Menu -->
+		
+	<div id="bandeau_extendedmenu" class="bandeau_extendedmenu">
+
+		<div class="extendedmenu_columnset">
+			<div class="extendedmenu_column">
+				
+				<!--  GEK Menu -->
+				<h3 class="extendedmenu">Geodesy in Karst Environment (GEK)</h3>
+				<ul>				
+					                    											
+						<li><a href="http://localhost/osu/gek/gek/gravity_supra">Supraconducting gravimeter </a></li>					
+						<li><a href="http://localhost/osu/gek/gek/flowrate">Subsurface flowrate</a></li>      
+						<li><a href="http://localhost/osu/gek/gek/pluvio">Pluviometry</a></li>                 
+						<li><a href="http://localhost/osu/gek/gek/piezo">Piezometer</a></li>                                     
+						<li><a href="http://localhost/osu/gek/gek/flux_tower">Flux tower</a></li>  
+						<li><a href="http://localhost/osu/gek/gek/lbt_lvdt">Long base tiltmeter LVDT</a></li>        
+						<li><a href="http://localhost/osu/gek/gek/if_effpi">Borehole tiltmeter EFFPI</a></li>                                             
+						<!--<li></li>-->
+					
+					    
+
+					<li><a href="http://localhost/osu/gek/gek_map/visualisation">Station visualisation</a></li>    
+					
+													<li><a href="http://localhost/osu/gek/gek_crud">Metadata</a></li>
+						 
+						
+													<li><a href="http://localhost/osu/gek/gek_data_update/index">Database update</a></li>
+						 
+							
+													<li><a href="http://localhost/osu/gek/gek_hplus">Data export to H+</a></li>
+						 											      	
+						
+					    	
+									    
+ 				</ul>
+ 			</div><!-- extendedmenu_column -->
+  		</div>
+  		
+  		
+ 		<div class="extendedmenu_columnset">
+ 			<div class="extendedmenu_column">		
+ 				
+ 				<!--  FORAGE Menu -->
+				<h3 class="extendedmenu">Borehole hydrogeophysics</h3>
+				<ul>				      				
+					  
+					
+						                    		<li><a href="http://localhost/osu/borehole/borehole_map/visualisation">Borehole visualisation</a></li>			
+						 		
+                   
+													<li><a href="http://localhost/osu/borehole/borehole_crud">Metadata</a></li>
+						 							
+									 
+													<li><a href="http://localhost/osu/borehole/borehole_data_update">Data insertion</a></li>
+						 												
+				
+						<!--							<li><a href="http://localhost/osu/borehole/borehole_hplus">Data exported to H+</a></li>
+						 		-->					
+					
+					 		
+ 				</ul>
+ 				
+ 				
+ 				<!--  SMEL Menu -->
+				<h3 class="extendedmenu">Lagoons and shoreface</h3>
+				<ul>
+					<li><a href="http://localhost/osu/medimeer/medimeer">SMEL station</a></li>
+  				</ul>
+				
+ 				<!--  GPST2 Menu -->
+				<h3 class="extendedmenu">GPS for Troposphere and Tectonic</h3>
+				<ul>
+					<li><a href="http://localhost/osu/gpst2/gpst2">Station velocity</a></li>
+  				</ul>
+
+  			</div><!-- extendedmenu_column -->
+  		</div>
+  		
+  		
+  		<div class="extendedmenu_columnset">
+ 			<div class="extendedmenu_column">
+				
+				<!--  TROUT Menu -->
+  				<h3 class="extendedmenu">Common trout Salmo Trutta</h3>
+				<ul>						
+										
+					  
+													<li><a href="http://localhost/osu/trout/trout/submission">New dataset submission</a></li>
+						 
+						
+													<li><a href="http://localhost/osu/trout/trout/visualisation">Station visualisation</a></li>	
+						 
+						
+										
+							<li><a href="http://localhost/osu/trout/trout/hydro_search">Hydrographic entities search</a></li>		
+						 
+						
+																
+							<li><a href="http://localhost/osu/trout/trout_crud">Metadata</a></li>    
+						 
+						
+					        
+ 				</ul>
+ 				
+ 				
+ 				<!--  RIC Menu -->
+  				<h3 class="extendedmenu">Insecticide Resistance in Culex</h3>
+				<ul>	
+					<li><a href="http://localhost/osu/ric/ric_map/visualisation">Breeding site visualisation</a></li>	
+					
+										
+													<!--<li></li>-->
+						 	
+						
+																
+							<li><a href="http://localhost/osu/ric/ric_crud">Metadata and data</a></li>
+						 
+						
+																
+							<li><a href="http://localhost/osu/ric/ric_data_update">Database update</a></li>
+						 
+							
+					 
+ 				</ul>
+ 			</div><!-- extendedmenu_column -->
+  		</div>
+  		
+  		
+ 		<div class="extendedmenu_columnset">
+ 			<div class="extendedmenu_column">
+ 				
+ 				<!--  TOOLS Menu -->
+				<h3 class="extendedmenu">Tools</h3>
+				<ul>
+                    <li><a href="http://localhost/osu/tools/carthage">BD Carthage rivers and lakes</a></li>
+				</ul>
+				
+				
+			</div><!-- extendedmenu_column -->				
+		</div>
+		
+	</div> <!-- extendedmenu -->
+
+                          
+                          
+                          
+    <!--  Gestion de l'affichage de l'extendedmenu -->
+	<script type="text/javascript">
+	$('#bandeau_extendedmenu').show(); $('#bandeau_accessmenu').addClass('bandeau_accessmenu_actif');	$('#bouton_menu').click(function() {
+		 open_caption = 'Open menu';
+		 close_caption = 'Close menu';
+		//Ajax call, action open / close menu is recorded in session
+		//console.log('Menu cliqué');
+		$.get('http://localhost/osu/events/open_menu', function(data) {
+			//console.log('Appel ajax du controleur events::open_menu');
+			//console.log('Retour: '+data);
+			});
+		//Managing the animation of the menu
+		if ($("#bandeau_extendedmenu").is(":hidden")) {
+				$('#bouton_menu').html(close_caption).effect('pulsate',{ times:1 }, 500);
+				$('#bandeau_accessmenu').addClass('bandeau_accessmenu_actif');
+				$('#bandeau_extendedmenu').slideDown('slow');
+			} else {
+				$('#bouton_menu').html(open_caption).effect('pulsate',{ times:1 }, 500);
+				$('#bandeau_accessmenu').removeClass('bandeau_accessmenu_actif');
+				$("#bandeau_extendedmenu").slideUp('slow');
+			}
+			});
+	</script>
+<div class="main">
+	<div class="alert_spacer"></div>
+		
+<h1>Metadata browsing</h1><br />
+
+<div class="content_fullwidth">
+	<p> 
+		<a href='http://localhost/osu/borehole/borehole_crud/site_management'>Sites</a> |
+		<a href='http://localhost/osu/borehole/borehole_crud/borehole_management'>Boreholes</a> |
+		<a href='http://localhost/osu/borehole/borehole_crud/instr_type_management'>Instrument types</a> |		
+		<a href='http://localhost/osu/borehole/borehole_crud/instr_management'>Instruments</a> |	
+		<a href='http://localhost/osu/borehole/borehole_crud/par_management'>Parameters</a>
+	</p>
+		
+	
+	<script>
+$(function(){
+			createUploader();
+			loadColorbox();
+});
+function loadColorbox()
+{
+	$('.color-box').colorbox({
+		rel: 'color-box'
+	});
+}
+function loadPhotoGallery(){
+	$.ajax({
+		url: 'http://localhost/osu/borehole_crud/example1/ajax_list',
+		cache: false,
+		dataType: 'text',
+		beforeSend: function()
+		{
+			$('.file-upload-messages-container:first').show();
+			$('.file-upload-message').html("Loading, please wait...");
+		},
+		complete: function()
+		{
+			$('.file-upload-messages-container').hide();
+			$('.file-upload-message').html('');
+		},
+		success: function(data){
+			$('#ajax-list').html(data);
+			loadColorbox();
+		}
+	});
+}
+
+function createUploader() {
+	var uploader = new qq.FineUploader({
+		element: document.getElementById('fine-uploader'),
+		request: {
+			 endpoint: 'http://localhost/osu/borehole_crud/example1/upload_file'
+		},
+		validation: {
+			 allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
+		},		
+		callbacks: {
+			 onComplete: function(id, fileName, responseJSON) {
+				 loadPhotoGallery();
+			 }
+		},
+		debug: true,
+		/*template: '<div class="qq-uploader">' +
+			'<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
+			'<div class="qq-upload-button">Upload files here</div>' +
+			'<ul class="qq-upload-list"></ul>' +
+			'</div>',
+		fileTemplate: '<li>' +
+			'<span class="qq-upload-file"></span>' +
+			'<span class="qq-upload-spinner"></span>' +
+			'<span class="qq-upload-size"></span>' +
+			'<a class="qq-upload-cancel" href="#">Cancel</a>' +
+			'<span class="qq-upload-failed-text">Failed</span>' +
+			'</li>',
+*/
+	});
+}
+
+function saveTitle(data_id, data_title)
+{
+	  	$.ajax({
+			url: 'http://localhost/osu/borehole_crud/example1/insert_title',
+			type: 'post',
+			data: {primary_key: data_id, value: data_title},
+			beforeSend: function()
+			{
+				$('.file-upload-messages-container:first').show();
+				$('.file-upload-message').html("Saving title...");
+			},
+			complete: function()
+			{
+				$('.file-upload-messages-container').hide();
+				$('.file-upload-message').html('');
+			}
+			});
+}
+
+window.onload = createUploader;
+
+</script>
+<!-- <div id="file-uploader-demo1" class="floatL upload-button-container"></div>
+<div class="file-upload-messages-container hidden">
+	<div class="message-loading"></div>
+	<div class="file-upload-message"></div>
+	<div class="clear"></div>
+</div>-->
+<div id="fine-uploader"></div>
+<div class="clear"></div>
+<div id='ajax-list'>
+		<script type='text/javascript'>
+		$(function(){
+			$('.delete-anchor').click(function(){
+				if(confirm('Are you sure that you want to delete this image?'))
+				{
+					$.ajax({
+						url:$(this).attr('href'),
+						beforeSend: function()
+						{
+							$('.file-upload-messages-container:first').show();
+							$('.file-upload-message').html("Deleting, please wait...");
+						},
+						success: function(){
+							loadPhotoGallery();
+						}
+					});
+				}
+				return false;
+			});
+			$(".color-box img").mousedown(function(){
+				return false;
+			});
+    		$(".photos-crud").sortable({
+        		handle: '.move-box',
+        		opacity: 0.6,
+        		cursor: 'move',
+        		revert: true,
+        		update: function() {
+    				var order = $(this).sortable("serialize");
+	    				$.post("http://localhost/osu/borehole_crud/example1/ordering", order, function(theResponse){});
+    			}
+    		});
+    		$('.ic-title-field').keyup(function(e) {
+    			if(e.keyCode == 13) {
+					var data_id = $(this).attr('data-id');
+					var data_title = $(this).val();
+
+					saveTitle(data_id, data_title);
+    			}
+    		});
+
+    		$('.ic-title-field').bind({
+    			  click: function() {
+    				$(this).css('resize','both');
+    			    $(this).css('overflow','auto');
+    			    $(this).animate({height:80},600);
+    			  },
+    			  blur: function() {
+      			    $(this).css('resize','none');
+      			  	$(this).css('overflow','hidden');
+      			  	$(this).animate({height:20},600);
+
+					var data_id = $(this).attr('data-id');
+					var data_title = $(this).val();
+
+					saveTitle(data_id, data_title);
+    			  }
+    		});
+		});
+	</script>
+	<ul class='photos-crud'>
+				<li id="photos_MAG5">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/MAG5.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__MAG5.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/MAG5' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_MAG1">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/MAG1.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__MAG1.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/MAG1' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_MAG6">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/MAG6.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__MAG6.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/MAG6' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_SV_WB">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/SV_WB.JPG' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__SV_WB.JPG' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/SV_WB' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_N100">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/N100.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__N100.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/N100' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_JASS_SD1">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/JASS_SD1.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__JASS_SD1.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/JASS_SD1' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_PEG2">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/PEG2.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__PEG2.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/PEG2' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_N63">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/N63.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__N63.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/N63' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_TAV-SC1">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/TAV-SC1.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__TAV-SC1.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/TAV-SC1' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_N101">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/N101.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__N101.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/N101' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_N120">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/N120.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__N120.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/N120' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_N121">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/N121.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__N121.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/N121' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_N196">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/N196.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__N196.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/N196' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_N57">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/N57.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__N57.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/N57' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_PEG1">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/PEG1.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__PEG1.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/PEG1' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_PEG3">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/PEG3.jpg' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__PEG3.jpg' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/PEG3' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+				<li id="photos_SV_TLL">
+				<div class='photo-box'>
+					<a href='http://localhost/osu/persistent/documentation/forage/borehole_files/SV_TLL.JPG' target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='http://localhost/osu/persistent/documentation/forage/borehole_files/thumb__SV_TLL.JPG' width='90' height='60' class='basic-image' /></a>
+															<div class='delete-box'>
+						<a href='http://localhost/osu/borehole_crud/example1/delete_file/SV_TLL' class='delete-anchor' tabindex="-1">Delete</a>
+					</div>					<div class="clear"></div>
+				</div>
+			</li>
+			</ul>
+		<div class='clear'></div>
+	</div>	
+</div>  <!-- content -->
+
+
+	<div class="clearer">&nbsp;</div>
+	</div> <!-- main -->
+
+	<div class="footer">
+		<span class="left">
+			&copy; 2011 <a href="index.php">data.oreme.org</a> | <a href=""> Vos droits et devoirs sur ce site </a>
+		</span>
+		<span class="right">
+			Valid <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> &amp; <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a href="">Cr&eacute;dits</a> | 
+			<a href="#">Staff</a>
+		</span>
+		<div class="clearer"></div>
+	</div> <!-- footer -->
+	</div> <!-- inner container -->
+</div> <!-- outer container -->
+<div class="ajax_load"></div> <!-- Ajax/Js loading box -->
+<!--  Scripts statiques a charger une fois la page construite -->
+	<script type="text/javascript">
+	//<![CDATA[
+	$(document).ready(function() {
+		//Adds the width of the # content div if the menu on the right does not exist
+		if ($("#navigation").length == 0){ //If the item navigation does not exist
+			//$('#content').css('width', '975px'); //We sets the width of div # content of 975 pixels
+			$('#content').addClass('content_fullwidth'); //We sets the width of div # content of 975 pixels
+		}
+		if ($("#slideshow").length > 0){ //if #slideshow exists
+			//Cycle + Load sequentially pictures
+			$('#slideshow').cycle({ 
+			    delay: -3000, 
+			    timeout: 5000, 
+			    fx: 'fade', 
+			    prev: '#prev', 
+			    next: '#next', 
+			    pause: true, 
+			    pauseOnPagerHover: true,
+			    before: function(){
+			    	$('.slideshow_pause').hide();
+			    },
+			    after: function(currSlideElement, nextSlideElement) {
+			        // Retrieves the next id of the next li
+			        var next = $(nextSlideElement).next();
+			        //retrieves the id #slide-x span element
+			        next = $('#' + next.attr('id') + ' span.slideshow_image');
+			        // If the picture has not been loaded
+			        if (next.find('img').length == 0) {
+			            // We create the img element and insert it in the li
+			            var img = $('<img alt="" />').attr('src', next.attr('title'));
+			            next.append( img );
+			        }
+			    }
+			});
+			//Pause button management
+			$("span.slideshow_image").hover(
+				function () {
+					$('.slideshow_pause').fadeIn('fast');
+				}, 
+				function () {
+					$('.slideshow_pause').fadeOut('fast');
+				}
+			);
+			//Fix tooltip
+			$("span.slideshow_image").hover(function(){
+		        $(this).stop().attr('title', '');},
+		        function(){$(this).stop().attr();
+		     });
+		}
+		//ToTop
+		$().UItoTop({ easingType: 'easeOutQuart' });
+		
+    });
+	//]]>
+	</script>
+<noscript><div id="noscript-alert"><img src="http://localhost/osu/assets/icons/error.png" title="Attention" alt="[!]" class="absmiddle" /> Ce site nécessite JavaScript pour fonctionner de manière optimale. — <img src="http://localhost/osu/assets/icons/help.png" title="" alt="[?]" class="absmiddle" /> <a href="http://www.enable-javascript.com/fr/">Comment activer JavaScript?</a></div></noscript>
+</body>
+</html>

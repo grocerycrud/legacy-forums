@@ -1,0 +1,250 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/*
+	Custom query model updated by Genya. 
+	Created by Alok Pandey.
+*/
+class Custom_grocery_crud_model extends Grocery_crud_model {
+
+	private $query_str = '';
+    private $like_arr = array();
+    private $or_like_arr = array();
+    private $order_by_str = '';
+    private $limit_str = '';
+	private $having_str = '';
+	private $where_str = '';
+    private $group_by_str = '';
+	private $query_bindings = array();
+
+	private $column_tables = NULL;
+
+	private $additional_query = NULL;
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
+	// override
+	function get_list() 
+	{
+        $query_str = $this->arrange_queries();
+		if(empty($this->query_bindings))
+		{
+			$query = $this->db->query($query_str);	
+		}
+		else
+		{
+			$query = $this->db->query($query_str, $this->query_bindings);	
+		}
+		
+		$results_array = $query->result();
+		//file_put_contents('debug.txt', print_r($this->db->last_query(), true), FILE_APPEND);
+		//var_dump($results_array);
+		//var_dump($this->db->last_query());
+		return $results_array;		
+	}
+
+	public function set_custom_query($query_str,$groupby = '', $bindings=array()) 
+	{
+        $this->group_by_str = $groupby;
+		$this->query_str = $query_str;
+		
+		$this->query_bindings = $bindings;
+	}
+
+	public function set_column_table($lookup_table=NULL) 
+	{
+        $this->column_tables = $lookup_table;
+	}
+
+	public function set_header_footer_sql($header_sql='', $footer_sql='') 
+	{
+		$this->additional_query['header'] = $header_sql;
+		$this->additional_query['footer'] = $footer_sql;
+	}
+
+	// override
+    function order_by($order_by , $direction)
+	{
+		if(isset($this->column_tables[$order_by]))
+		{
+			$order_by = $this->column_tables[$order_by] . '.' . $order_by;
+		}
+		
+        $this->order_by_str = ' ORDER BY '.$order_by.' '.$direction;
+    }
+
+	// override
+    function like($field, $match = '', $side = 'both')
+	{
+		if(isset($this->column_tables[$field]))
+		{
+			$field = $this->column_tables[$field] . '.' . $field;
+		}
+		
+        $like_str = ' '.$field.' LIKE ';
+    	if($side=='both'){
+    		$like_str.= '"%'.$match.'%"';
+    	}else if($side=='before'){
+    		$like_str.= '"%'.$match.'"';
+    	}else if($side=='after'){
+    		$like_str.= '"'.$match.'%"';
+    	}
+        $this->like_arr[] = $like_str;
+    }
+
+	// override
+    function or_like($field, $match = '', $side = 'both')
+	{
+		if(isset($this->column_tables[$field]))
+		{
+			$field = $this->column_tables[$field] . '.' . $field;
+		}		
+		
+        $or_like_str = ' '.$field.' LIKE ';
+        if($side=='both'){
+            $or_like_str.= '"%'.$match.'%"';
+        }else if($side=='before'){
+            $or_like_str.= '"%'.$match.'"';
+        }else if($side=='after'){
+            $or_like_str.= '"'.$match.'%"';
+        }
+        $this->or_like_arr[] = $or_like_str;
+    }
+
+	// override
+	function limit($value, $offset = '')
+	{
+        $this->limit_str = ' LIMIT '.($offset ? $offset.', ' : '').$value;
+    }
+	
+	// override
+    function having($key, $value = NULL, $escape = TRUE, $operator='=')
+	{	
+		$this->having_str = ' HAVING ' . $key;
+		
+		// make sure to set like before having or where
+		if(empty($this->like_arr) && $value != NULL)
+		{
+			if($escape)
+			{
+				$value = $this->db->escape($value);
+			}			
+			$this->having_str .= ' ' . $operator . ' ' . $value;
+		}
+	
+    }	
+
+	
+	// override
+    function where($key, $value = NULL, $escape = TRUE, $operator='=')
+	{
+		if(isset($this->column_tables[$key]))
+		{
+			$key = $this->column_tables[$key] . '.' . $key;
+		}		
+		
+		// make sure to set like before having or where
+		if(empty($this->like_arr) && $value != NULL)
+		{
+			$this->where_str = ' WHERE ' . $key;
+			if($escape)
+			{
+				$value = $this->db->escape($value);
+			}			
+			$this->where_str .= ' ' . $operator . ' ' . $value;
+		}
+		else
+		{
+			$this->where_str = ' WHERE ';
+		}
+    }	
+	
+	// override
+	function get_total_results()
+	{
+		$query_str = $this->arrange_queries();
+		if($this->additional_query == NULL)
+		{
+			if(empty($this->query_bindings))
+			{
+				$query_result = $this->db->query($query_str);	
+			}
+			else
+			{
+				$query_result = $this->db->query($query_str, $this->query_bindings);	
+			}			
+			$num_rows = $query_result->num_rows();
+		}
+		else
+		{	
+			$query_str = $this->additional_query['header'] . $query_str . $this->additional_query['footer'];
+			if(empty($this->query_bindings))
+			{
+				$query_result = $this->db->query($query_str);	
+			}
+			else
+			{
+				$query_result = $this->db->query($query_str, $this->query_bindings);	
+			}
+			$num_rows = $query_result->row_array()['num_rows'];
+		}
+		
+		return $num_rows;	
+	}
+
+    public function arrange_queries()
+	{		
+		$query = $this->query_str;
+        $without_limit_str = str_replace($this->limit_str, '', $query);
+        $without_order_by_str = str_replace($this->order_by_str, '', $without_limit_str);
+        $without_group_by_str = str_replace($this->group_by_str,'',$without_order_by_str);
+        $like_array = $this->like_arr;
+        $like_str = ''; 
+        $or_like_array = $this->or_like_arr;
+        $or_like_str = '';
+        $i = 0;
+        foreach ($like_array as $value) {
+            if($i==0){
+                $like_str = ' ('.$value;
+            }
+            else{
+                $like_str.= ' AND '.$value;
+            }
+            if($i==count($like_array)-1){
+                $like_str.= ')';
+            }
+            $i++;
+        }
+        $i=0;
+        foreach ($or_like_array as $value) {
+            if($i==0){
+                $or_like_str = ' ('.$value;
+            }
+            else{
+                $or_like_str.= ' OR '.$value;
+            }
+            if($i==count($or_like_array)-1){
+                $or_like_str.= ')';
+            }
+            $i++;
+        }
+
+		$where_str = $this->where_str;
+
+		// if where or having not set, but like(s) set default to WHERE
+		if(!empty($like_array) && $this->having_str == '')
+		{
+			$where_str = ' WHERE ';
+		}
+
+		$query = $without_group_by_str.$where_str.$this->group_by_str.$this->having_str.$like_str.$or_like_str.$this->order_by_str.$this->limit_str;
+		
+        return $query;
+    }	
+	
+}
+
+/* End of file Custom_grocery_crud_model.php */
+/* Location: ./application/models/Custom_grocery_crud_model.php */

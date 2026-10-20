@@ -1,0 +1,151 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ 
+class Main extends CI_Controller {
+ 
+    function __construct()
+    {
+        parent::__construct();
+ 
+        /* Standard Libraries of codeigniter are required */
+        $this->load->database();
+        $this->load->helper('url');
+
+        /* ------------------ */ 
+ 
+        $this->load->library('grocery_CRUD');
+ 
+    }
+ 
+    public function index()
+    {
+        echo "<h1>Welcome to the world of Codeigniter</h1>";//Just an example to ensure that we get into the function
+                die();
+    }
+ 
+    public function riviste()
+    {
+        $crud = new grocery_CRUD();
+		
+ 		$crud->set_theme('datatables'); 
+		$crud->set_subject('Rivista');
+		$crud->set_table('riviste');
+		$crud->set_primary_key('journal_id','riviste');
+		
+		/* se sto eseguendo un export in excel esporto tutti i campi altrimenti visualizzo a schermo soltanto un loro sottoinsieme */
+		
+		if ($this->uri->segment(3) == "export") {
+			$crud->columns('journal_id','object_id','commissionaria','cod_commissionaria','attivo_in_sfx','cod_bib','issn','eissn','titolo','editore','provider','anno_iniziale','vol_iniziale','fasc_inziale','anno_finale','vol_finale','fasc_finale','moving_wall','mod_accesso','rete_accesso','login','pw','url','stato_abb','note','note_staff','stato');
+		}
+		else{
+			$crud->columns('cod_bib','issn','eissn','titolo','provider','anno_iniziale','anno_finale','moving_wall','stato_abb','stato');
+      	}
+
+		
+/*		$crud->columns('cod_bib','issn','eissn','titolo','provider','anno_iniziale','anno_finale','moving_wall','stato_abb','stato'); */
+
+		/* ridefinisco i titoli delle colonne nella visualizzazione a schermo */
+		$crud->display_as('cod_bib','Codice biblioteca');
+        $crud->display_as('issn','ISSN');
+        $crud->display_as('eissn','eISSN');
+		$crud->display_as('titolo','Titolo');
+        $crud->display_as('editore','Editore');
+        $crud->display_as('provider','Provider');
+		$crud->display_as('anno_iniziale','Anno inizio visibilità');
+        $crud->display_as('vol_inziale','Volume iniziale');
+        $crud->display_as('fasc_iniziale','Fascicolo inziale');
+		$crud->display_as('anno_finale','Anno fine visibilità');
+        $crud->display_as('vol_finale','Volume finale');
+        $crud->display_as('fasc_finale','Fascicolo finale');
+		$crud->display_as('moving_wall','Moving Wall');
+        $crud->display_as('mod_accesso','Modalità di accesso');
+        $crud->display_as('rete_accesso','Rete di accesso');
+		$crud->display_as('login','Username di accesso');
+        $crud->display_as('pw','Password di accesso');
+		$crud->display_as('stato_abb','Stato abbonamento');
+        $crud->display_as('note','Note'); 
+		
+	
+/*		$crud->add_fields('cod_bib','issn','eissn','titolo','editore','provider','anno_iniziale','vol_iniziale','fasc_inziale','anno_finale','vol_finale','fasc_finale','moving_wall','mod_accesso','rete_accesso','login','pw','url','stato_abb','note');
+   		$crud->edit_fields('cod_bib','issn','eissn','titolo','editore','provider','anno_iniziale','vol_iniziale','fasc_inziale','anno_finale','vol_finale','fasc_finale','moving_wall','mod_accesso','rete_accesso','login','pw','url','stato_abb','note');
+ */
+ 		
+		/* imposto i campi obbligatori */
+		$crud->required_fields('cod_bib','titolo','provider','mod_accesso','rete_accesso','stato_abb'); 
+		
+	
+		
+/*		$crud->fields('journal_id','cod_bib','issn','eissn','titolo','editore','provider','anno_iniziale','vol_iniziale','fasc_inziale','anno_finale','vol_finale','fasc_finale','moving_wall','mod_accesso','rete_accesso','login','pw','url','stato_abb','note');
+    	$crud->required_fields('cod_bib','titolo','provider','mod_accesso','rete_accesso','stato_abb'); */
+		/* *********************** */
+		
+		/* funzione per stato di UPDATE*/
+		$crud->callback_before_update(array($this,'update_journal_status'));
+		
+	
+		/* funzione per stato di CANCELLAZIONE */	
+		$crud->callback_delete(array($this,'delete_journal_status'));
+		
+		/* funzione per stato di INSERT */
+		$crud->callback_before_insert(array($this,'insert_journal_status'));
+		
+		/* funzione per linkare il titolo della rivista */
+		$crud->callback_column('titolo',array($this,'_callback_webpage_url'));
+		
+		/* impostazione dei campi con menu a tendina */
+		
+		$crud->field_type('mod_accesso','dropdown',
+            array('1' => 'Riconoscimento IP', '2' => 'Username e Password','3' => 'Ricnoscimento IP + Username e Password')); 
+		$crud->field_type('stato_abb','dropdown',
+            array('1' => 'Corrente', '2' => 'Cessato','3' => 'Dono' , '4' => 'Free/Open Access'));
+		
+		/* impostazioni campi di sola lettura */
+		
+		$crud->field_type('object_id', 'readonly');
+		$crud->field_type('commissionaria', 'readonly');
+		$crud->field_type('cod_commissionaria', 'readonly');
+		$crud->field_type('attivo_in_sfx', 'readonly');
+		$crud->field_type('stato', 'readonly');
+        
+		
+		$output = $crud->render();
+ 
+        $this->_example_output($output);        
+    }
+	
+	/* funzione per rendere il titolo cliccabile */
+	public function _callback_webpage_url($value, $row)
+	{
+  		return "<a href='".$row->url."' target='_blank'>$value</a>";
+	}
+	
+	/*	funzione per stato di UPDATE*/
+	function update_journal_status($post_array) {
+  		
+  		$post_array['stato'] = 'UPD';
+ 
+  		return $post_array;
+	}     
+
+	/* funzione per stato di INSERT*/
+	function insert_journal_status($post_array) {
+  		
+  		$post_array['stato'] = 'NEW';
+ 
+  		return $post_array;
+	}        
+
+	/* funzione per stato di CANCELLAZIONE */	
+	public function delete_journal_status($primary_key)
+	{
+    	return $this->db->update('riviste',array('stato' => 'CANC'),array('journal_id' => $primary_key));
+	}
+ 
+    function _example_output($output = null)
+ 
+    {
+        $this->load->view('template.php',$output);    
+    }
+}
+ 
+/* End of file main.php */
+/* Location: ./application/controllers/main.php */

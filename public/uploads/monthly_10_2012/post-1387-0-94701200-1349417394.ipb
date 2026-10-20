@@ -1,0 +1,143 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class Config extends MY_Controller
+{
+	function __construct()
+	{
+		parent::__construct();
+	}
+        
+	function index()
+	{
+                        $data['auth_message'] = 'Your password has successfully been changed.';
+                        $this->load->_v('change_password_form',$data);
+
+	}
+        
+        function libraries() 
+	{
+            $crud = new grocery_CRUD();
+            $crud   ->set_table('aap_config')
+                    ->set_subject('Sistem Configure')
+                    ->columns('config_name','config_value','config_desc','config_status')
+                    ->fields('config_name','config_value','config_desc','config_status')
+                    ->display_as('config_status','Status');
+            $output = $crud->render();
+            $this->_v('config',$output);
+        }
+        
+        function user()
+        {
+            $crud = new grocery_CRUD();
+            $crud   ->set_table('aap_users')
+                    ->set_subject('Users Control')
+                    ->columns('employee_id','username','email','banned','Group_Access')
+                    ->fields('employee_id','username','email','banned','Group_Access')
+                    ->display_as('employee_id','Employee')
+                    ->set_relation('employee_id','aap_employee','employee_fullname')
+                    ->set_relation_n_n('Group_Access', 'aap_user_groups', 'aap_groups', 'app_users_id', 'aap_groups_id', 'group_name','priority');
+            $output = $crud->render();
+            $this->_v('config',$output);
+        }
+       
+        function employee()
+        {
+            $crud = new grocery_CRUD();
+            $crud->set_table('aap_employee');
+            $crud    ->set_subject('Employee Profile')
+                     ->columns('employee_fullname','employee_datebirth','employee_placebirth','employee_gender','employee_photo','employee_alamat','employee_provinsi','employee_kota','employee_notlp')
+                     ->fields('employee_fullname','employee_datebirth','employee_placebirth','employee_gender','employee_photo','employee_alamat','employee_provinsi','employee_kota','employee_notlp')
+                     ->display_as('employee_fullname','Fullname')
+                     ->display_as('employee_datebirth','Tanggal Lahir')
+                     ->display_as('employee_placebirth','Tempat Lahir')
+                     ->display_as('employee_gender','Jenis Kelamin')
+                     ->display_as('employee_photo','Foto')
+                     ->display_as('employee_alamat','Alamat')
+                     ->display_as('employee_notlp','No Telepon')
+                     ->display_as('employee_provinsi','Provinsi')
+                     ->display_as('employee_kota','Kota')
+                     ->change_field_type('employee_datebirth','date')
+                    
+                     ->change_field_type('time_add','hidden')
+                     ->change_field_type('time_update','hidden');
+            
+            $crud->set_js('assets/grocery_crud/js/jquery_plugins/config/jquery.tine_mce.config.js');
+            $crud->set_js('assets/grocery_crud/texteditor/jquery.tinymce.js');
+
+            $crud    ->callback_before_insert(array($this,'employee_sebelum_insert'))
+                     ->callback_before_update(array($this,'employee_sebelum_update'));
+            $crud    ->set_relation('employee_provinsi', 'aap_mstr_provinsi', 'nama_provinsi')
+                     ->set_relation('employee_kota', 'aap_mstr_kota', 'nama_kota');
+            $crud->set_field_upload('employee_photo','assets/uploads/photo');
+            
+            $crud->callback_column('employee_photo',array($this,'pic_callback'));
+            
+            $output = $crud->render();
+            $this->_v('config',$output);
+        }
+        
+        function pic_callback($value, $row)
+        {
+        return $value.'<img src="http://aapialang.co.id/icare/assets/uploads/photo/'.$row->employee_photo.'" style= margin: 0px; align="center" class="foto_user">';
+        }
+        
+        //Pengaturan Time insert 
+        function employee_sebelum_insert($post_array)
+        {
+           $post_array['time_add'] = date('Y-m-d H:i:s');
+           return $post_array;  
+        }
+        
+        //Pengaturan Time update
+        function employee_sebelum_update($post_array)
+        {
+           $post_array['time_update'] = date('Y-m-d H:i:s');
+           return $post_array;
+        }
+               
+        function groups()
+        {
+            $crud = new grocery_CRUD();
+            $crud->set_table('aap_groups');
+            $crud   ->columns('group_name','group_desc','Module_Access')  
+                    ->add_fields('group_name','group_desc','Module_Access')
+                    ->edit_fields('group_name','group_desc','Module_Access')
+                    ->change_field_type('time_add','hidden')
+                    ->change_field_type('time_update','hidden')
+                    ->set_relation_n_n('Module_Access', 'aap_group_menus', 'aap_menu', 'aap_groups_id', 'aap_menu_id', 'title','priority');
+            $crud   ->callback_before_insert(array($this,'groups_sebelum_insert'))
+                    ->callback_before_update(array($this,'groups_sebelum_update'));
+            $crud->add_action('Menu Access', '', 'config/access_menu','ui-icon-plus');
+            $output = $crud->render();
+            $this->_v('config',$output);
+        }
+        
+        function groups_sebelum_insert($post_array)
+        {
+           $post_array['time_add'] = date('Y-m-d H:i:s');  
+        }
+        
+        //Pengaturan Time update
+        function groups_sebelum_update($post_array)
+        {
+           $post_array['time_update'] = date('Y-m-d H:i:s');  
+        }
+        
+        function access_menu($id = NULL)
+        {
+            $crud   = new grocery_CRUD();
+            $crud   ->where('aap_groups_id',$id);
+            $crud   ->set_table('aap_group_menus') 
+                    ->set_relation('aap_menu_id','aap_menu','title')            
+                    ->columns('aap_menu_id','Access')
+                    ->add_fields('aap_menu_id','Access')
+                    ->edit_fields('aap_menu_id','Access')
+                    ->display_as('aap_menu_id','Module Name')
+                    ->unset_add() ->unset_delete()
+                    ->change_field_type('aap_menu_id','hidden')
+                    ->set_relation_n_n('Access', 'aap_group_menus_actions', 'aap_actions', 'aap_group_menus_id', 'aap_actions_id', 'action_name','priority');
+            $output = $crud->render();
+            $this   ->_v('config',$output);
+        }
+      
+}        
+?>

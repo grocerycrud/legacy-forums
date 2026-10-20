@@ -1,0 +1,50 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Groceries extends MY_Controller {
+
+	function __construct()
+	{
+		parent::__construct();
+		
+		require_once('application/libraries/login_code.php');//Is the user logged in? If not, redirect.
+		
+		$this->load->library('grocery_CRUD');
+        
+	}
+
+	function index()
+	{
+        redirect('groceries/pages');
+		$this->_example_output((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
+	}    
+    
+    function case_study()
+    {
+        $crud = new grocery_CRUD();
+     
+        $crud->set_table( $this->router->method )
+            ->set_subject( 'case study' )
+            ->columns('title','content','filename') //Columns on display.
+            ->display_as('title','Name of case study')
+            ->display_as('content','Introduction for case study.')
+            ->display_as('filename','Filename');
+            
+        $crud->set_field_upload('filename','assets/documents');
+    
+        //Add / Edit methods.
+        $crud->fields('title','content','filename');
+        
+        //Hidden auto-filled fields.
+        $crud->change_field_type('date_added', 'datetime', date('d-m-Y h:i:s',time()) );
+        $crud->change_field_type('author', 'hidden', $this->session->userdata('userId') );
+
+        $crud->required_fields('title','content','filename');
+        
+        $output = $crud->render();//Set output variable for view.
+        $output->css_files[] = base_url().'css/grocery_crud.css';
+     
+        //$this->_example_output($output);//Send to view.
+        $this->_example_output($output);
+    }
+    
+}    

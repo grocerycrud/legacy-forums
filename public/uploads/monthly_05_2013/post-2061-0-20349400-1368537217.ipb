@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8" />
+    <title>Grocery CRUD</title>
+    <?php 
+    foreach($css_files as $file): ?>
+        <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+    <?php endforeach; ?>
+    <?php foreach($js_files as $file): ?>
+        <script src="<?php echo $file; ?>"></script>
+    <?php endforeach; ?>
+
+</head>
+
+<body id="gc-container">
+  <a href="<?=base_url()?>"><img alt="See Detail Logo" src="<?=base_url()?>images/seeDetail.jpg" /></a></li>
+	
+  <div id="gc-menu-container">
+  <ul id="gc-menu">
+    <li><a href="<?php echo site_url($this->uri->segment(1).'/pages')?>" class="button-styles button-three">Pages</a></li>
+		<li><a href="<?php echo site_url($this->uri->segment(1).'/sub_links')?>" class="button-styles button-three">Sub Links</a></li>
+		<li><a href="<?php echo site_url($this->uri->segment(1).'/users_management')?>" class="button-styles button-three">Users</a></li>
+    <li><a href="<?php echo site_url($this->uri->segment(1).'/users_password')?>" class="button-styles button-four">Passwords</a></li>
+		<li><a href="<?php echo site_url($this->uri->segment(1).'/menu_items')?>" class="button-styles button-three">Menus</a></li> 
+    <li><a href="<?php echo site_url($this->uri->segment(1).'/slider')?>" class="button-styles button-three">Slider</a></li> 
+    <li><a href="<?php echo site_url($this->uri->segment(1).'/company')?>" class="button-styles button-three">Company</a></li>
+    <li><a href="<?php echo site_url($this->uri->segment(1).'/case_study')?>" class="button-styles button-four">Case Studies</a></li>
+    <li><a href="<?php echo site_url($this->uri->segment(1).'/news_article')?>" class="button-styles button-four">News</a></li>
+    <li><a href="<?php echo site_url($this->uri->segment(1).'/files')?>" class="button-styles button-four">File Upload</a></li>
+    
+    <li id="logout-item"><a href="<?php echo base_url().'/login/logout'?>" class="button-styles button-three">Logout</a></li> 
+	</ul>
+  </div>
+  
+    <div style='height:20px;'></div>
+    <div id="grocery-crud">
+		<?php echo $output; ?>
+    </div>
+</body>
+</html>

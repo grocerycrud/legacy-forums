@@ -1,0 +1,928 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * CodeIgniter
+ *
+ * An open source application development framework for PHP 4.3.2 or newer
+ *
+ * @package		CodeIgniter
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+
+
+/**
+ * CodeIgniter Date Helpers
+ *
+ * @package		CodeIgniter
+ * @subpackage	Helpers
+ * @category	Helpers
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/helpers/date_helper.html
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Get "now" time
+ *
+ * Returns time() or its GMT equivalent based on the config file preference
+ *
+ * @access	public
+ * @return	integer
+ */
+if ( ! function_exists('now'))
+{
+	function now()
+	{
+		$CI =& get_instance();
+
+		if (strtolower($CI->config->item('time_reference')) == 'gmt')
+		{
+			$now = time();
+			$system_time = mktime(gmdate("H", $now), gmdate("i", $now), gmdate("s", $now), gmdate("m", $now), gmdate("d", $now), gmdate("Y", $now));
+
+			if (strlen($system_time) < 10)
+			{
+				$system_time = time();
+				log_message('error', 'The Date class could not set a proper GMT timestamp so the local time() value was used.');
+			}
+
+			return $system_time;
+		}
+		else
+		{
+			return time();
+		}
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Convert MySQL Style Datecodes
+ *
+ * This function is identical to PHPs date() function,
+ * except that it allows date codes to be formatted using
+ * the MySQL style, where each code letter is preceded
+ * with a percent sign:  %Y %m %d etc...
+ *
+ * The benefit of doing dates this way is that you don't
+ * have to worry about escaping your text letters that
+ * match the date codes.
+ *
+ * @access	public
+ * @param	string
+ * @param	integer
+ * @return	integer
+ */
+if ( ! function_exists('mdate'))
+{
+	function mdate($datestr = '', $time = '')
+	{
+		if ($datestr == '')
+			return '';
+
+		if ($time == '')
+			$time = now();
+
+		$datestr = str_replace('%\\', '', preg_replace("/([a-z]+?){1}/i", "\\\\\\1", $datestr));
+		return date($datestr, $time);
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Standard Date
+ *
+ * Returns a date formatted according to the submitted standard.
+ *
+ * @access	public
+ * @param	string	the chosen format
+ * @param	integer	Unix timestamp
+ * @return	string
+ */
+if ( ! function_exists('standard_date'))
+{
+	function standard_date($fmt = 'DATE_RFC822', $time = '')
+	{
+		$formats = array(
+						'DATE_ATOM'		=>	'%Y-%m-%dT%H:%i:%s%Q',
+						'DATE_COOKIE'	=>	'%l, %d-%M-%y %H:%i:%s UTC',
+						'DATE_ISO8601'	=>	'%Y-%m-%dT%H:%i:%s%O',
+						'DATE_RFC822'	=>	'%D, %d %M %y %H:%i:%s %O',
+						'DATE_RFC850'	=>	'%l, %d-%M-%y %H:%m:%i UTC',
+						'DATE_RFC1036'	=>	'%D, %d %M %y %H:%i:%s %O',
+						'DATE_RFC1123'	=>	'%D, %d %M %Y %H:%i:%s %O',
+						'DATE_RSS'		=>	'%D, %d %M %Y %H:%i:%s %O',
+						'DATE_W3C'		=>	'%Y-%m-%dT%H:%i:%s%Q'
+						);
+
+		if ( ! isset($formats[$fmt]))
+		{
+			return FALSE;
+		}
+
+		return mdate($formats[$fmt], $time);
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Timespan
+ *
+ * Returns a span of seconds in this format:
+ *	10 days 14 hours 36 minutes 47 seconds
+ *
+ * @access	public
+ * @param	integer	a number of seconds
+ * @param	integer	Unix timestamp
+ * @return	integer
+ */
+if ( ! function_exists('timespan'))
+{
+	function timespan($seconds = 1, $time = '')
+	{
+		$CI =& get_instance();
+		$CI->lang->load('date');
+
+		if ( ! is_numeric($seconds))
+		{
+			$seconds = 1;
+		}
+
+		if ( ! is_numeric($time))
+		{
+			$time = time();
+		}
+
+		if ($time <= $seconds)
+		{
+			$seconds = 1;
+		}
+		else
+		{
+			$seconds = $time - $seconds;
+		}
+
+		$str = '';
+		$years = floor($seconds / 31536000);
+
+		if ($years > 0)
+		{
+			$str .= $years.' '.$CI->lang->line((($years	> 1) ? 'date_years' : 'date_year')).', ';
+		}
+
+		$seconds -= $years * 31536000;
+		$months = floor($seconds / 2628000);
+
+		if ($years > 0 OR $months > 0)
+		{
+			if ($months > 0)
+			{
+				$str .= $months.' '.$CI->lang->line((($months	> 1) ? 'date_months' : 'date_month')).', ';
+			}
+
+			$seconds -= $months * 2628000;
+		}
+
+		$weeks = floor($seconds / 604800);
+
+		if ($years > 0 OR $months > 0 OR $weeks > 0)
+		{
+			if ($weeks > 0)
+			{
+				$str .= $weeks.' '.$CI->lang->line((($weeks	> 1) ? 'date_weeks' : 'date_week')).', ';
+			}
+
+			$seconds -= $weeks * 604800;
+		}
+
+		$days = floor($seconds / 86400);
+
+		if ($months > 0 OR $weeks > 0 OR $days > 0)
+		{
+			if ($days > 0)
+			{
+				$str .= $days.' '.$CI->lang->line((($days	> 1) ? 'date_days' : 'date_day')).', ';
+			}
+
+			$seconds -= $days * 86400;
+		}
+
+		$hours = floor($seconds / 3600);
+
+		if ($days > 0 OR $hours > 0)
+		{
+			if ($hours > 0)
+			{
+				$str .= $hours.' '.$CI->lang->line((($hours	> 1) ? 'date_hours' : 'date_hour')).', ';
+			}
+
+			$seconds -= $hours * 3600;
+		}
+
+		$minutes = floor($seconds / 60);
+
+		if ($days > 0 OR $hours > 0 OR $minutes > 0)
+		{
+			if ($minutes > 0)
+			{
+				$str .= $minutes.' '.$CI->lang->line((($minutes	> 1) ? 'date_minutes' : 'date_minute')).', ';
+			}
+
+			$seconds -= $minutes * 60;
+		}
+
+		if ($str == '')
+		{
+			$str .= $seconds.' '.$CI->lang->line((($seconds	> 1) ? 'date_seconds' : 'date_second')).', ';
+		}
+
+		return substr(trim($str), 0, -1);
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Number of days in a month
+ *
+ * Takes a month/year as input and returns the number of days
+ * for the given month/year. Takes leap years into consideration.
+ *
+ * @access	public
+ * @param	integer a numeric month
+ * @param	integer	a numeric year
+ * @return	integer
+ */
+if ( ! function_exists('days_in_month'))
+{
+	function days_in_month($month = 0, $year = '')
+	{
+		if ($month < 1 OR $month > 12)
+		{
+			return 0;
+		}
+
+		if ( ! is_numeric($year) OR strlen($year) != 4)
+		{
+			$year = date('Y');
+		}
+
+		if ($month == 2)
+		{
+			if ($year % 400 == 0 OR ($year % 4 == 0 AND $year % 100 != 0))
+			{
+				return 29;
+			}
+		}
+
+		$days_in_month	= array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+		return $days_in_month[$month - 1];
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Converts a local Unix timestamp to GMT
+ *
+ * @access	public
+ * @param	integer Unix timestamp
+ * @return	integer
+ */
+if ( ! function_exists('local_to_gmt'))
+{
+	function local_to_gmt($time = '')
+	{
+		if ($time == '')
+			$time = time();
+
+		return mktime( gmdate("H", $time), gmdate("i", $time), gmdate("s", $time), gmdate("m", $time), gmdate("d", $time), gmdate("Y", $time));
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Converts GMT time to a localized value
+ *
+ * Takes a Unix timestamp (in GMT) as input, and returns
+ * at the local value based on the timezone and DST setting
+ * submitted
+ *
+ * @access	public
+ * @param	integer Unix timestamp
+ * @param	string	timezone
+ * @param	bool	whether DST is active
+ * @return	integer
+ */
+if ( ! function_exists('gmt_to_local'))
+{
+	function gmt_to_local($time = '', $timezone = 'UTC', $dst = FALSE)
+	{
+		if ($time == '')
+		{
+			return now();
+		}
+
+		$time += timezones($timezone) * 3600;
+
+		if ($dst == TRUE)
+		{
+			$time += 3600;
+		}
+
+		return $time;
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Converts a MySQL Timestamp to Unix
+ *
+ * @access	public
+ * @param	integer Unix timestamp
+ * @return	integer
+ */
+if ( ! function_exists('mysql_to_unix'))
+{
+	function mysql_to_unix($time = '')
+	{
+		// We'll remove certain characters for backward compatibility
+		// since the formatting changed with MySQL 4.1
+		// YYYY-MM-DD HH:MM:SS
+
+		$time = str_replace('-', '', $time);
+		$time = str_replace(':', '', $time);
+		$time = str_replace(' ', '', $time);
+
+		// YYYYMMDDHHMMSS
+		return  mktime(
+						substr($time, 8, 2),
+						substr($time, 10, 2),
+						substr($time, 12, 2),
+						substr($time, 4, 2),
+						substr($time, 6, 2),
+						substr($time, 0, 4)
+						);
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Unix to "Human"
+ *
+ * Formats Unix timestamp to the following prototype: 2006-08-21 11:35 PM
+ *
+ * @access	public
+ * @param	integer Unix timestamp
+ * @param	bool	whether to show seconds
+ * @param	string	format: us or euro
+ * @return	string
+ */
+if ( ! function_exists('unix_to_human'))
+{
+	function unix_to_human($time = '', $seconds = FALSE, $fmt = 'us')
+	{
+		$r  = date('Y', $time).'-'.date('m', $time).'-'.date('d', $time).' ';
+
+		if ($fmt == 'us')
+		{
+			$r .= date('h', $time).':'.date('i', $time);
+		}
+		else
+		{
+			$r .= date('H', $time).':'.date('i', $time);
+		}
+
+		if ($seconds)
+		{
+			$r .= ':'.date('s', $time);
+		}
+
+		if ($fmt == 'us')
+		{
+			$r .= ' '.date('A', $time);
+		}
+
+		return $r;
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Convert "human" date to GMT
+ *
+ * Reverses the above process
+ *
+ * @access	public
+ * @param	string	format: us or euro
+ * @return	integer
+ */
+if ( ! function_exists('human_to_unix'))
+{
+	function human_to_unix($datestr = '')
+	{
+		if ($datestr == '')
+		{
+			return FALSE;
+		}
+
+		$datestr = trim($datestr);
+		$datestr = preg_replace("/\040+/", "\040", $datestr);
+
+		if ( ! ereg("^[0-9]{2,4}\-[0-9]{1,2}\-[0-9]{1,2}\040[0-9]{1,2}:[0-9]{1,2}.*$", $datestr))
+		{
+			return FALSE;
+		}
+
+		$split = preg_split("/\040/", $datestr);
+
+		$ex = explode("-", $split['0']);
+
+		$year  = (strlen($ex['0']) == 2) ? '20'.$ex['0'] : $ex['0'];
+		$month = (strlen($ex['1']) == 1) ? '0'.$ex['1']  : $ex['1'];
+		$day   = (strlen($ex['2']) == 1) ? '0'.$ex['2']  : $ex['2'];
+
+		$ex = explode(":", $split['1']);
+
+		$hour = (strlen($ex['0']) == 1) ? '0'.$ex['0'] : $ex['0'];
+		$min  = (strlen($ex['1']) == 1) ? '0'.$ex['1'] : $ex['1'];
+
+		if (isset($ex['2']) AND ereg("[0-9]{1,2}", $ex['2']))
+		{
+			$sec  = (strlen($ex['2']) == 1) ? '0'.$ex['2'] : $ex['2'];
+		}
+		else
+		{
+			// Unless specified, seconds get set to zero.
+			$sec = '00';
+		}
+
+		if (isset($split['2']))
+		{
+			$ampm = strtolower($split['2']);
+
+			if (substr($ampm, 0, 1) == 'p' AND $hour < 12)
+				$hour = $hour + 12;
+
+			if (substr($ampm, 0, 1) == 'a' AND $hour == 12)
+				$hour =  '00';
+
+			if (strlen($hour) == 1)
+				$hour = '0'.$hour;
+		}
+
+		return mktime($hour, $min, $sec, $month, $day, $year);
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Timezone Menu
+ *
+ * Generates a drop-down menu of timezones.
+ *
+ * @access	public
+ * @param	string	timezone
+ * @param	string	classname
+ * @param	string	menu name
+ * @return	string
+ */
+if ( ! function_exists('timezone_menu'))
+{
+	function timezone_menu($default = 'UTC', $class = "", $name = 'timezones')
+	{
+		$CI =& get_instance();
+		$CI->lang->load('date');
+
+		if ($default == 'GMT')
+			$default = 'UTC';
+
+		$menu = '<select name="'.$name.'"';
+
+		if ($class != '')
+		{
+			$menu .= ' class="'.$class.'"';
+		}
+
+		$menu .= ">\n";
+
+		foreach (timezones() as $key => $val)
+		{
+			$selected = ($default == $key) ? " selected='selected'" : '';
+			$menu .= "<option value='{$key}'{$selected}>".$CI->lang->line($key)."</option>\n";
+		}
+
+		$menu .= "</select>";
+
+		return $menu;
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Timezones
+ *
+ * Returns an array of timezones.  This is a helper function
+ * for various other ones in this library
+ *
+ * @access	public
+ * @param	string	timezone
+ * @return	string
+ */
+if ( ! function_exists('timezones'))
+{
+	function timezones($tz = '')
+	{
+		// Note: Don't change the order of these even though
+		// some items appear to be in the wrong order
+
+		$zones = array(
+						'UM12' => -12,
+						'UM11' => -11,
+						'UM10' => -10,
+						'UM9'  => -9,
+						'UM8'  => -8,
+						'UM7'  => -7,
+						'UM6'  => -6,
+						'UM5'  => -5,
+						'UM4'  => -4,
+						'UM25' => -2.5,
+						'UM3'  => -3,
+						'UM2'  => -2,
+						'UM1'  => -1,
+						'UTC'  => 0,
+						'UP1'  => +1,
+						'UP2'  => +2,
+						'UP3'  => +3,
+						'UP25' => +2.5,
+						'UP4'  => +4,
+						'UP35' => +3.5,
+						'UP5'  => +5,
+						'UP45' => +4.5,
+						'UP6'  => +6,
+						'UP7'  => +7,
+						'UP8'  => +8,
+						'UP9'  => +9,
+						'UP85' => +8.5,
+						'UP10' => +10,
+						'UP11' => +11,
+						'UP12' => +12
+					);
+
+		if ($tz == '')
+		{
+			return $zones;
+		}
+
+		if ($tz == 'GMT')
+			$tz = 'UTC';
+
+		return ( ! isset($zones[$tz])) ? 0 : $zones[$tz];
+	}
+}
+
+if ( ! function_exists('change_sql_date')){
+	function change_sql_date($date_sql,$date_format){
+		$date_array = split("[-: ]",$date_sql);
+		if(!isset($date_array[3]))
+		{
+			$date_array[3] = 0;
+			$date_array[4] = 0;
+			$date_array[5] = 0;
+		}
+
+		$date = date ($date_format,mktime($date_array[3], $date_array[4], $date_array[5], $date_array[1],$date_array[2],$date_array[0]));
+		return $date;
+	}
+}
+
+if ( ! function_exists('change_sql_date_gr')){
+	function change_sql_date_gr($date_sql, $date_format)
+	{
+	                $day_gr = array("Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σαββάτο","Κυριακή");
+	                $sday_gr = array("Δευ","Τρι","Τετ","Πεμ","Παρ","Σαβ","Κυρ");
+
+	                $day_en = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+	                $sday_en = array("Mon","Tue","Wed","Thu","Fri","Sat","Sun");
+	                
+	                $months_gr = array("Ιανουαρίου","Φεβρουαρίου","Μαρτίου","Απριλίου","Μαΐου","Ιουνίου","Ιουλίου","Αυγούστου","Σεπτεμβρίου","Οκτωβρίου","Νοεμβρίου","Δεκεμβρίου");
+	                $smonths_gr = array("Ιαν","Φεβ","Μαρ","Απρ","Μαι","Ιουν","Ιουλ","Αυγ","Σεπτ","Οκτ","Νοέμ","Δεκ");
+	               
+	                $months_en = array("January","February","March","April","May","June","July","August","September","October","November","December");
+	                $smonths_en = array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+	               
+	                $date_array = split("[-: ]",$date_sql);
+	                if(!isset($date_array[3])){
+	                	$date_array[3] = 0;
+	                	$date_array[4] = 0;
+	                	$date_array[5] = 0;
+	                }
+	                
+	                $date = date ($date_format,mktime ( $date_array[3] , $date_array[4] , $date_array[5] ,$date_array[1],$date_array[2],$date_array[0]));
+	               
+	                if(strstr($date_format,'F'))
+	                        $date = str_replace($months_en[$date_array[1]-1],$months_gr[$date_array[1]-1],$date);
+	               
+	                if(strstr($date_format,'M'))
+	                        $date = str_replace($smonths_en[$date_array[1]-1],$smonths_gr[$date_array[1]-1],$date);
+
+	                if(strstr($date_format,'l'))
+	                        $date = str_replace($day_en,$day_gr,$date);	                        
+	                        
+	                return $date;
+	}
+}
+/**
+ * Is a little bit confusing function (change the format of a date)
+ * @var string input_date
+ * @var array date_fomrat
+ * @var string new_date_format
+ */
+if ( ! function_exists('change_date_format')){
+	function change_date_format($input_date,$date_format,$new_date_format){//date format is day month year
+		$date_array = split("[-/ ]",$input_date);
+
+		$date = date ($new_date_format,mktime (0,0,0,$date_array[$date_format[1]],$date_array[$date_format[0]],$date_array[$date_format[2]]));
+		return $date;
+	}
+}
+
+if ( ! function_exists('add_days_from_today')){
+	function add_days_from_today($days_to_add){
+
+		$date_today = date("Y/m/d");
+
+		$my_time = strtotime ($date_today); //converts date string to UNIX timestamp
+		$timestamp = $my_time + ($days_to_add * 86400); //calculates # of days passed ($days_to_add) * # seconds in a day (86400)
+		$return_date = date("Y/m/d",$timestamp);  //puts the UNIX timestamp back into string format
+
+		return $return_date;//exit function and return string
+	}
+}
+
+if ( ! function_exists('date_calculation_add_days')){
+	function date_calculation_add_days($this_date,$days_to_add){//$this_date must be in form Y-m-d , m-d-Y, Y/m/d
+
+		$my_time = strtotime ($this_date); //converts date string to UNIX timestamp
+		$timestamp = $my_time + ($days_to_add * 86400); //calculates # of days passed ($days_to_add) * # seconds in a day (86400)
+		$return_date = date("Y-m-d",$timestamp);  //puts the UNIX timestamp back into string format
+
+		return $return_date;//exit function and return string
+	}
+}
+
+if ( ! function_exists('change_month_format')){
+	function change_month_format($number_of_month,$month_format){
+		$date = date ($month_format,mktime (0,0,0,$number_of_month,1,2007));
+		return $date;
+	}
+}
+
+if ( ! function_exists('duration_calc')){
+	function duration_calc($start, $end){//The format must be Y-m-d , m-d-Y, Y/m/d
+		$days = (strtotime($end) - strtotime($start)) / (60 * 60 * 24);
+		return $days;
+	}
+}
+
+if ( ! function_exists('add_time')){
+	function add_time($time1,$time2){ //The time must me in form hh:mm:ss
+		$time1 = explode(":",$time1);
+		$time2 = explode(":",$time2);
+
+		$seconds = $time1[2] + $time2[2];
+		$minutes = $time1[1] + $time2[1];
+		$hours = $time1[0] + $time2[0];
+
+		$final_time_sec = $hours*3600 + $minutes*60 + $seconds;
+
+		$final_hours 		= (int)($final_time_sec / 3600 );
+		$mod_final_minutes  = (int)($final_time_sec % 3600 );
+		$final_minutes 		= (int)($mod_final_minutes / 60 );
+		$final_seconds 		= (int)($mod_final_minutes % 60 );
+
+		$final_time = "$final_hours:$final_minutes:$final_seconds";
+
+		return $final_time;
+	}
+}
+
+if ( ! function_exists('sql_date_exists')){
+	function sql_date_exists($date){ //The time must me in form hh:mm:ss
+
+		$date_array = explode("-",$date);
+		
+		$date_search = date ("Y-m-d",mktime (0,0,0,$date_array[1],$date_array[2],$date_array[0]));
+		if($date_search != $date)
+			return false;
+			
+		return true;
+	}
+}
+
+if ( ! function_exists('between_sql_dates')){
+	function between_sql_dates($start_date,$end_date){ 
+
+		$final_dates = array();
+		if(!sql_date_exists($start_date))
+			return false;
+		elseif(!sql_date_exists($end_date))
+			return false;
+		elseif($start_date > $end_date)
+			return false;
+		else
+		{
+			$temp_end_date = $start_date;
+			$i=0;
+			$start_date_array = explode("-",$start_date);
+			while($temp_end_date <= $end_date)
+			{
+				$temp_end_date = date ("Y-m-d",mktime (0,0,0,$start_date_array[1],$start_date_array[2] + $i ,$start_date_array[0]));
+				$final_dates[] = $temp_end_date;
+				$i++;
+				$temp_end_date = date ("Y-m-d",mktime (0,0,0,$start_date_array[1],$start_date_array[2] + $i ,$start_date_array[0]));
+			}
+			
+		}
+		return $final_dates;
+	}
+}
+
+if ( ! function_exists('alter_date_format')){
+	function alter_date_format($str_date, $input_format, $return_format="%Y-%m-%d"){
+		$pdate = strptime($str_date, $input_format);
+
+		if($pdate['unparsed']!=''){
+			return false;
+		}
+		
+		$time = mktime($pdate['tm_hour']+1, $pdate['tm_min'], $pdate['tm_sec'], $pdate['tm_mon']+1, $pdate['tm_mday'], 1900 + $pdate['tm_year']);
+		
+		return strftime($return_format, $time);
+	}
+}
+
+/**
+* Parse a time/date generated with strftime().
+*
+* This function is the same as the original one defined by PHP (Linux/Unix only),
+*  but now you can use it on Windows too.
+*  Limitation : Only this format can be parsed %S, %M, %H, %d, %m, %Y
+*
+* @author Lionel SAURON
+* @version 1.0
+* @public
+*
+* @param $sDate(string)    The string to parse (e.g. returned from strftime()).
+* @param $sFormat(string)  The format used in date  (e.g. the same as used in strftime()).
+* @return (array)          Returns an array with the <code>$sDate</code> parsed, or <code>false</code> on error.
+*/
+if(function_exists("strptime") == false)
+{
+    function strptime($sDate, $sFormat)
+    {
+        $aResult = array
+        (
+            'tm_sec'   => 0,
+            'tm_min'   => 0,
+            'tm_hour'  => 0,
+            'tm_mday'  => 1,
+            'tm_mon'   => 0,
+            'tm_year'  => 0,
+            'tm_wday'  => 0,
+            'tm_yday'  => 0,
+            'unparsed' => $sDate,
+        );
+        
+        while($sFormat != "")
+        {
+            // ===== Search a %x element, Check the static string before the %x =====
+            $nIdxFound = strpos($sFormat, '%');
+            if($nIdxFound === false)
+            {
+                
+                // There is no more format. Check the last static string.
+                $aResult['unparsed'] = ($sFormat == $sDate) ? "" : $sDate;
+                break;
+            }
+            
+            $sFormatBefore = substr($sFormat, 0, $nIdxFound);
+            $sDateBefore   = substr($sDate,   0, $nIdxFound);
+            
+            if($sFormatBefore != $sDateBefore) break;
+            
+            // ===== Read the value of the %x found =====
+            $sFormat = substr($sFormat, $nIdxFound);
+            $sDate   = substr($sDate,   $nIdxFound);
+            
+            $aResult['unparsed'] = $sDate;
+            
+            $sFormatCurrent = substr($sFormat, 0, 2);
+            $sFormatAfter   = substr($sFormat, 2);
+            
+            $nValue = -1;
+            $sDateAfter = "";
+            switch($sFormatCurrent)
+            {
+                case '%S': // Seconds after the minute (0-59)
+                    
+                    sscanf($sDate, "%2d%[^\\n]", $nValue, $sDateAfter);
+                    
+                    if(($nValue < 0) || ($nValue > 59)) return false;
+                    
+                    $aResult['tm_sec']  = $nValue;
+                    break;
+                
+                // ----------
+                case '%M': // Minutes after the hour (0-59)
+                    sscanf($sDate, "%2d%[^\\n]", $nValue, $sDateAfter);
+                    
+                    if(($nValue < 0) || ($nValue > 59)) return false;
+                
+                    $aResult['tm_min']  = $nValue;
+                    break;
+                
+                // ----------
+                case '%H': // Hour since midnight (0-23)
+                    sscanf($sDate, "%2d%[^\\n]", $nValue, $sDateAfter);
+                    
+                    if(($nValue < 0) || ($nValue > 23)) return false;
+                
+                    $aResult['tm_hour']  = $nValue;
+                    break;
+                
+                // ----------
+                case '%d': // Day of the month (1-31)
+                    sscanf($sDate, "%2d%[^\\n]", $nValue, $sDateAfter);
+                    
+                    if(($nValue < 1) || ($nValue > 31)) return false;
+                
+                    $aResult['tm_mday']  = $nValue;
+                    break;
+                
+                // ----------
+                case '%m': // Months since January (0-11)
+                    sscanf($sDate, "%2d%[^\\n]", $nValue, $sDateAfter);
+                    
+                    if(($nValue < 1) || ($nValue > 12)) return false;
+                
+                    $aResult['tm_mon']  = ($nValue - 1);
+                    break;
+                
+                // ----------
+                case '%Y': // Years since 1900
+                    sscanf($sDate, "%4d%[^\\n]", $nValue, $sDateAfter);
+                    
+                    if($nValue < 1900) return false;
+                
+                    $aResult['tm_year']  = ($nValue - 1900);
+                    break;
+                
+                // ----------
+                default: break 2; // Break Switch and while
+            }
+            
+            // ===== Next please =====
+            $sFormat = $sFormatAfter;
+            $sDate   = $sDateAfter;
+            
+            $aResult['unparsed'] = $sDate;
+            
+        } // END while($sFormat != "")
+        
+        
+        // ===== Create the other value of the result array =====
+        $nParsedDateTimestamp = mktime($aResult['tm_hour'], $aResult['tm_min'], $aResult['tm_sec'],
+                                $aResult['tm_mon'] + 1, $aResult['tm_mday'], $aResult['tm_year'] + 1900);
+        
+        // Before PHP 5.1 return -1 when error
+        if(($nParsedDateTimestamp === false)
+        ||($nParsedDateTimestamp === -1)) return false;
+        
+        $aResult['tm_wday'] = (int) strftime("%w", $nParsedDateTimestamp); // Days since Sunday (0-6)
+        $aResult['tm_yday'] = (strftime("%j", $nParsedDateTimestamp) - 1); // Days since January 1 (0-365)
+
+        return $aResult;
+    } // END of function
+} 
+
+
+/* End of file date_helper.php */
+/* Location: ./system/helpers/date_helper.php */

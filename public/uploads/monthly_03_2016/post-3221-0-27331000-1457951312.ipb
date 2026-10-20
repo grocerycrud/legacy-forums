@@ -1,0 +1,64 @@
+class curso extends MY_Controller
+{
+
+	function __construct()
+	{
+		parent::__construct();
+		
+		$this->load->database();
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$this->load->library('session');
+		$this->load->library('grocery_CRUD');
+		$this->load->helper('utility_helper');
+	}
+	
+	function index()
+	{
+
+		$crud = new grocery_CRUD();
+		
+		$crud
+		->set_theme('datatables')
+		->set_subject('Cursos')
+		->set_table('curso');
+		
+		$crud->set_field_upload('IMAGE','assets/upload/image');
+		
+		if( $crud->getState() == 'add' )
+		{
+			$crud->fields('NAME', 'URL', 'DESC', 'TYPE', 'NUM', 'IMAGE', 'TEACHER', 'VALOR', 'FOR_N', 'FOR_T', 'PARC', 'DURATION_N', 'DURATION_T', 'ID_SECTION', 'STATE', 'DATE_INS');
+			
+			$query = $this->db->query('SELECT ID, NAME FROM teacher');
+			
+			foreach ($query->result() as $row)
+			{
+				$teachers[$row->ID] = $row->NAME;
+			}
+			
+			$crud->field_type('TEACHER','multiselect', $teachers);
+			
+			$crud
+			->change_field_type('DATE_INS', 'hidden', date("Y-m-d H:i:s"))
+			->change_field_type('NUM', 'integer')
+			->change_field_type('STATE','dropdown', array( 1 => 'Yes', 2 => 'No' ))
+			->change_field_type('FOR_T','dropdown', array( 1 => 'Days', 2 => 'Weeks', 3 => 'Months', 4 => 'Years'  ))
+			->change_field_type('DURATION_T','dropdown', array( 1 => 'Days', 2 => 'Weeks', 3 => 'Months', 4 => 'Years'  ))
+			->change_field_type('PARC','dropdown', array( 1 => 'Yes', 2 => 'No' ))
+			->change_field_type('TYPE','dropdown', array( 1 => 'Yes', 2 => 'No' ));
+		}
+		
+		$crud
+		->unset_export()
+		->unset_print()
+		->unset_delete();
+		
+		$crud->required_fields('NAME', 'URL', 'DESC', 'TYPE', 'NUM', 'TEACHER', 'VALOR', 'FOR_N', 'FOR_T', 'PARC', 'DURATION_N', 'DURATION_T', 'ID_SECTION', 'STATE');
+		
+		$output = $crud->render();
+		
+		$this->show_view($output, 'Cursos');
+		
+	}
+		
+}

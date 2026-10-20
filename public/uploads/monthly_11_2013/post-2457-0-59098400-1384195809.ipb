@@ -1,0 +1,72 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ 
+class Home extends CI_Controller {
+ 
+    function __construct()
+    {
+        parent::__construct();
+ 
+        /* Standard Libraries of codeigniter are required */
+        $this->load->database();
+        $this->load->helper('url');
+        /* ------------------ */ 
+ 
+        $this->load->library('grocery_CRUD');
+ 
+    }
+ 
+    public function index()
+    {
+        echo "<h1>Welcome to the world of Codeigniter</h1>";//Just an example to ensure that we get into the function
+	die();
+    }
+
+    function cliente () 
+    {
+	$crud = new grocery_CRUD();
+        $crud->set_table('cliente');
+        //$crud->set_primary_key('id');
+	$crud->set_subject('Cliente');
+	//$crud->columns('id','nome','idade');
+        //$crud->fields('nome','idade');
+	//$crud->add_fields('nome','idade');
+	//$crud->edit_fields('nome','idade');
+	//$crud->require_fields('id','nome','idade');
+ 	//$crud->unset_edit();
+        $crud->display_as('nome','Cliente');
+        //$crud->display_as('idade','Idade');
+
+	$crud->callback_before_insert(array($this,'insert_cliente'));
+	$crud->callback_before_update(array($this,'update_cliente'));
+	$crud->callback_delete(array($this,'delete_cliente'));
+        
+	$output = $crud->render();
+ 
+        $this->_example_output($output);  
+     }
+ 
+    function insert_cliente( $post_array )
+    {
+	$post_array['status'] = 'NEW';
+ 
+  	return $post_array;
+    }
+
+    function update_cliente( $post_array )
+    {
+	$post_array['status'] = 'UPD';
+ 
+  	return $post_array;
+    }
+    function delete_cliente( $post_array )
+    {
+	return $this->db->update('cliente',array('status' => 'CANC'),array('id' => $primary_key));
+    }			
+	
+ 
+    function _example_output($output = null)
+ 
+    {
+        $this->load->view('home_view.php',$output);    
+    }
+}

@@ -129,8 +129,10 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
-public/public
-public/uploads
+# Logs: never in Git (production-environment logs.md, 2026-10-20)
+*.log
+error_log
+debug.log
 
 # dependencies
 /node_modules

@@ -1,0 +1,79 @@
+<?php
+	$lang['list_add'] 				= 'Нэмэх';
+	$lang['list_actions'] 			= 'Үйлдэл';
+	$lang['list_page'] 				= 'Хуудас';
+	$lang['list_paging_of'] 		= 'ны';
+	$lang['list_displaying']		= 'Дугаар {start} -аас {end} хүртэл {results} харуулалт';
+	$lang['list_filtered_from']		= '(нийт {total_results} үр дүнгээс шүүв)';
+	$lang['list_show_entries']		= 'Show {paging} entries';
+	$lang['list_no_items']			= 'Харуулах мэдээлэл алга';
+	$lang['list_zero_entries']		= 'Харуулах мэдээлэл алга';
+	$lang['list_search'] 			= 'Хайх';
+	$lang['list_search_all'] 		= 'Бүгдээс хайх';
+	$lang['list_clear_filtering'] 	= 'Шүүлтүүрийг болих';
+	$lang['list_delete'] 			= 'Устгах';
+	$lang['list_edit'] 				= 'Засах';
+	$lang['list_paging_first'] 		= 'Эхний';
+	$lang['list_paging_previous'] 	= 'Өмнөх';
+	$lang['list_paging_next'] 		= 'Дараах';
+	$lang['list_paging_last'] 		= 'Сүүлийх';
+	$lang['list_loading'] 			= 'Ачааллаж байна...';
+
+	$lang['form_edit'] 				= 'Засах';
+	$lang['form_back_to_list'] 		= 'Жагсаалт руу буцах';
+	$lang['form_update_changes'] 	= 'Өөрчлөлтийг зөвшөөрөх';
+	$lang['form_cancel'] 			= 'Буцах';
+	$lang['form_update_loading'] 	= 'Засварыг оруулж байна...';
+	$lang['update_success_message'] = 'Таны засвар амжилттай орлоо.';
+	$lang['form_go_back_to_list'] 	= 'Жагсаалт руу буцах';
+
+	$lang['form_add'] 				= 'Нэмэх';
+	$lang['insert_success_message'] = 'Мэдээллийг өгөгдөлийн санд амжилттай орууллаа.';
+	$lang['form_or']				= 'эсвэл';
+	$lang['form_save'] 				= 'Хадгалах';
+	$lang['form_insert_loading'] 	= 'Хадгалж байна...';
+
+	$lang['form_upload_a_file'] 	= 'Файл хуулах';
+	$lang['form_upload_delete'] 	= 'устгах';
+	$lang['form_button_clear'] 		= 'Цэвэрлэх';
+
+	$lang['delete_success_message'] = 'Мэдээллийг өгөгдөлийн сангаас устгаж байна.';
+	$lang['delete_error_message'] 	= 'Мэдээллийг өгөгдөлийн сангаас устгах явцад алдаа гарлаа.';
+
+	/* Javascript messages */
+	$lang['alert_add_form']			= 'Таны мэдээлэл хадгалагдаагүй байж магадгүй.\\nЖагсаалт руу буцахыг зөвшөөрөх үү?';
+	$lang['alert_edit_form']		= 'Tаны засвар хадгалагдаагүй байж магадгүй.\\nЖагсаалт руу буцахыг зөвшөөрөх үү?';
+	$lang['alert_delete']			= 'Та уг мэдээллийг устгахдаа итгэлтэй байна уу?';
+
+	$lang['insert_error']			= 'Оруулах явцад алдаа гарлаа.';
+	$lang['update_error']			= 'Хадгалах явцад алдаа гарлаа.';
+
+	/* Added in version 1.2.1 */
+	$lang['set_relation_title']		= 'Сонгох {field_display_as}';
+	$lang['list_record']			= 'Бичлэг';
+	$lang['form_inactive']			= 'идэвхигүй';
+	$lang['form_active']			= 'идэвхитэй';
+
+	/* Added in version 1.2.2 */
+	$lang['form_save_and_go_back']	= 'Нэмээд, жагсаалт руу буцах';
+	$lang['form_update_and_go_back']= 'Хадгалаад, жагсаалт руу буцах';
+
+	/* Added in version 1.2.2 */
+	$lang['form_save_and_go_back']	= 'Нэмээд, жагсаалт руу буцах';
+	$lang['form_update_and_go_back']= 'Хадгалаад, жагсаалт руу буцах';
+
+	/* Upload functionality */
+	$lang['string_delete_file'] 	= "Файлыг устгаж байна";
+	$lang['string_progress'] 		= "Үйл явц: ";
+	$lang['error_on_uploading'] 	= "Файл хуулах явцад алдаа гарлаа.";
+	$lang['message_prompt_delete_file'] 	= "Уг файлыг устгахдаа итгэлтэй байна уу?";
+
+	$lang['error_max_number_of_files'] 	= "Та зөвхөн ганц фэйл хуулж чадна.";
+	$lang['error_accept_file_types'] 	= "Та уг төрлийн файлыг хуулж чадахгүй.";
+	$lang['error_max_file_size'] 		= "Таны хуулахыг хүссэн файлын хэмжээ зөвшөөрөгдсөн хэмжээ болох {max_file_size} -аас их байна.";
+	$lang['error_min_file_size'] 		= "Та хоосон файл хуулж чадахгүй.";
+
+	/* Added in version 1.3.1 */
+	$lang['list_export'] 	= "Татаж авах";
+	$lang['list_print'] 	= "Принтерлэх";
+	$lang['minimize_maximize'] = 'Багасгах/Томсгох';

@@ -1,0 +1,271 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/core/Common.php 92
+DEBUG - 2012-12-03 22:13:38 --> Config Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Hooks Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Utf8 Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> UTF-8 Support Enabled
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> URI Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Router Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Output Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Security Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Input Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Global POST and COOKIE data sanitized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Language Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Loader Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Controller Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Database Driver Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Helper loaded: url_helper
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Session Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Helper loaded: string_helper
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Session routines successfully run
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Helper loaded: form_helper
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Form Validation Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Config file loaded: application/config/grocery_crud.php
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Model Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Model Class Initialized
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> File loaded: application/views/example.php
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Final output sent to browser
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:13:38 --> Total execution time: 0.1191
+ERROR - 2012-12-03 22:13:38 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/core/Common.php 92
+DEBUG - 2012-12-03 22:14:03 --> Config Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Hooks Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Utf8 Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> UTF-8 Support Enabled
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> URI Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Router Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Output Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Security Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Input Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Global POST and COOKIE data sanitized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Language Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Loader Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Controller Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Database Driver Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Helper loaded: url_helper
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Session Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Helper loaded: string_helper
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Session routines successfully run
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Helper loaded: form_helper
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Form Validation Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Config file loaded: application/config/grocery_crud.php
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Model Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> Model Class Initialized
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:03 --> File loaded: application/views/example.php
+ERROR - 2012-12-03 22:14:03 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:04 --> Final output sent to browser
+ERROR - 2012-12-03 22:14:04 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:04 --> Total execution time: 0.1046
+ERROR - 2012-12-03 22:14:04 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/core/Common.php 92
+DEBUG - 2012-12-03 22:14:08 --> Config Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Hooks Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Utf8 Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> UTF-8 Support Enabled
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> URI Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Router Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Output Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Security Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Input Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Global POST and COOKIE data sanitized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Language Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Loader Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Controller Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Database Driver Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Helper loaded: url_helper
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Session Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Helper loaded: string_helper
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Session routines successfully run
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Helper loaded: form_helper
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Form Validation Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Config file loaded: application/config/grocery_crud.php
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Model Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Model Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Model Class Initialized
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> File loaded: application/views/example.php
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Final output sent to browser
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:08 --> Total execution time: 0.1111
+ERROR - 2012-12-03 22:14:08 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/core/Common.php 92
+DEBUG - 2012-12-03 22:14:22 --> Config Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Hooks Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Utf8 Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> UTF-8 Support Enabled
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> URI Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Router Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Output Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Security Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Input Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Global POST and COOKIE data sanitized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Language Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Loader Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Controller Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Database Driver Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Helper loaded: url_helper
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Session Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Helper loaded: string_helper
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Session routines successfully run
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Helper loaded: form_helper
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Form Validation Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Config file loaded: application/config/grocery_crud.php
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Model Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Model Class Initialized
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> File loaded: application/views/example.php
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Final output sent to browser
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:22 --> Total execution time: 0.1017
+ERROR - 2012-12-03 22:14:22 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/core/Common.php 92
+DEBUG - 2012-12-03 22:14:33 --> Config Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Hooks Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Utf8 Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> UTF-8 Support Enabled
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> URI Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Router Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Output Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Security Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Input Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Global POST and COOKIE data sanitized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Language Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Loader Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Controller Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Database Driver Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Helper loaded: url_helper
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Session Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Helper loaded: string_helper
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Session routines successfully run
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Helper loaded: form_helper
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Form Validation Class Initialized
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:33 --> Config file loaded: application/config/grocery_crud.php
+ERROR - 2012-12-03 22:14:33 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:34 --> Model Class Initialized
+ERROR - 2012-12-03 22:14:34 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:34 --> Model Class Initialized
+ERROR - 2012-12-03 22:14:34 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:34 --> Model Class Initialized
+ERROR - 2012-12-03 22:14:34 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:34 --> File loaded: application/views/example.php
+ERROR - 2012-12-03 22:14:34 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:34 --> Final output sent to browser
+ERROR - 2012-12-03 22:14:34 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106
+DEBUG - 2012-12-03 22:14:34 --> Total execution time: 0.1096
+ERROR - 2012-12-03 22:14:34 --> Severity: Warning  --> chmod() has been disabled for security reasons /home/d------a/public_html/system/libraries/Log.php 106

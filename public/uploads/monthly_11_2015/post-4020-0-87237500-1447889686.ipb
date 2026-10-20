@@ -1,0 +1,41 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class Supplierslist extends CI_Controller {
+	public function __construct(){
+		parent::__construct();
+		
+		$this->load->helper('url');
+		$this->load->library('grocery_CRUD');
+		//$this->load->template('supplierslist'); // this will load the view file
+	
+	}
+	public function _example_output($output = null)
+	{
+		$this->load->view('supplierslist.php',$output);
+	}
+	public function index(){
+		$this->load->helper('url');
+		$this->load->view('templates/header-1.php');
+		$crud = new grocery_CRUD();
+			$crud->set_theme('twitter-bootstrap');
+			$crud->set_table('ims_vendor');
+			$crud->add_fields('name','email','company','phoneNumber','mobileNumber','city','country','address','aptSuite','state','zip');
+			$crud->edit_fields('name','email','company','phoneNumber','mobileNumber','city','country','address','aptSuite','state','zip');
+			$crud->columns('name','email','phoneNumber','city','country','address');
+			$crud->display_as('name','Contact Person')
+				 ->display_as('phoneNumber','Phone Number');
+			$crud->set_subject('Vendor');
+			
+
+			$output = $crud->render();
+
+			$this->_example_output($output);
+		
+		$this->load->view('templates/footer-1.php');
+	}
+	
+}
+
+
+
+
+?>

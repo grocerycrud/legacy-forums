@@ -1,0 +1,38 @@
+public function callback_perm_field($value, $primary_key) {
+        $html = '';
+        $sql = 'select distinct ap.id as perm_id, ap.name
+                from aauth_perms ap
+                left join aauth_perm_to_user apu on apu.perm_id = ap.id
+                left join aauth_perm_to_group apg on apg.perm_id = ap.id
+                left join aauth_user_to_group aug on aug.group_id = apg.group_id                
+                where apu.user_id = ' . $this->aauth->get_user_id() . ' or aug.user_id = ' . $this->aauth->get_user_id() . ' order by ap.name;';
+
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            $rec = $query->result();
+
+            $this->db->where('user_id', $primary_key);
+            $sql2 = $this->db->get('aauth_perm_to_user');
+
+            if ($sql2->num_rows() > 0) {
+                $sql2 = $sql2->result();
+
+                $selected = '';
+                $html .= '<select name = "perms[]" class="chosen-multiple-select" multiple="multiple" style="width:510px">';
+                foreach ($rec as $k => $v) {
+                    foreach ($sql2 as $sv) {
+                        if ($sv->perm_id == $v->perm_id) {
+                            $selected = ' selected="selected"';
+                        } else {
+                            $selected = '';
+                        }
+                        $html .= '<option ' . $selected . ' value=' . $v->perm_id . '>' . $v->name . '</option>';
+//                        array_splice($rec, $k, 1);                                                
+                    }
+                    unset($rec[$k]);
+                }
+                $html .= '</select>';
+            }
+        }
+        return $html;
+    }

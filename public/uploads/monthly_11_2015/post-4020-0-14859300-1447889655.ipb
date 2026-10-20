@@ -1,0 +1,43 @@
+		<footer>
+			<div id="links-panel">
+				<div class="container">
+					<div class="col-md-3">
+						<div class="title-1">
+							About The APP
+						</div>
+						<div class="links">
+							<ul>
+								<li><span class="glyphicon glyphicon-menu-right"></span> Privacy Policy</li>
+								<li><span class="glyphicon glyphicon-menu-right"></span> Terms and Conditions</li>
+								<li><span class="glyphicon glyphicon-menu-right"></span> Help and Support</li>
+								
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="title-1">
+							About The Team
+						</div>
+						<div class="links">
+							<ul>
+								<li><span class="glyphicon glyphicon-menu-right"></span> About Us</li>
+								<li><span class="glyphicon glyphicon-menu-right"></span> Contact Us</li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div id="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<p> Copyright © 2015 <a href="http://www.webmonopolist.com/">Webmonopolist</a> and All Rights Reserved.<br></p>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		</footer>
+</body>
+</html>

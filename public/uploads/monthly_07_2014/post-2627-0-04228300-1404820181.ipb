@@ -1,0 +1,54 @@
+body {
+	direction: rtl;
+}
+
+body,.flexigrid,.flexigrid div.form-div,input,button,select,textarea,.flexigrid div.form-div input[type="text"],.flexigrid div.form-div select,.flexigrid div.form-div textarea {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: 100;
+	font-size: 14px;
+}
+
+#sidebar,.form-input-box,.form-display-as-box,.flexigrid .ftitle-left,.navbar .brand {
+	float: right;
+}
+
+.text-left {
+	text-align: right;
+}
+
+.chzn-container-single .chzn-single abbr {
+	left: 26px;
+	right: inherit;
+}
+
+.flexigrid div.form-button-box {
+	float: right;
+	margin-left: 0;
+	margin-right: 10px;
+}
+
+.flexigrid div.mDiv div.ptogtitle {
+	left: 3px;
+	right: inherit;
+}
+
+.navbar-inner .nav-collapse.collapse,.navbar .nav.pull-right {
+	float: left;
+}
+
+.chzn-container-single .chzn-drop {
+	display: none !important;
+}
+
+.chzn-container-active.chzn-container-single .chzn-drop {
+	display: block !important;
+}
+
+.chzn-container-single-nosearch .chzn-search input {
+	display: none;
+	right: 0px;
+}
+
+.upload-success-url {
+	direction: ltr;
+}

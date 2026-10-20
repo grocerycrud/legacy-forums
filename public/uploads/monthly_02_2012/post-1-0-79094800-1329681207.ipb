@@ -1,0 +1,51 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+// by Mohamed Alsemany , Alsemany.net , Alsemany.org 
+	$lang['list_add'] 				= 'إضافة';
+	$lang['list_actions'] 			= 'الحركات';
+	$lang['list_page'] 				= 'الصفحة';	
+	$lang['list_paging_of'] 		= 'من';
+	$lang['list_displaying']		= 'عرض {start} إلى {end} من {results} من العناصر';
+	$lang['list_filtered_from']		= '(تم التصفية من  {total_results} إجمالي عدد العناصر)';
+	$lang['list_show_entries']		= 'اعرض {paging} عنصر في الصفحة الواحدة';
+	$lang['list_no_items']			= 'لا يوجد عناصر لعرضها هنا';
+	$lang['list_zero_entries']		= 'عرض 0 إلى 0 من 0 العناصر';
+	$lang['list_search'] 			= 'البحث';	
+	$lang['list_search_all'] 		= 'البحث عن الجميع';
+	$lang['list_clear_filtering'] 	= 'إلغاء البحث والتصفية';
+	$lang['list_delete'] 			= 'حذف';
+	$lang['list_edit'] 				= 'تحرير';	
+	$lang['list_paging_first'] 		= 'الأول';
+	$lang['list_paging_previous'] 	= 'السابق';
+	$lang['list_paging_next'] 		= 'التالي';
+	$lang['list_paging_last'] 		= 'الأخير';
+	$lang['list_loading'] 			= 'يتم التحميل...';	
+
+	$lang['form_edit'] 				= 'تحرير';
+	$lang['form_back_to_list'] 		= 'الرجوع إلى القائمة';
+	$lang['form_update_changes'] 	= 'تحديث التغييرات';
+	$lang['form_cancel'] 			= 'إلغاء';	
+	$lang['form_update_loading'] 	= 'يتم التحميل، تحيث التغييرات..';
+	$lang['update_success_message'] = 'تم تحديث بياناتك بنجاح.';	
+	$lang['form_go_back_to_list'] 	= 'العودة إلى القائمة';
+	
+	$lang['form_add'] 				= 'إضافة';
+	$lang['insert_success_message'] = 'تم إضافة بياناتك بنجاح إلى قواعد البيانات.';
+	$lang['form_or']				= 'أو';
+	$lang['form_save'] 				= 'حفظ';
+	$lang['form_insert_loading'] 	= 'يتم التحميل , يتم حفظ البيانات';
+	
+	$lang['form_upload_a_file'] 	= 'تحميل ملف';
+	$lang['form_upload_delete'] 	= 'حذف';
+	$lang['form_button_clear'] 		= 'مسح الحقول';	
+	
+	$lang['delete_success_message'] = 'تم حذف البيانات بنجاح من قاعدة البيانات';
+	$lang['delete_error_message'] 	= 'لم يتم حذف البيانات من قاعدة البيانات';
+	
+	/* Javascript messages */
+	$lang['alert_add_form']			= 'البيانات التي تم إدخالها لم يتم حفظها بقاعدة البيانات \\n هل أنت متأكد من أنك تريد مغادرة الصفحة والعودة للقائمة?';
+	$lang['alert_edit_form']		= 'البيانات التي قمت بتغييرها لم يتم تحديثها بقاعدة البيانات .\\nهل أنت متأكد من أنك تريد العودة إلى القائمة بدون تحديث هذه البيانات?';
+	$lang['alert_delete']			= 'هل أنت متأكد من أنك تريد حذف هذا السجل من قاعدة البيانات؟';
+	
+	$lang['insert_error']			= 'حدث خطأ ما أثناء إضافة هذا السجل الجديد';
+	$lang['update_error']			= 'حدث خطأ ما أثناء تحديث هذا السجل';
