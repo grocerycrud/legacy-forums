@@ -129,6 +129,9 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+# Made by `spark sitemap generate` (production-environment, 2026-10-21)
+/public/sitemap.txt
+
 # Logs: never in Git (production-environment logs.md, 2026-10-20)
 *.log
 error_log
